@@ -1,0 +1,29 @@
+using UnityEngine;
+
+namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityQuaternion
+{
+    [TaskCategory("Basic/Quaternion")]
+    [TaskDescription("Stores the quaternion of a euler vector.")]
+    public class Euler : Action
+    {
+        [Tooltip("The euler vector")]
+        public SharedVector3 eulerVector;
+        [Tooltip("The second Vector3")]
+        public SharedVector3 secondVector3;
+        [Tooltip("The stored quaternion")]
+        [RequiredField]
+        public SharedQuaternion storeResult;
+
+        public override TaskStatus OnUpdate()
+        {
+            storeResult.Value = Quaternion.Euler(eulerVector.Value);
+            return TaskStatus.Success;
+        }
+
+        public override void OnReset()
+        {
+            eulerVector = Vector3.zero;
+            storeResult = Quaternion.identity;
+        }
+    }
+}
