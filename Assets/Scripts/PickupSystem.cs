@@ -64,7 +64,10 @@ public class PickupSystem : MonoBehaviour
             }
 
             // Release object
-            handObject.transform.parent = null;
+            if(handObject.transform.parent = transform)
+            {
+                handObject.transform.parent = null;
+            }
             handObject = null;
         }
     }
@@ -73,14 +76,14 @@ public class PickupSystem : MonoBehaviour
     {
         if (SteamVR_Controller.Input((int)trackedObj.index).GetPressDown(SteamVR_Controller.ButtonMask.Axis0))
         {
-            if (handObject == null && collider.tag == "Item" && collider.GetComponent<ItemProperties>().Gatherable)
+            if (handObject == null)
             {
                 if (m_inventory != null && !m_inventory.isEmpty)
                 {
                     //Debug.Log("Withdraw Item");
-                    PickupItem(m_inventory.WithdrawItem());
+                    PickupItem(m_inventory.WithdrawItem(transform.position));
                 }
-                else
+                else if (collider.tag == "Item" && collider.GetComponent<ItemProperties>().Gatherable)
                 {
                     //Debug.Log("Pick up item");
                     PickupItem(collider.gameObject);

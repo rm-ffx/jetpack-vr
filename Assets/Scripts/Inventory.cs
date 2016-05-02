@@ -37,21 +37,43 @@ public class Inventory : MonoBehaviour {
     
     public void StoreItem(GameObject item)
     {
+        Debug.Log("STORE");
         m_storedObjects.Add(item);
+        Debug.Log(item.transform.parent.gameObject.name);
+        item.transform.parent = transform;
+        Debug.Log(item.transform.parent.gameObject.name);
+
+        item.GetComponent<Collider>().enabled = false;
+
         if (m_storedObjects.Count >= inventoryMaxSize)
             isFull = true;
 
         isEmpty = false;
 
-        item.transform.parent = transform;
         //Debug.Log("Stored Item, now holding " + m_storedObjects.Count);
         OrderObjects();
     }
 
-    public GameObject WithdrawItem(int index = 0)
+    public GameObject WithdrawItem(Vector3 controllerPosition)
     {
-        GameObject go = m_storedObjects[index];
-        m_storedObjects.Remove(go);
+        Debug.Log("WITHDRAW");
+        if (m_storedObjects.Count == 0)
+            return new GameObject();
+        
+        float minMagnitude = float.MaxValue;
+        GameObject closestStoredObject = null;
+        foreach(GameObject storedObject in m_storedObjects)
+        {
+            float dist = (storedObject.transform.position - controllerPosition).magnitude;
+            if(dist < minMagnitude)
+            {
+                minMagnitude = dist;
+                closestStoredObject = storedObject;
+            }
+        }
+        
+        closestStoredObject.transform.parent = null;
+        m_storedObjects.Remove(closestStoredObject);
 
         if (m_storedObjects.Count < inventoryMaxSize)
             isFull = false;
@@ -60,34 +82,39 @@ public class Inventory : MonoBehaviour {
 
         //Debug.Log("Withdrew Item, now holding " + m_storedObjects.Count);
         OrderObjects();
-        return go;        
-    }
 
-    public void WithdrawItem(GameObject item)
-    {
-        m_storedObjects.Remove(item);
-
-        if (m_storedObjects.Count < inventoryMaxSize)
-            isFull = false;
-        if (m_storedObjects.Count == 0)
-            isEmpty = true;
-
-        OrderObjects();
+        closestStoredObject.GetComponent<Collider>().enabled = true;
+        return closestStoredObject;
     }
 
     private void OrderObjects()
     {
-        // Create new slots if inventory is too small
+        // Resize (if needed) & rearrange inventory
         if(m_inventorySlotPositions.Count < m_storedObjects.Count)
         {
-            // Missing implementation - clear inventoryslotpositions and calculate new ones depending on size & other parameters
             m_inventorySlotPositions.Clear();
             Vector3 position;
+
+            float offset = 90.0f - offsetInDegrees * 0.5f * (m_storedObjects.Count - 1);
+
             for(int i = 0; i < m_storedObjects.Count; i++)
             {
                 position = transform.position;
-                position.x += radius * Mathf.Cos(i * Mathf.Deg2Rad * offsetInDegrees);
-                position.y += radius * Mathf.Sin(i * Mathf.Deg2Rad * offsetInDegrees);
+                switch (sortAroundAxis)
+                {
+                    case Axis.X:
+                        position.y += radius * Mathf.Sin(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
+                        position.z -= radius * Mathf.Cos(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
+                        break;
+                    case Axis.Y:
+                        position.x += radius * Mathf.Sin(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
+                        position.z += radius * Mathf.Cos(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
+                        break;
+                    case Axis.Z:
+                        position.y += radius * Mathf.Sin(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
+                        position.x += radius * Mathf.Cos(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
+                        break;
+                }
 
                 m_inventorySlotPositions.Add(position);
             }
