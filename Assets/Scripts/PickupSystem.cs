@@ -76,7 +76,7 @@ public class PickupSystem : MonoBehaviour
                 }
 
                 // Release object
-                if (handObject.transform.parent = transform)
+                if (handObject.transform.parent == transform)
                 {
                     handObject.transform.parent = null;
                 }
