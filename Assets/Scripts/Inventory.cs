@@ -37,40 +37,25 @@ public class Inventory : MonoBehaviour {
     
     public void StoreItem(GameObject item)
     {
-        Debug.Log("STORE");
         m_storedObjects.Add(item);
-        Debug.Log(item.transform.parent.gameObject.name);
-        item.transform.parent = transform;
-        Debug.Log(item.transform.parent.gameObject.name);
 
         item.GetComponent<Collider>().enabled = false;
+        item.GetComponent<Rigidbody>().isKinematic = true;
 
         if (m_storedObjects.Count >= inventoryMaxSize)
             isFull = true;
 
         isEmpty = false;
 
-        //Debug.Log("Stored Item, now holding " + m_storedObjects.Count);
         OrderObjects();
     }
 
     public GameObject WithdrawItem(Vector3 controllerPosition)
     {
-        Debug.Log("WITHDRAW");
         if (m_storedObjects.Count == 0)
             return new GameObject();
-        
-        float minMagnitude = float.MaxValue;
-        GameObject closestStoredObject = null;
-        foreach(GameObject storedObject in m_storedObjects)
-        {
-            float dist = (storedObject.transform.position - controllerPosition).magnitude;
-            if(dist < minMagnitude)
-            {
-                minMagnitude = dist;
-                closestStoredObject = storedObject;
-            }
-        }
+
+        GameObject closestStoredObject = ClosestItemToPosition(controllerPosition);
         
         closestStoredObject.transform.parent = null;
         m_storedObjects.Remove(closestStoredObject);
@@ -80,10 +65,10 @@ public class Inventory : MonoBehaviour {
         if (m_storedObjects.Count == 0)
             isEmpty = true;
 
-        //Debug.Log("Withdrew Item, now holding " + m_storedObjects.Count);
         OrderObjects();
 
         closestStoredObject.GetComponent<Collider>().enabled = true;
+        closestStoredObject.GetComponent<Rigidbody>().isKinematic = false;
         return closestStoredObject;
     }
 
@@ -120,22 +105,56 @@ public class Inventory : MonoBehaviour {
             }
         }
 
-        // Assign each Object in the inventory to a different slot
+        // Assign each Object in the inventory to a different slot and set parent
         for(int i = 0; i < m_storedObjects.Count; i++)
         {
             m_storedObjects[i].transform.position = m_inventorySlotPositions[i];
+            m_storedObjects[i].transform.parent = transform;
         }
     }
 
     public void OpenInventory()
     {
         foreach (GameObject go in m_storedObjects)
+        {
+            go.GetComponent<ItemProperties>().Highlight(false);
             go.SetActive(true);
+        }
     }
 
     public void CloseInventory()
     {
         foreach (GameObject go in m_storedObjects)
+        {
+            go.GetComponent<ItemProperties>().Highlight(false);
             go.SetActive(false);
+        }
+    }
+
+    public void Highlight(Vector3 controllerPosition)
+    {
+        if (isEmpty)
+            return;
+
+        foreach (GameObject go in m_storedObjects)
+            go.GetComponent<ItemProperties>().Highlight(false);
+
+        ClosestItemToPosition(controllerPosition).GetComponent<ItemProperties>().Highlight(true);
+    }
+
+    private GameObject ClosestItemToPosition(Vector3 controllerPosition)
+    {
+        float minMagnitude = float.MaxValue;
+        GameObject closestStoredObject = null;
+        foreach (GameObject storedObject in m_storedObjects)
+        {
+            float dist = (storedObject.transform.position - controllerPosition).magnitude;
+            if (dist < minMagnitude)
+            {
+                minMagnitude = dist;
+                closestStoredObject = storedObject;
+            }
+        }
+        return closestStoredObject;
     }
 }

@@ -11,6 +11,7 @@ public class JetpackMovement : MonoBehaviour {
     public float downwardMultiplier = 1.0f;
 
     private Rigidbody m_rigidBody;
+    private PickupSystem m_pickupSystem;
 
     private SteamVR_Controller.Device m_device = null; 
 
@@ -36,6 +37,7 @@ public class JetpackMovement : MonoBehaviour {
 
         // Cache Variables
         m_rigidBody = transform.parent.GetComponent<Rigidbody>();
+        m_pickupSystem = GetComponent<PickupSystem>();
 
         m_device = SteamVR_Controller.Input((int)GetComponent<SteamVR_TrackedObject>().index);
 
@@ -78,7 +80,8 @@ public class JetpackMovement : MonoBehaviour {
         //    ReInitialize();
 
         // Vive controls
-        triggerX = m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x;
+        if (!m_pickupSystem.m_isHandBusy)
+            triggerX = m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x;
 
         if (m_otherDeviceTrackedObject.isValid)
             otherTriggerX = m_otherDeviceJetpackMovement.triggerX;
