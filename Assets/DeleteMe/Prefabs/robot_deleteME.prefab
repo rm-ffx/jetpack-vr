@@ -1,0 +1,398 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &113248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 419656}
+  - 33: {fileID: 3334314}
+  - 23: {fileID: 2387860}
+  m_Layer: 0
+  m_Name: Cube (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &125594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 481100}
+  - 33: {fileID: 3398394}
+  - 23: {fileID: 2370570}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &136390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 487000}
+  - 33: {fileID: 3370684}
+  - 23: {fileID: 2332128}
+  m_Layer: 0
+  m_Name: Cube (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &155158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 411424}
+  - 114: {fileID: 11478970}
+  - 114: {fileID: 11413938}
+  - 114: {fileID: 11427608}
+  - 114: {fileID: 11479358}
+  - 114: {fileID: 11416278}
+  m_Layer: 0
+  m_Name: robot_deleteME
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &156542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 409224}
+  m_Layer: 0
+  m_Name: eyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &409224
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156542}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.46, z: 0.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 411424}
+  m_RootOrder: 0
+--- !u!4 &411424
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.62, y: 0, z: 7.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 409224}
+  - {fileID: 481100}
+  - {fileID: 419656}
+  - {fileID: 487000}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &419656
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.505, y: 1.049, z: 0.337}
+  m_LocalScale: {x: 0.3893725, y: 0.38166365, z: 0.96515614}
+  m_Children: []
+  m_Father: {fileID: 411424}
+  m_RootOrder: 2
+--- !u!4 &481100
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 411424}
+  m_RootOrder: 1
+--- !u!4 &487000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136390}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.494, y: 1.049, z: 0.337}
+  m_LocalScale: {x: 0.3893725, y: 0.38166365, z: 0.96515614}
+  m_Children: []
+  m_Father: {fileID: 411424}
+  m_RootOrder: 3
+--- !u!23 &2332128
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136390}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 1ad4a1c62efe06643b94a9e0fb0ddcf9, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!23 &2370570
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125594}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 1ad4a1c62efe06643b94a9e0fb0ddcf9, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!23 &2387860
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113248}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 1ad4a1c62efe06643b94a9e0fb0ddcf9, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &3334314
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113248}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &3370684
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136390}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &3398394
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125594}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &11413938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f586f285b3847808d79083bd19ef1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 3
+--- !u!114 &11416278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ad83fec3467b84ca249656206537fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  fov: 80
+  viewDistance: 50
+  eyePos: {fileID: 409224}
+  currentState: 0
+--- !u!114 &11427608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155158}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74058756f0df4e668a0e2226e7cfcea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 1
+  turningRadius: 1
+  turnConstruct1:
+    constantBias: 0
+    factorBias: 1
+  turnConstruct2:
+    constantBias: 0
+    factorBias: 1
+--- !u!114 &11478970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawGizmos: 1
+  detailedGizmos: 0
+  saveGetNearestHints: 1
+  startEndModifier:
+    priority: 2
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags:
+    tagsChange: -1
+    tagsSet: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+--- !u!114 &11479358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  pauseWhenDisabled: 0
+  restartWhenComplete: 1
+  logTaskChanges: 0
+  group: 0
+  externalBehavior: {fileID: 11400000, guid: acb185bc4042057468c10b937601e284, type: 2}
+  hasInheritedVariables: 0
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: "{\n\t\"EntryTask\":{\n\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.EntryTask\",\n\t\t\"NodeData\":{\n\t\t\t\"Offset\":\"(0,0)\"\n\t\t},\n\t\t\"ID\":0,\n\t\t\"Name\":\"Entry\",\n\t\t\"Instant\":true\n\t},\n\t\"RootTask\":{\n\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Sequence\",\n\t\t\"NodeData\":{\n\t\t\t\"Offset\":\"(0,100)\"\n\t\t},\n\t\t\"ID\":1,\n\t\t\"Name\":\"Sequence\",\n\t\t\"Instant\":true,\n\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\"Children\":[{\n\t\t\t\"ObjectType\":\"NPCInitialize\",\n\t\t\t\"NodeData\":{\n\t\t\t\t\"Offset\":\"(-130,100)\"\n\t\t\t},\n\t\t\t\"ID\":2,\n\t\t\t\"Name\":\"NPC
+        Initialize\",\n\t\t\t\"Instant\":true,\n\t\t\t\"BehaviorDesigner.Runtime.SharedObject,npcInfo\":{\n\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\"Name\":\"npcInfo\",\n\t\t\t\t\"IsShared\":true,\n\t\t\t\t\"IsGlobal\":false\n\t\t\t},\n\t\t\t\"BehaviorDesigner.Runtime.SharedObject,seeker\":{\n\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\"Name\":\"seeker\",\n\t\t\t\t\"IsShared\":true,\n\t\t\t\t\"IsGlobal\":false\n\t\t\t}\n\t\t},{\n\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Interrupt\",\n\t\t\t\"NodeData\":{\n\t\t\t\t\"Offset\":\"(0,100)\"\n\t\t\t},\n\t\t\t\"ID\":3,\n\t\t\t\"Name\":\"Interrupt\",\n\t\t\t\"Instant\":true,\n\t\t\t\"Children\":[{\n\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Parallel\",\n\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\"Offset\":\"(0,100)\"\n\t\t\t\t},\n\t\t\t\t\"ID\":4,\n\t\t\t\t\"Name\":\"Parallel\",\n\t\t\t\t\"Instant\":true,\n\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\t\t\"Children\":[{\n\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Repeater\",\n\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\"Offset\":\"(-210,110)\",\n\t\t\t\t\t\t\"Comment\":\"Perform
+        Tasks\"\n\t\t\t\t\t},\n\t\t\t\t\t\"ID\":5,\n\t\t\t\t\t\"Name\":\"Repeater\",\n\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedInt,count\":{\n\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedInt\",\n\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\"System.Int32,mValue\":1\n\t\t\t\t\t},\n\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedBool,repeatForever\":{\n\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedBool\",\n\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\"System.Boolean,mValue\":true\n\t\t\t\t\t},\n\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedBool,endOnFailure\":{\n\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedBool\",\n\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\"System.Boolean,mValue\":false\n\t\t\t\t\t},\n\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\"ObjectType\":\"NPCStateSelector\",\n\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\"Offset\":\"(0,110)\",\n\t\t\t\t\t\t\t\"Comment\":\"Continue
+        with Task depending on State\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"ID\":6,\n\t\t\t\t\t\t\"Name\":\"NPC
+        State Selector\",\n\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,npcInfo\":{\n\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\"Name\":\"npcInfo\",\n\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"System.Int32,idleIndex\":0,\n\t\t\t\t\t\t\"System.Int32,patrolIndex\":0,\n\t\t\t\t\t\t\"System.Int32,searchIndex\":1,\n\t\t\t\t\t\t\"System.Int32,attackIndex\":2,\n\t\t\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Sequence\",\n\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\"Offset\":\"(-490,110)\"\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"ID\":7,\n\t\t\t\t\t\t\t\"Name\":\"Patrol\",\n\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\t\"ObjectType\":\"PathWander\",\n\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\"Offset\":\"(-89,115)\"\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"ID\":8,\n\t\t\t\t\t\t\t\t\"Name\":\"Path
+        Wander - Patrol\",\n\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,npcInfo\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\"Name\":\"npcInfo\",\n\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,seeker\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\"Name\":\"seeker\",\n\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"PathWander+wanderType,type\":\"Random\",\n\t\t\t\t\t\t\t\t\"UnityEngine.Transform[],wanderWaypoints\":[0,1,2,3,4,5,6,7,8,9],\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedVector3,areaWanderPosition\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedVector3\",\n\t\t\t\t\t\t\t\t\t\"Name\":\"lastKnownTargetPos\",\n\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\"UnityEngine.Vector3,mValue\":\"(0,0,0)\"\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"System.Single,areaRadius\":0,\n\t\t\t\t\t\t\t\t\"System.Single,moveSpeed\":10,\n\t\t\t\t\t\t\t\t\"System.Single,rotSpeed\":10,\n\t\t\t\t\t\t\t\t\"System.Single,characterHeight\":2\n\t\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Wait\",\n\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\"Offset\":\"(58.0851135,110)\"\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"ID\":9,\n\t\t\t\t\t\t\t\t\"Name\":\"Wait\",\n\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedFloat,waitTime\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedFloat\",\n\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\"System.Single,mValue\":1\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedBool,randomWait\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedBool\",\n\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\"System.Boolean,mValue\":true\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedFloat,randomWaitMin\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedFloat\",\n\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\"System.Single,mValue\":1\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedFloat,randomWaitMax\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedFloat\",\n\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\"System.Single,mValue\":3\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}]\n\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Sequence\",\n\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\"Offset\":\"(-198,108)\"\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"ID\":10,\n\t\t\t\t\t\t\t\"Name\":\"Search\",\n\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Repeater\",\n\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\"Offset\":\"(-64,97)\"\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"ID\":11,\n\t\t\t\t\t\t\t\t\"Name\":\"Repeater\",\n\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedInt,count\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedInt\",\n\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\"System.Int32,mValue\":5\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedBool,repeatForever\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedBool\",\n\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\"System.Boolean,mValue\":false\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedBool,endOnFailure\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedBool\",\n\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\"System.Boolean,mValue\":false\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Sequence\",\n\t\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\t\"Offset\":\"(0,110)\"\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"ID\":12,\n\t\t\t\t\t\t\t\t\t\"Name\":\"Patrol\",\n\t\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\t\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\t\t\t\"ObjectType\":\"PathWander\",\n\t\t\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\t\t\"Offset\":\"(-70,120)\"\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"ID\":13,\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"Path
+        Wander - Search\",\n\t\t\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,npcInfo\":{\n\t\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\t\t\"Name\":\"npcInfo\",\n\t\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,seeker\":{\n\t\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\t\t\"Name\":\"seeker\",\n\t\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"PathWander+wanderType,type\":\"Area\",\n\t\t\t\t\t\t\t\t\t\t\"UnityEngine.Transform[],wanderWaypoints\":[],\n\t\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedVector3,areaWanderPosition\":{\n\t\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedVector3\",\n\t\t\t\t\t\t\t\t\t\t\t\"Name\":\"lastKnownTargetPos\",\n\t\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\t\t\"UnityEngine.Vector3,mValue\":\"(0,0,0)\"\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"System.Single,areaRadius\":5,\n\t\t\t\t\t\t\t\t\t\t\"System.Single,moveSpeed\":10,\n\t\t\t\t\t\t\t\t\t\t\"System.Single,rotSpeed\":10,\n\t\t\t\t\t\t\t\t\t\t\"System.Single,characterHeight\":2\n\t\t\t\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Wait\",\n\t\t\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\t\t\"Offset\":\"(80,120)\"\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"ID\":14,\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"Wait\",\n\t\t\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedFloat,waitTime\":{\n\t\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedFloat\",\n\t\t\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\t\t\"System.Single,mValue\":1\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedBool,randomWait\":{\n\t\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedBool\",\n\t\t\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\t\t\"System.Boolean,mValue\":true\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedFloat,randomWaitMin\":{\n\t\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedFloat\",\n\t\t\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\t\t\"System.Single,mValue\":1\n\t\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedFloat,randomWaitMax\":{\n\t\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedFloat\",\n\t\t\t\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\t\t\"System.Single,mValue\":3\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t}]\n\t\t\t\t\t\t\t\t}]\n\t\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\t\"ObjectType\":\"SetNPCState\",\n\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\"Offset\":\"(60,100)\"\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"ID\":15,\n\t\t\t\t\t\t\t\t\"Name\":\"Set
+        IDLE\",\n\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,npcInfo\":{\n\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\"Name\":\"npcInfo\",\n\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"NPCInfo+npcState,state\":\"Idle\"\n\t\t\t\t\t\t\t}]\n\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Sequence\",\n\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\"Offset\":\"(100,110)\"\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"ID\":16,\n\t\t\t\t\t\t\t\"Name\":\"Attack\",\n\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Selector\",\n\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\"Offset\":\"(-93,103)\"\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"ID\":17,\n\t\t\t\t\t\t\t\t\"Name\":\"Selector\",\n\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\t\t\"ObjectType\":\"PathChase\",\n\t\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\t\"Offset\":\"(0,110)\"\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"ID\":18,\n\t\t\t\t\t\t\t\t\t\"Name\":\"Path
+        Chase\",\n\t\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,npcInfo\":{\n\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"npcInfo\",\n\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,seeker\":{\n\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"seeker\",\n\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedTransform,target\":{\n\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedTransform\",\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"currentTarget\",\n\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedVector3,lastSeenTargetPos\":{\n\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedVector3\",\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"lastKnownTargetPos\",\n\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\t\t\"UnityEngine.Vector3,mValue\":\"(0,0,0)\"\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"System.Int32,repathFrequency\":15,\n\t\t\t\t\t\t\t\t\t\"System.Int32,visibilityBuffer\":240,\n\t\t\t\t\t\t\t\t\t\"System.Single,moveSpeed\":20,\n\t\t\t\t\t\t\t\t\t\"System.Single,rotSpeed\":10,\n\t\t\t\t\t\t\t\t\t\"System.Single,closeEnough\":2,\n\t\t\t\t\t\t\t\t\t\"System.Single,characterHeight\":2\n\t\t\t\t\t\t\t\t}]\n\t\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Sequence\",\n\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\"Offset\":\"(85,101)\"\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"ID\":19,\n\t\t\t\t\t\t\t\t\"Name\":\"Check
+        for Sight\",\n\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\t\t\"ObjectType\":\"CheckSight\",\n\t\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\t\"Offset\":\"(-50,110)\"\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"ID\":20,\n\t\t\t\t\t\t\t\t\t\"Name\":\"Check
+        Sight\",\n\t\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,npcInfo\":{\n\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"npcInfo\",\n\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedTransform,target\":{\n\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedTransform\",\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"currentTarget\",\n\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"System.String,targetTag\":\"Player\",\n\t\t\t\t\t\t\t\t\t\"System.Boolean,successIfInvisible\":true,\n\t\t\t\t\t\t\t\t\t\"CheckSight+checkSightType,type\":\"Spherical\",\n\t\t\t\t\t\t\t\t\t\"System.Single,searchRadius\":50\n\t\t\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\t\t\"ObjectType\":\"SetNPCState\",\n\t\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\t\"Offset\":\"(66,109)\"\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"ID\":21,\n\t\t\t\t\t\t\t\t\t\"Name\":\"Set
+        SEARCHING\",\n\t\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,npcInfo\":{\n\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"npcInfo\",\n\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"NPCInfo+npcState,state\":\"Search\"\n\t\t\t\t\t\t\t\t}]\n\t\t\t\t\t\t\t}]\n\t\t\t\t\t\t}]\n\t\t\t\t\t}]\n\t\t\t\t},{\n\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Repeater\",\n\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\"Offset\":\"(270.2127,110)\",\n\t\t\t\t\t\t\"Comment\":\"Check
+        for important Condition Changes\"\n\t\t\t\t\t},\n\t\t\t\t\t\"ID\":22,\n\t\t\t\t\t\"Name\":\"Repeater\",\n\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedInt,count\":{\n\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedInt\",\n\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\"System.Int32,mValue\":1\n\t\t\t\t\t},\n\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedBool,repeatForever\":{\n\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedBool\",\n\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\"System.Boolean,mValue\":true\n\t\t\t\t\t},\n\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedBool,endOnFailure\":{\n\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedBool\",\n\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\"System.Boolean,mValue\":false\n\t\t\t\t\t},\n\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Sequence\",\n\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\"Offset\":\"(0,110)\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"ID\":23,\n\t\t\t\t\t\t\"Name\":\"Sequence\",\n\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.UntilSuccess\",\n\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\"Offset\":\"(-60,110)\"\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"ID\":24,\n\t\t\t\t\t\t\t\"Name\":\"Until
+        Success\",\n\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.Sequence\",\n\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\"Offset\":\"(4.042528,97.0211258)\"\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"ID\":25,\n\t\t\t\t\t\t\t\t\"Name\":\"Sequence\",\n\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.AbortType,abortType\":\"None\",\n\t\t\t\t\t\t\t\t\"Children\":[{\n\t\t\t\t\t\t\t\t\t\"ObjectType\":\"StateSwitcher\",\n\t\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\t\"Offset\":\"(0,111.914917)\"\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"ID\":26,\n\t\t\t\t\t\t\t\t\t\"Name\":\"State
+        Switcher\",\n\t\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,npcInfo\":{\n\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"npcInfo\",\n\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedTransform,target\":{\n\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedTransform\",\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"currentTarget\",\n\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"System.String,targetTag\":\"Player\"\n\t\t\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\t\t\"ObjectType\":\"CheckNPCState\",\n\t\t\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\t\t\"Offset\":\"(127.872223,105.319153)\"\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"ID\":27,\n\t\t\t\t\t\t\t\t\t\"Name\":\"Check
+        NPC State\",\n\t\t\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedObject,npcInfo\":{\n\t\t\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\t\t\t\t\t\t\t\t\"Name\":\"npcInfo\",\n\t\t\t\t\t\t\t\t\t\t\"IsShared\":true,\n\t\t\t\t\t\t\t\t\t\t\"IsGlobal\":false\n\t\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\t\"System.Boolean,isIdling\":false,\n\t\t\t\t\t\t\t\t\t\"System.Boolean,isPatrolling\":false,\n\t\t\t\t\t\t\t\t\t\"System.Boolean,isSearching\":false,\n\t\t\t\t\t\t\t\t\t\"System.Boolean,isAttacking\":true\n\t\t\t\t\t\t\t\t}]\n\t\t\t\t\t\t\t}]\n\t\t\t\t\t\t},{\n\t\t\t\t\t\t\t\"ObjectType\":\"BehaviorDesigner.Runtime.Tasks.PerformInterruption\",\n\t\t\t\t\t\t\t\"NodeData\":{\n\t\t\t\t\t\t\t\t\"Offset\":\"(80.02121,106)\"\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\"ID\":28,\n\t\t\t\t\t\t\t\"Name\":\"Perform
+        Interruption\",\n\t\t\t\t\t\t\t\"Instant\":true,\n\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.Tasks.Interrupt[],interruptTasks\":[3],\n\t\t\t\t\t\t\t\"BehaviorDesigner.Runtime.SharedBool,interruptSuccess\":{\n\t\t\t\t\t\t\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedBool\",\n\t\t\t\t\t\t\t\t\"Name\":null,\n\t\t\t\t\t\t\t\t\"IsShared\":false,\n\t\t\t\t\t\t\t\t\"IsGlobal\":false,\n\t\t\t\t\t\t\t\t\"System.Boolean,mValue\":false\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}]\n\t\t\t\t\t}]\n\t\t\t\t}]\n\t\t\t}]\n\t\t}]\n\t},\n\t\"Variables\":[{\n\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\"Name\":\"seeker\",\n\t\t\"IsShared\":true,\n\t\t\"IsGlobal\":false\n\t},{\n\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedObject\",\n\t\t\"Name\":\"npcInfo\",\n\t\t\"IsShared\":true,\n\t\t\"IsGlobal\":false\n\t},{\n\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedTransform\",\n\t\t\"Name\":\"currentTarget\",\n\t\t\"IsShared\":true,\n\t\t\"IsGlobal\":false\n\t},{\n\t\t\"Type\":\"BehaviorDesigner.Runtime.SharedVector3\",\n\t\t\"Name\":\"lastKnownTargetPos\",\n\t\t\"IsShared\":true,\n\t\t\"IsGlobal\":false,\n\t\t\"UnityEngine.Vector3,mValue\":\"(0,0,0)\"\n\t}]\n}"
+      fieldSerializationData:
+        typeName: []
+        startIndex: 
+        taskStartIndex: 
+        dataPosition: 
+        unityObjects:
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        byteData: 
+        byteDataArray: 
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 155158}
+  m_IsPrefabParent: 1
