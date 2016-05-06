@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Pathfinding;
+using Pathfinding.RVO;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
@@ -14,6 +15,10 @@ public class PathChase : Action
 
     public SharedObject seeker; // Contains the Seeker Object
     private Seeker pathSeeker;
+
+    public bool useRVO;
+    public SharedObject rvoController; // Contains the RVO Controller
+    private RVOController controller;
 
     public SharedTransform target; // Target that is going to be chased
     private Transform chaseTarget;
@@ -45,6 +50,8 @@ public class PathChase : Action
         // Cache Variables
         info = npcInfo.GetValue() as NPCInfo;
         pathSeeker = seeker.GetValue() as Seeker;
+
+        if (useRVO) controller = rvoController.GetValue() as RVOController;
     }
 
     public override void OnStart()
@@ -61,14 +68,16 @@ public class PathChase : Action
 
     public override TaskStatus OnUpdate()
     {
+        // Store the last known position of the Target in this task for further use by other tasks
+        lastSeenTargetPos.SetValue(chaseTarget.transform.position);
+
         // Check if the Target is Visible to the NPC
         if (withinSightSpherical(chaseTarget)) m_currentVisibilityBuffer = 0;
         else m_currentVisibilityBuffer++;
 
         if (m_currentVisibilityBuffer >= visibilityBuffer)
         {
-            // Store the last known position of the Target in this task for further use by other tasks
-            lastSeenTargetPos.SetValue(chaseTarget.transform.position);
+            if (useRVO) controller.Move(Vector3.zero);
             return TaskStatus.Success;
         }
 
@@ -97,13 +106,16 @@ public class PathChase : Action
         // Move Character towards next waypoint
         if (path != null)
         {
-            // Path only has one Waypoint - NPC is at target position already
-            if (path.vectorPath.Count == 1)
+            // Path only has one Waypoint or is close enough - NPC is at target position already
+            if (path.vectorPath.Count == 1 ||
+                Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(chaseTarget.position.x, chaseTarget.position.z)) <= closeEnough)
             {
                 path = null;
                 currentPathWaypoint = 1;
+                if (useRVO) controller.Move(Vector3.zero);
                 return TaskStatus.Success;
             }
+
             ///////////////////////
             // SET POSITION
             // Get new Position
@@ -122,20 +134,21 @@ public class PathChase : Action
             Quaternion currentRotation = transform.rotation;
             transform.LookAt(new Vector3(newPos.x, transform.position.y, newPos.y));
             Quaternion newRotation = transform.rotation;
-
             transform.rotation = Quaternion.Slerp(currentRotation, newRotation, rotSpeed * Time.deltaTime);
 
             // Move Character
-            transform.position = new Vector3(newPos.x, height, newPos.y);
+            if (!useRVO) transform.position = new Vector3(newPos.x, height, newPos.y);
+            else controller.Move((new Vector3(newPos.x, height, newPos.y) - transform.position).normalized * moveSpeed);
 
             // Check if the Character's distance to the target location is close enough to move on to the next waypoint
             if (Vector2.Distance(newPos, waypointPos) < errorMargin) currentPathWaypoint++;
 
             // Target Reached - Abort Movement
-            if (currentPathWaypoint == path.vectorPath.Count || Vector2.Distance(newPos, new Vector2(chaseTarget.position.x, chaseTarget.position.z)) < closeEnough)
+            if (currentPathWaypoint == path.vectorPath.Count)
             {
                 path = null;
                 currentPathWaypoint = 1;
+                if (useRVO) controller.Move(Vector3.zero);
                 return TaskStatus.Success;
             }
             else return TaskStatus.Running;

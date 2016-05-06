@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using Pathfinding;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using Pathfinding.RVO;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
@@ -10,6 +11,8 @@ public class NPCInitialize : Action
 {
     public SharedObject npcInfo; // NPC Info that stores all information of the NPC
     public SharedObject seeker; // Seeker for Path Generation
+    public SharedTransformList waypointTargets; // Targets for Path-Generation
+    public SharedObject rvoController;
 
     private bool m_isInitialized = false;
 
@@ -22,6 +25,12 @@ public class NPCInitialize : Action
             // Initialize Variables of this NPC
             npcInfo.SetValue(GetComponent<NPCInfo>());
             seeker.SetValue(GetComponent<Seeker>());
+            rvoController.SetValue(GetComponent<RVOController>());
         }
+        // Get all Target Transforms in the Scene
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Waypoint");
+        List<Transform> targetsTransform = LevelInfo.npcPatrolWaypoints;
+        //for (int i = 0; i < targets.Length; i++) targetsTransform.Add(targets[i].transform);
+        waypointTargets.SetValue(targetsTransform);
     }
 }

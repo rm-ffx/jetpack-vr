@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Pathfinding;
+using Pathfinding.RVO;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
@@ -14,13 +16,18 @@ public class PathWander : Action
     public SharedObject seeker; // Contains the Seeker Object
     private Seeker pathSeeker;
 
+    public bool useRVO;
+    public SharedObject rvoController; // Contains the RVO Controller
+    private RVOController controller;
+
     public enum wanderType
     {
         Random = 0,
         Area = 1
     }
     public wanderType type;
-    public Transform[] wanderWaypoints; // Array of all possible waypoints
+    public SharedTransformList wanderWaypoints; // List of all possible waypoints
+    private List<Transform> wanderWaypointsList; // Array of all possible waypoints
     public SharedVector3 areaWanderPosition; // Around which point will the NPC generate own points
     public float areaRadius; // In Which Radius will the NPC generate an own point in Area Mode
 
@@ -42,6 +49,9 @@ public class PathWander : Action
         // Cache Variables
         info = npcInfo.GetValue() as NPCInfo;
         pathSeeker = seeker.GetValue() as Seeker;
+        wanderWaypointsList = wanderWaypoints.GetValue() as List<Transform>;
+
+        if (useRVO) controller = rvoController.GetValue() as RVOController;
     }
 
     public override void OnStart()
@@ -72,30 +82,30 @@ public class PathWander : Action
         {
             while (currentWanderWaypoint == lastWanderWaypoint)
             {
-                currentWanderWaypoint = Random.Range(0, wanderWaypoints.Length);
+                currentWanderWaypoint = Random.Range(0, wanderWaypointsList.Count);
             }
             lastWanderWaypoint = currentWanderWaypoint;
 
             // Generate Path
-            pathSeeker.StartPath(transform.position, wanderWaypoints[currentWanderWaypoint].transform.position, OnPathComplete);
+            pathSeeker.StartPath(transform.position, wanderWaypointsList[currentWanderWaypoint].transform.position, OnPathComplete);
         }
         else if (type == wanderType.Area)
         {
             // Generate new point until a reachable point was found
-            bool canReach = false;
+            //bool canReach = false;
             Vector3 newPoint = Vector3.zero;
             Vector3 areaPos = (Vector3)areaWanderPosition.GetValue();
-            while (!canReach)
-            {
-                // Generate a Waypoint in an area around the given position
-                newPoint = new Vector3(areaPos.x + Random.Range(areaRadius * -1, areaRadius), areaPos.y, areaPos.z + Random.Range(areaRadius * -1, areaRadius));
+            //while (!canReach)
+            //{
+            //    // Generate a Waypoint in an area around the given position
+            newPoint = new Vector3(areaPos.x + Random.Range(areaRadius * -1, areaRadius), areaPos.y, areaPos.z + Random.Range(areaRadius * -1, areaRadius));
 
-                //set your constraints on a new instance for distance, graphmask ...etc
-                NNConstraint pathConstraint = NNConstraint.Default;
-                GraphNode node1 = AstarPath.active.GetNearest(transform.position, pathConstraint).node;
-                GraphNode node2 = AstarPath.active.GetNearest(newPoint, pathConstraint).node;
-                canReach = (node1 != null && node2 != null && PathUtilities.IsPathPossible(node1, node2));
-            }
+            //    //set your constraints on a new instance for distance, graphmask ...etc
+            //    NNConstraint pathConstraint = NNConstraint.Default;
+            //    GraphNode node1 = AstarPath.active.GetNearest(transform.position, pathConstraint).node;
+            //    GraphNode node2 = AstarPath.active.GetNearest(newPoint, pathConstraint).node;
+            //    canReach = (node1 != null && node2 != null && PathUtilities.IsPathPossible(node1, node2));
+            //}
             Debug.DrawRay(newPoint, Vector3.up * 3, Color.green, 10f);
             // Generate Path
             pathSeeker.StartPath(transform.position, newPoint, OnPathComplete);
@@ -115,6 +125,7 @@ public class PathWander : Action
             {
                 path = null;
                 currentPathWaypoint = 1;
+                if (useRVO) controller.Move(Vector3.zero);
                 return TaskStatus.Success;
             }
 
@@ -136,11 +147,11 @@ public class PathWander : Action
             Quaternion currentRotation = transform.rotation;
             transform.LookAt(new Vector3(newPos.x, transform.position.y, newPos.y));
             Quaternion newRotation = transform.rotation;
-
             transform.rotation = Quaternion.Slerp(currentRotation, newRotation, rotSpeed * Time.deltaTime);
 
             // Move Character
-            transform.position = new Vector3(newPos.x, height, newPos.y);
+            if (!useRVO) transform.position = new Vector3(newPos.x, height, newPos.y);
+            else controller.Move((new Vector3(newPos.x, height, newPos.y) - transform.position).normalized * moveSpeed);
 
             // Check if the Character's distance to the target location is close enough to move on to the next waypoint
             if (Vector2.Distance(newPos, waypointPos) < errorMargin) currentPathWaypoint++;
@@ -150,6 +161,7 @@ public class PathWander : Action
             {
                 path = null;
                 currentPathWaypoint = 1;
+                if (useRVO) controller.Move(Vector3.zero);
                 return TaskStatus.Success;
             }
             else return TaskStatus.Running;
@@ -163,7 +175,10 @@ public class PathWander : Action
     public void OnPathComplete(Path p)
     {
         //We got our path back
-        if (p.error) Debug.Log("Error!");
+        if (p.error)
+        {
+            Debug.Log(p.errorLog);
+        }
         else
         {
             // Completed the Path Generation
