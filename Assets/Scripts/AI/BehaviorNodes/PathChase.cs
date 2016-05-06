@@ -26,11 +26,16 @@ public class PathChase : Action
     public SharedVector3 lastSeenTargetPos; // When the Target disappears, the last seen position gets stored here
 
     public int repathFrequency; // Ticks until a re-calculation of the path towards the target happens
-    private int currentRepathCounter = 0;
+    private int m_currentRepathCounter = 0;
 
     [UnityEngine.Tooltip("How long is this NPC still chasing the target, even if the Target is no longer visible")]
     public int visibilityBuffer;
     private int m_currentVisibilityBuffer;
+
+    public int minChaseTime; // How long will the NPC Chase the Target min?
+    public int maxChaseTime; // How long will the NPC Chase the Target max?
+    private int m_currentChaseTime;
+    private int m_currentMaxChaseTime;
 
     // Movement Variables
     public float moveSpeed;
@@ -58,6 +63,8 @@ public class PathChase : Action
     {
         chaseTarget = target.GetValue() as Transform;
         m_currentVisibilityBuffer = 0;
+        m_currentChaseTime = 0;
+        m_currentMaxChaseTime = Random.Range(minChaseTime, maxChaseTime + 1);
 
         errorMargin = moveSpeed * 0.05f;
 
@@ -73,17 +80,19 @@ public class PathChase : Action
 
         // Check if the Target is Visible to the NPC
         if (withinSightSpherical(chaseTarget)) m_currentVisibilityBuffer = 0;
-        else m_currentVisibilityBuffer++;
+        else { m_currentVisibilityBuffer++; m_currentChaseTime = 0; }
 
-        if (m_currentVisibilityBuffer >= visibilityBuffer)
+        if (m_currentVisibilityBuffer >= visibilityBuffer || m_currentChaseTime >= m_currentMaxChaseTime)
         {
             if (useRVO) controller.Move(Vector3.zero);
             return TaskStatus.Success;
         }
 
         // Target is Visible, or buffer didnt expire by now - continue pathing
-        if ((m_generatePath && path == null) || currentRepathCounter >= repathFrequency) CreatePath();
-        currentRepathCounter++;
+        if ((m_generatePath && path == null) || m_currentRepathCounter >= repathFrequency) CreatePath();
+        m_currentRepathCounter++;
+        m_currentChaseTime++;
+
         // Moves the Character
         return MoveCharacter();
     }
@@ -95,7 +104,7 @@ public class PathChase : Action
     {
         m_generatePath = false;
         pathSeeker.StartPath(transform.position, (target.GetValue() as Transform).position, OnPathComplete);
-        currentRepathCounter = 0;
+        m_currentRepathCounter = 0;
     }
 
     /// <summary>

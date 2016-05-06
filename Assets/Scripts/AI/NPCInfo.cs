@@ -14,6 +14,10 @@ public class NPCInfo : MonoBehaviour
 
     public Transform eyePos;
 
+    // Combat Variables
+    public Transform[] gunPos;
+    public GameObject projectile;
+
     public enum npcState
     {
         Idle = 0,
