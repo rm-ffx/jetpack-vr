@@ -8,6 +8,8 @@ public class PickupSystem : MonoBehaviour
 {
     SteamVR_TrackedObject trackedObj;
     GameObject handObject;
+    public Inventory portableInventory;
+    private bool m_inventoryOpen;
     public Inventory m_inventory { get; private set; }
     public bool m_isHandBusy { get; private set; }
 
@@ -24,6 +26,7 @@ public class PickupSystem : MonoBehaviour
         handObject = null;
         m_isHandBusy = false;
         m_itemsInRange = new List<GameObject>();
+        m_inventoryOpen = false;
 
         m_otherDeviceGameObject = transform.parent.GetComponent<SteamVR_ControllerManager>().left;
         if (m_otherDeviceGameObject == gameObject)
@@ -34,11 +37,19 @@ public class PickupSystem : MonoBehaviour
 
     void Update()
     {
+        var device = SteamVR_Controller.Input((int)trackedObj.index);
         if (handObject == null)
-            FindAndHighlightClosestObject();
+        {
+            if(!m_isHandBusy)
+                FindAndHighlightClosestObject();
+
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
+                EnableInventory();
+            else if (device.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu) && m_inventoryOpen)
+                DisableInventory();
+        }
         else
         {
-            var device = SteamVR_Controller.Input((int)trackedObj.index);
             if (handObject != null && device.GetPressUp(SteamVR_Controller.ButtonMask.Axis0) && handObject.tag == "Item")
             {
                 ItemProperties itemProperties = handObject.GetComponent<ItemProperties>();
@@ -92,7 +103,7 @@ public class PickupSystem : MonoBehaviour
     {
         if (SteamVR_Controller.Input((int)trackedObj.index).GetPressDown(SteamVR_Controller.ButtonMask.Axis0))
         {
-            if (handObject == null)
+            if (handObject == null && !m_isHandBusy)
             {
                 if (m_inventory != null && !m_inventory.isEmpty)
                 {
@@ -130,11 +141,8 @@ public class PickupSystem : MonoBehaviour
     {
         if (collider.tag == "Item")
             m_itemsInRange.Add(collider.gameObject);
-        else if (collider.tag == "Inventory")
-        {
+        else if (collider.tag == "Inventory" && !m_inventoryOpen)
             m_inventory = collider.GetComponent<Inventory>();
-            m_inventory.OpenInventory();
-        }
     }
 
     void OnTriggerExit(Collider collider)
@@ -144,7 +152,7 @@ public class PickupSystem : MonoBehaviour
             collider.GetComponent<ItemProperties>().Highlight(false);
             m_itemsInRange.Remove(collider.gameObject);
         }
-        else if (collider.tag == "Inventory")
+        else if (collider.tag == "Inventory" && !m_inventoryOpen)
         {
             foreach (GameObject go in m_inventory.m_storedObjects)
             {
@@ -152,10 +160,10 @@ public class PickupSystem : MonoBehaviour
                 go.GetComponent<ItemProperties>().Highlight(false);
             }
 
-            if (m_otherDevicePickupSystem.m_inventory != m_inventory)
-            {
-                m_inventory.CloseInventory();
-            }
+            //if (m_otherDevicePickupSystem.m_inventory != m_inventory)
+            //{
+            //    m_inventory.CloseInventory();
+            //}
             m_inventory = null;
         }
     }
@@ -207,5 +215,38 @@ public class PickupSystem : MonoBehaviour
                 m_closestObject = closestObject;
             }
         }
+    }
+
+    private void EnableInventory()
+    {
+        if (portableInventory.gameObject.activeInHierarchy)
+            m_otherDevicePickupSystem.DisableInventory();
+
+        portableInventory.gameObject.SetActive(true);
+        portableInventory.transform.position = transform.position;
+        portableInventory.transform.rotation = transform.rotation;
+        portableInventory.transform.parent = transform;
+        portableInventory.OpenInventory();
+
+        GetComponent<Collider>().enabled = false;
+        m_inventoryOpen = true;
+        m_isHandBusy = true;
+    }
+
+    private void DisableInventory()
+    {
+        portableInventory.CloseInventory();
+        m_otherDevicePickupSystem.RemoteInventoryClose();
+        portableInventory.gameObject.SetActive(false);
+        GetComponent<Collider>().enabled = true;
+        m_inventoryOpen = false;
+        m_isHandBusy = false;
+    }
+
+    public void RemoteInventoryClose()
+    {
+        m_itemsInRange.Clear();
+        m_inventory = null;
+        m_closestObject = null;
     }
 }

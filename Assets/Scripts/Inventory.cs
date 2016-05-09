@@ -4,17 +4,9 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour {
     public uint inventoryMaxSize;
-
-    public enum Axis
-    {
-        X,
-        Y,
-        Z
-    }
-
-    public Axis sortAroundAxis;
     public float radius = 0.5f;
-    public float offsetInDegrees = 30.0f;
+    public float totalOffsetInDegrees = 90.0f;
+    public float itemOffsetInDegrees = 30.0f;
 
     public bool isFull { get; private set; }
     public bool isEmpty { get; private set; }
@@ -33,8 +25,9 @@ public class Inventory : MonoBehaviour {
 
         m_storedObjects = new List<GameObject>();
         m_inventorySlotPositions = new List<Vector3>();
+        gameObject.SetActive(false);
 	}
-    
+
     public void StoreItem(GameObject item)
     {
         m_storedObjects.Add(item);
@@ -74,41 +67,34 @@ public class Inventory : MonoBehaviour {
 
     private void OrderObjects()
     {
-        // Resize (if needed) & rearrange inventory
-        if(m_inventorySlotPositions.Count < m_storedObjects.Count)
+        // Resize & rearrange inventory
+        if(m_inventorySlotPositions.Count != m_storedObjects.Count)
         {
             m_inventorySlotPositions.Clear();
             Vector3 position;
+            Vector3 firstPosition = Vector3.zero;
 
-            float offset = 90.0f - offsetInDegrees * 0.5f * (m_storedObjects.Count - 1);
-
+            float offset = totalOffsetInDegrees - itemOffsetInDegrees * 0.5f * (m_storedObjects.Count - 1);
             for(int i = 0; i < m_storedObjects.Count; i++)
             {
                 position = transform.position;
-                switch (sortAroundAxis)
-                {
-                    case Axis.X:
-                        position.y += radius * Mathf.Sin(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
-                        position.z -= radius * Mathf.Cos(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
-                        break;
-                    case Axis.Y:
-                        position.x += radius * Mathf.Sin(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
-                        position.z += radius * Mathf.Cos(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
-                        break;
-                    case Axis.Z:
-                        position.y += radius * Mathf.Sin(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
-                        position.x += radius * Mathf.Cos(offset * Mathf.Deg2Rad + i * Mathf.Deg2Rad * offsetInDegrees);
-                        break;
-                }
+               
+                if(m_inventorySlotPositions.Count == 0)
+                    firstPosition = transform.position + transform.forward * radius;
+
+                Vector3 direction = firstPosition - transform.position;
+                direction = Quaternion.Euler(transform.up * offset + transform.up * (itemOffsetInDegrees * i)) * direction;
+                position += direction;
 
                 m_inventorySlotPositions.Add(position);
-            }
+            }            
         }
 
         // Assign each Object in the inventory to a different slot and set parent
-        for(int i = 0; i < m_storedObjects.Count; i++)
+        for (int i = 0; i < m_storedObjects.Count; i++)
         {
             m_storedObjects[i].transform.position = m_inventorySlotPositions[i];
+            m_storedObjects[i].transform.rotation = transform.rotation;
             m_storedObjects[i].transform.parent = transform;
         }
     }
