@@ -5,9 +5,13 @@ using System.Collections.Generic;
 /// <summary>
 /// Handles the gadget selection
 /// </summary>
-public class GadgetSelector : MonoBehaviour {
+public class GadgetSelector : MonoBehaviour
+{
+    [Tooltip("Connect all gadget scripts to this list. Gadgets should have a display model connected")]
     public List<MonoBehaviour> Gadgets;
+    [Tooltip("The maximum ammount of gadgets")]
     public int MaxGadgets = 8;
+    [Tooltip("How far the gadgets will be from the activation point")]
     public float Distance = 0.5f;
 
     private Vector3[] m_calculatedPositions;

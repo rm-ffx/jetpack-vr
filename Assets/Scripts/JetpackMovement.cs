@@ -2,12 +2,16 @@
 using System.Collections;
 using Valve.VR;
 
-// Handling Jetpack Movement for VR controller
-
+/// <summary>
+/// Handles Jetpack Movement for VR controller
+/// </summary>
 // Attach to Controller
 [RequireComponent(typeof(SteamVR_TrackedObject))]
-public class JetpackMovement : MonoBehaviour {
+public class JetpackMovement : MonoBehaviour
+{
+    [Tooltip("Multiplier to control upward speed")]
     public float upwardMultiplier = 1.0f;
+    [Tooltip("Multiplier to control downward speed in order to make falling down more realistic")]
     public float downwardMultiplier = 1.0f;
 
     private Rigidbody m_rigidBody;

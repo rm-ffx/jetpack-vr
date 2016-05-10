@@ -2,8 +2,10 @@
 using System.Collections;
 using Valve.VR;
 
-// Identify the connected HMD
-
+// NOT USED AT THE MOMENT!
+/// <summary>
+/// Identifies the connected HMD
+/// </summary>
 public class VRInputManager : MonoBehaviour {
 
     public enum VRDetectedHardware

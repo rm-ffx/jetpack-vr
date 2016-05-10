@@ -2,10 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Inventory : MonoBehaviour {
+/// <summary>
+/// Handles the inventory. Can either be static or the player's portable inventory
+/// </summary>
+public class Inventory : MonoBehaviour
+{
+    [Tooltip("The maximum ammount of items that can be stored at the same time")]
     public uint inventoryMaxSize;
+    [Tooltip("How far from the center the items will be displayed while in the inventory")]
     public float radius = 0.5f;
+    [Tooltip("The circular offset all the items have when beeing displayed")]
     public float totalOffsetInDegrees = 90.0f;
+    [Tooltip("The circular offset between each of the items")]
     public float itemOffsetInDegrees = 30.0f;
 
     public bool isFull { get; private set; }

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Handles the gun gadget
+/// </summary>
 public class Gun : MonoBehaviour {
 
 	// Use this for initialization
