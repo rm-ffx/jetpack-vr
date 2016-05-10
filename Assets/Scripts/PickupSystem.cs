@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
 /// <summary>
 /// Handles picking up objects, storing and tossing them
 /// </summary>
@@ -77,27 +76,23 @@ public class PickupSystem : MonoBehaviour
                 // If possible, toss the item
                 else if (itemProperties.Tossable)
                 {
-                    //Debug.Log("Toss Object");
-                    Rigidbody rigidbody = handObject.GetComponent<Rigidbody>();
-                    rigidbody.isKinematic = false;
+                    Rigidbody handObjectRigidbody = handObject.GetComponent<Rigidbody>();
+                    Rigidbody playerRigidbody = transform.parent.GetComponent<Rigidbody>();
+                    handObjectRigidbody.isKinematic = false;
 
                     var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
                     if (origin != null)
                     {
-                        rigidbody.velocity = origin.TransformVector(device.velocity);
-                        rigidbody.angularVelocity = origin.TransformVector(device.angularVelocity);
-                        //rigidbody.AddForce(transform.parent.GetComponent<Rigidbody>().velocity, ForceMode.VelocityChange);
-                        //rigidbody.velocity = transform.parent.GetComponent<Rigidbody>().velocity;
-                        //rigidbody.AddForce(origin.TransformVector(device.velocity), ForceMode.Impulse);
-                        //rigidbody.angularVelocity = origin.TransformVector(device.angularVelocity); // + transform.parent.GetComponent<Rigidbody>().angularVelocity;
+                        handObjectRigidbody.velocity = playerRigidbody.velocity + origin.TransformVector(device.velocity);
+                        handObjectRigidbody.angularVelocity = playerRigidbody.angularVelocity + origin.TransformVector(device.angularVelocity);
                     }
                     else
                     {
-                        rigidbody.velocity = device.velocity + transform.parent.GetComponent<Rigidbody>().velocity;
-                        rigidbody.angularVelocity = device.angularVelocity; // + transform.parent.GetComponent<Rigidbody>().angularVelocity;
+                        handObjectRigidbody.velocity = playerRigidbody.velocity + device.velocity;
+                        handObjectRigidbody.angularVelocity = playerRigidbody.angularVelocity + device.angularVelocity; 
                     }
 
-                    rigidbody.maxAngularVelocity = rigidbody.angularVelocity.magnitude;
+                    handObjectRigidbody.maxAngularVelocity = handObjectRigidbody.angularVelocity.magnitude;
                 }
 
                 // Release object
@@ -121,19 +116,11 @@ public class PickupSystem : MonoBehaviour
             if (handObject == null && !m_isHandBusy)
             {
                 if (m_inventory != null && !m_inventory.isEmpty)
-                {
                     PickupItem(m_inventory.WithdrawItem(transform.position));
-                }
-                else if(m_closestObject != null && m_closestObject.tag == "Item" && m_closestObject.GetComponent<ItemProperties>().Gatherable)
-                {
-                    if (!m_closestObject.GetComponent<ItemProperties>().IsInUse)
-                        PickupItem(m_closestObject);
-                }
-                else if (collider.tag == "Item" && collider.GetComponent<ItemProperties>().Gatherable)
-                {
-                    if(!collider.GetComponent<ItemProperties>().IsInUse)
-                        PickupItem(collider.gameObject);
-                }
+                else if(m_closestObject != null && m_closestObject.tag == "Item" && m_closestObject.GetComponent<ItemProperties>().Gatherable && !m_closestObject.GetComponent<ItemProperties>().IsInUse)
+                    PickupItem(m_closestObject);
+                else if (collider.tag == "Item" && collider.GetComponent<ItemProperties>().Gatherable && !collider.GetComponent<ItemProperties>().IsInUse)
+                    PickupItem(collider.gameObject);
             }
         }
     }
