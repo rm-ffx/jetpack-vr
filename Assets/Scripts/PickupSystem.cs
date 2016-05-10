@@ -71,7 +71,6 @@ public class PickupSystem : MonoBehaviour
                 // If possible, store the item in the inventory
                 if (m_inventory != null && itemProperties.Storable && !m_inventory.isFull)
                 {
-                    itemProperties.Highlight(false);
                     m_inventory.StoreItem(handObject);
                 }
                 // If possible, toss the item
@@ -106,6 +105,8 @@ public class PickupSystem : MonoBehaviour
                 handObject = null;
                 m_isHandBusy = false;
                 m_closestObject = null;
+                FindAndHighlightClosestObject();
+                //m_itemsInRange.Clear();
             }
         }
     }
@@ -218,8 +219,8 @@ public class PickupSystem : MonoBehaviour
             }
             if(closestObject != null)
             {
-                closestObject.GetComponent<ItemProperties>().Highlight(true);
                 m_closestObject = closestObject;
+                m_closestObject.GetComponent<ItemProperties>().Highlight(true);
             }
         }
     }
@@ -242,6 +243,10 @@ public class PickupSystem : MonoBehaviour
 
     private void DisableInventory()
     {
+        if (m_inventoryOpen)
+        {
+            m_itemsInRange.Clear();
+        }
         portableInventory.CloseInventory();
         m_otherDevicePickupSystem.RemoteInventoryClose();
         portableInventory.gameObject.SetActive(false);
@@ -252,9 +257,19 @@ public class PickupSystem : MonoBehaviour
 
     public void RemoteInventoryClose()
     {
-        m_itemsInRange.Clear();
+        if (m_inventory != null)
+        {
+            foreach (GameObject go in m_inventory.m_storedObjects)
+            {
+                m_itemsInRange.Remove(go);
+                go.GetComponent<ItemProperties>().Highlight(false);
+            }
+        }
+
+        m_inventoryOpen = false;
         m_inventory = null;
         m_closestObject = null;
+        FindAndHighlightClosestObject();
     }
 
     private void OpenGadgetSelector()
