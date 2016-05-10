@@ -29,18 +29,40 @@ public class GadgetSelector : MonoBehaviour
         for(int i = 0; i < MaxGadgets; i++)
         {
             position = m_calculatedPositions[i];
-            GameObject newObj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            newObj.GetComponent<Collider>().isTrigger = true;
-            newObj.GetComponent<Collider>().enabled = false;
-            newObj.GetComponent<MeshRenderer>().material.color = Color.cyan;
-            newObj.GetComponent<MeshRenderer>().enabled = false;
-            newObj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            newObj.transform.position = position;
-            m_gadgetObjects[i] = newObj;
+
+            if(i < Gadgets.Count)
+                switch (Gadgets[i].GetType().ToString())
+                {
+                    case "JetpackMovement":
+                        m_gadgetObjects[i] = Instantiate(Gadgets[i].GetComponent<JetpackMovement>().GadgetPreviewPrefab);
+                        break;
+                    case "Gun":
+                        m_gadgetObjects[i] = Instantiate(Gadgets[i].GetComponent<Gun>().GadgetPreviewPrefab);
+                        break;
+                    default:
+                        m_gadgetObjects[i] = GetDefaultGadgetPreview();
+                        break;
+                }
+            else
+                m_gadgetObjects[i] = GetDefaultGadgetPreview();
+
+            m_gadgetObjects[i].transform.position = position;
+            m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = false;
         }
 
         foreach (MonoBehaviour gadget in Gadgets)
             gadget.enabled = false;
+    }
+
+    private GameObject GetDefaultGadgetPreview()
+    {
+        GameObject newObj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        newObj.GetComponent<Collider>().isTrigger = true;
+        newObj.GetComponent<Collider>().enabled = false;
+        newObj.GetComponent<MeshRenderer>().material.color = Color.cyan;
+        newObj.GetComponent<MeshRenderer>().enabled = false;
+        newObj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        return newObj;
     }
 
     private void SetPositions()
@@ -83,9 +105,22 @@ public class GadgetSelector : MonoBehaviour
         {
             m_gadgetObjects[i].transform.parent = transform.parent;
             m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = true;
-            m_gadgetObjects[i].GetComponent<Collider>().enabled = true;
+            //m_gadgetObjects[i].GetComponent<Collider>().enabled = true;
         }
     }
+
+    //public void CancelGadgetSelector()
+    //{
+    //    for (int i = 0; i < MaxGadgets; i++)
+    //    {
+    //        m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = false;
+
+    //        if (i < Gadgets.Count)
+    //        {
+    //            Gadgets[i].enabled = false;
+    //        }
+    //    }
+    //}
 
     public void CloseGadgetSelector(Vector3 controllerPosition)
     {
@@ -94,7 +129,7 @@ public class GadgetSelector : MonoBehaviour
         for (int i = 0; i < MaxGadgets; i++)
         {
             m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = false;
-            m_gadgetObjects[i].GetComponent<Collider>().enabled = false;
+            //m_gadgetObjects[i].GetComponent<Collider>().enabled = false;
 
             if(i < Gadgets.Count)
             {
