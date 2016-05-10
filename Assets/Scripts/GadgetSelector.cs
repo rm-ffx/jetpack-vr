@@ -105,8 +105,22 @@ public class GadgetSelector : MonoBehaviour
             }
         }
 
-        // Apply Y rotation
+        // Apply Y rotation of Camera (head) object to ensure GadgetPreview is rotated properly
         transform.rotation = Quaternion.Euler(oldRotationEuler);
+
+        for(int i = 0; i < MaxGadgets; i++)
+        {
+            if(m_gadgetObjects[i] != null)
+            {
+                oldPosition = m_gadgetObjects[i].transform.position;
+                m_gadgetObjects[i].transform.position = Vector3.zero;
+                
+                oldRotationEuler = transform.parent.Find("Camera (head)").rotation.eulerAngles;
+                m_gadgetObjects[i].transform.rotation = Quaternion.Euler(new Vector3(0.0f, oldRotationEuler.y, 0.0f));
+
+                m_gadgetObjects[i].transform.position = oldPosition;
+            }
+        }
     }
 
     public void OpenGadgetSelector()
