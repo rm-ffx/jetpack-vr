@@ -43,6 +43,5 @@ public class Gun : MonoBehaviour
     {
         m_remainingCooldown = Cooldown;
         GameObject.Instantiate(ProjectilePrefab, transform.position, transform.rotation);
-        //GameObject.Instantiate(Resources.Load(m_info.projectile.name), m_info.gunPos[i].position, Quaternion.LookRotation(m_currentTarget.position - m_info.gunPos[i].position, Vector3.up));
     }
 }
