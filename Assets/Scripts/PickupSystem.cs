@@ -102,6 +102,7 @@ public class PickupSystem : MonoBehaviour
                 }
                 itemProperties.IsInUse = false;
                 itemProperties.Highlight(false);
+                handObject.GetComponent<Collider>().enabled = true;
                 handObject = null;
                 m_isHandBusy = false;
                 m_closestObject = null;
@@ -132,6 +133,7 @@ public class PickupSystem : MonoBehaviour
         handObject = item;
         handObject.transform.position = transform.position;
         handObject.transform.rotation = transform.rotation;
+        handObject.GetComponent<Collider>().enabled = false;
         handObject.GetComponent<Rigidbody>().isKinematic = true;
         handObject.transform.parent = transform;
         m_isHandBusy = true;

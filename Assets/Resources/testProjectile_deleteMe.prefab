@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 407618}
-  - 114: {fileID: 11482994}
+  - 114: {fileID: 11449808}
   m_Layer: 0
   m_Name: testProjectile_deleteMe
   m_TagString: Untagged
@@ -91,7 +91,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135834}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &11482994
+--- !u!114 &11449808
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -99,11 +99,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 102774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e86d4981e6b584e8782541c812a9ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 10db16f4c32c2c04f9077c0872a24d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 350
-  speed: 20
+  LifeTime: 10
+  Speed: 20
+  Damage: 50
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

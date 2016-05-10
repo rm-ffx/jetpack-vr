@@ -36,8 +36,11 @@ public class GadgetSelector : MonoBehaviour
                     case "JetpackMovement":
                         m_gadgetObjects[i] = Instantiate(Gadgets[i].GetComponent<JetpackMovement>().GadgetPreviewPrefab);
                         break;
-                    case "Gun":
-                        m_gadgetObjects[i] = Instantiate(Gadgets[i].GetComponent<Gun>().GadgetPreviewPrefab);
+                    case "ProjectileGun":
+                        m_gadgetObjects[i] = Instantiate(Gadgets[i].GetComponent<ProjectileGun>().GadgetPreviewPrefab);
+                        break;
+                    case "RaycastGun":
+                        m_gadgetObjects[i] = Instantiate(Gadgets[i].GetComponent<RaycastGun>().GadgetPreviewPrefab);
                         break;
                     default:
                         m_gadgetObjects[i] = GetDefaultGadgetPreview();

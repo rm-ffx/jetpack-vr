@@ -3,14 +3,14 @@ using System.Collections;
 using Valve.VR;
 
 /// <summary>
-/// Handles the gun gadget
+/// Handles the raycast gun gadget
 /// </summary>
-public class Gun : MonoBehaviour
+public class RaycastGun : MonoBehaviour
 {
     [Tooltip("How many seconds the gun needs to be ready again")]
     public float Cooldown;
-    [Tooltip("The model that will be used as projectile")]
-    public GameObject ProjectilePrefab;
+    [Tooltip("The damage this weapon deals")]
+    public float Damage;
     [Tooltip("The model that will be used for the gadget selector")]
     public GameObject GadgetPreviewPrefab;
 
@@ -42,7 +42,18 @@ public class Gun : MonoBehaviour
     private void Shoot()
     {
         m_remainingCooldown = Cooldown;
-        GameObject newProjectile = (GameObject)Instantiate(ProjectilePrefab, transform.position, transform.rotation);
-        newProjectile.layer = 11;
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position + transform.forward.normalized, transform.forward, out hit, maxDistance: 100.0f))
+        {
+            if(hit.transform.gameObject.layer == 9)
+            {
+                NPCInfo npcInfo = hit.transform.gameObject.GetComponent<NPCInfo>();
+                npcInfo.health -= Damage;
+                if (npcInfo.health <= 0.0f)
+                {
+                    Destroy(hit.transform.gameObject);
+                }
+            }
+        }
     }
 }

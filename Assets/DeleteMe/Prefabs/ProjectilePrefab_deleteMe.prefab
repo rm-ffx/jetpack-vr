@@ -104,10 +104,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &11475322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10db16f4c32c2c04f9077c0872a24d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeTime: 10
-  Speed: 10
+  LifeTime: 100
+  Speed: 200
   Damage: 50
 --- !u!136 &13688034
 CapsuleCollider:
@@ -129,7 +129,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193666}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.05
   m_Height: 0.5

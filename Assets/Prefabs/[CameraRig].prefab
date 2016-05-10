@@ -66,9 +66,10 @@ GameObject:
   - 54: {fileID: 5440262}
   - 65: {fileID: 6545654}
   - 114: {fileID: 11465614}
-  - 114: {fileID: 11406612}
-  - 114: {fileID: 11446018}
   - 114: {fileID: 11463840}
+  - 114: {fileID: 11406612}
+  - 114: {fileID: 11458160}
+  - 114: {fileID: 11488612}
   m_Layer: 10
   m_Name: Controller (left)
   m_TagString: Untagged
@@ -91,7 +92,7 @@ GameObject:
   - 54: {fileID: 5431720}
   - 136: {fileID: 13685944}
   - 114: {fileID: 11464056}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: '[CameraRig]'
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -146,9 +147,10 @@ GameObject:
   - 54: {fileID: 5467440}
   - 65: {fileID: 6586560}
   - 114: {fileID: 11412480}
-  - 114: {fileID: 11477944}
-  - 114: {fileID: 11481742}
   - 114: {fileID: 11400676}
+  - 114: {fileID: 11477944}
+  - 114: {fileID: 11434668}
+  - 114: {fileID: 11448730}
   m_Layer: 10
   m_Name: Controller (right)
   m_TagString: Untagged
@@ -518,8 +520,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gadgets:
   - {fileID: 11477944}
-  - {fileID: 11481742}
-  MaxGadgets: 3
+  - {fileID: 11434668}
+  - {fileID: 11448730}
+  MaxGadgets: 4
   Distance: 0.3
 --- !u!114 &11406612
 MonoBehaviour:
@@ -616,6 +619,20 @@ MonoBehaviour:
   index: 0
   origin: {fileID: 0}
   isValid: 0
+--- !u!114 &11434668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e830cee3cf67e83458ed9def28d02509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 0.3
+  ProjectilePrefab: {fileID: 193666, guid: ed2b82dba1ca13a45a1c1e070fe771c8, type: 2}
+  GadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
 --- !u!114 &11441284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -629,19 +646,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scale: 1.5
   drawOverlay: 1
---- !u!114 &11446018
+--- !u!114 &11448730
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 129580}
+  m_GameObject: {fileID: 191454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e830cee3cf67e83458ed9def28d02509, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e2cd63dcc7c9d044ac05d013a459ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0.7
-  ProjectilePrefab: {fileID: 193666, guid: ed2b82dba1ca13a45a1c1e070fe771c8, type: 2}
+  Cooldown: 0.3
+  Damage: 100
   GadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
 --- !u!114 &11450326
 MonoBehaviour:
@@ -674,6 +691,20 @@ MonoBehaviour:
   verbose: 0
   createComponents: 1
   updateDynamically: 1
+--- !u!114 &11458160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e830cee3cf67e83458ed9def28d02509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 0.3
+  ProjectilePrefab: {fileID: 193666, guid: ed2b82dba1ca13a45a1c1e070fe771c8, type: 2}
+  GadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
 --- !u!114 &11460374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -704,8 +735,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gadgets:
   - {fileID: 11406612}
-  - {fileID: 11446018}
-  MaxGadgets: 3
+  - {fileID: 11458160}
+  - {fileID: 11488612}
+  MaxGadgets: 4
   Distance: 0.3
 --- !u!114 &11464056
 MonoBehaviour:
@@ -785,19 +817,19 @@ MonoBehaviour:
   UpwardMultiplier: 1
   DownwardMultiplier: 1
   GadgetPreviewPrefab: {fileID: 127930, guid: 84549a4a663e67d4aaedc573e2385b21, type: 2}
---- !u!114 &11481742
+--- !u!114 &11488612
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191454}
+  m_GameObject: {fileID: 129580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e830cee3cf67e83458ed9def28d02509, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e2cd63dcc7c9d044ac05d013a459ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0.7
-  ProjectilePrefab: {fileID: 193666, guid: ed2b82dba1ca13a45a1c1e070fe771c8, type: 2}
+  Cooldown: 0.3
+  Damage: 100
   GadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
 --- !u!114 &11492724
 MonoBehaviour:
