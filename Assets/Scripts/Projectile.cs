@@ -6,7 +6,9 @@ public class Projectile : MonoBehaviour
     public float LifeTime = 10;
     public float Speed = 20;
     public float Damage = 50;
+
     private float m_currentLifeTime;
+    //private bool m_isPlayerProjectile;
 
     void Update()
     {
@@ -27,6 +29,13 @@ public class Projectile : MonoBehaviour
             npcInfo.health -= Damage;
             if (npcInfo.health <= 0.0f)
                 Destroy(collision.gameObject);
+        }
+        else if(collision.gameObject.layer == 11)
+        {
+            PlayerInfo playerInfo = collision.gameObject.GetComponent<PlayerInfo>();
+            playerInfo.health -= Damage;
+            if (playerInfo.health <= 0.0f)
+                Debug.Log("Player died. Insert gamestate change here");
         }
 
         Destroy(gameObject);

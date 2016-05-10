@@ -42,6 +42,7 @@ public class Gun : MonoBehaviour
     private void Shoot()
     {
         m_remainingCooldown = Cooldown;
-        GameObject.Instantiate(ProjectilePrefab, transform.position, transform.rotation);
+        GameObject newProjectile = (GameObject)Instantiate(ProjectilePrefab, transform.position, transform.rotation);
+        newProjectile.layer = 11;
     }
 }
