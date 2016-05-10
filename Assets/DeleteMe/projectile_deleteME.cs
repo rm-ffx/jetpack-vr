@@ -10,8 +10,9 @@ public class projectile_deleteME : MonoBehaviour
     void Update()
     {
         // Destroy if too old
-        if (m_currentLifeTime >= lifeTime) Destroy(this.gameObject);
-        m_currentLifeTime++;
+        if (m_currentLifeTime >= lifeTime)
+            Destroy(this.gameObject);
+        m_currentLifeTime += Time.deltaTime;
 
         // Move Forward
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
