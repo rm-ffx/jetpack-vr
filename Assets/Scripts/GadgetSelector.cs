@@ -47,6 +47,7 @@ public class GadgetSelector : MonoBehaviour
                 m_gadgetObjects[i] = GetDefaultGadgetPreview();
 
             m_gadgetObjects[i].transform.position = position;
+            m_gadgetObjects[i].transform.parent = transform;
             m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = false;
         }
 
@@ -85,16 +86,27 @@ public class GadgetSelector : MonoBehaviour
             direction = Quaternion.Euler(transform.forward * (offsetInDegrees * i)) * direction;
             position += direction;
             m_calculatedPositions[i] = position;
+        }
 
+        transform.position = oldPosition;
+        // To ensure the GadgetPreviews will only be rotated around the Y axis, first rotate around XZ, then set positions & parent and rotate around Y afterwards
+        Vector3 oldRotationEuler = oldRotation.eulerAngles;
+        Vector3 oldRotationXZ = new Vector3(oldRotationEuler.x, 0.0f, oldRotationEuler.z);
+        // Apply XZ rotation
+        transform.rotation = Quaternion.Euler(oldRotationXZ);
+
+        // Set positions & parent
+        for (int i = 0; i < MaxGadgets; i++)
+        {
             if(m_gadgetObjects[i] != null)
             {
-                m_gadgetObjects[i].transform.position = position;
+                m_gadgetObjects[i].transform.position = transform.position + m_calculatedPositions[i];
                 m_gadgetObjects[i].transform.parent = transform;
             }
         }
 
-        transform.position = oldPosition;
-        transform.rotation = oldRotation;
+        // Apply Y rotation
+        transform.rotation = Quaternion.Euler(oldRotationEuler);
     }
 
     public void OpenGadgetSelector()
