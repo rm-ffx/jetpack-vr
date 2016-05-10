@@ -2,6 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+/// <summary>
+/// Handles picking up objects, storing and tossing them
+/// </summary>
 // Attach to Controller
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class PickupSystem : MonoBehaviour
@@ -12,6 +16,9 @@ public class PickupSystem : MonoBehaviour
     private bool m_inventoryOpen;
     public Inventory m_inventory { get; private set; }
     public bool m_isHandBusy { get; private set; }
+
+    private GadgetSelector m_gadgetSelector;
+    private bool m_gadgetSelectorOpen;
 
     private GameObject m_otherDeviceGameObject;
     private PickupSystem m_otherDevicePickupSystem;
@@ -27,12 +34,15 @@ public class PickupSystem : MonoBehaviour
         m_isHandBusy = false;
         m_itemsInRange = new List<GameObject>();
         m_inventoryOpen = false;
+        m_gadgetSelectorOpen = false;
 
         m_otherDeviceGameObject = transform.parent.GetComponent<SteamVR_ControllerManager>().left;
         if (m_otherDeviceGameObject == gameObject)
             m_otherDeviceGameObject = transform.parent.GetComponent<SteamVR_ControllerManager>().right;
 
         m_otherDevicePickupSystem = m_otherDeviceGameObject.GetComponent<PickupSystem>();
+
+        m_gadgetSelector = GetComponent<GadgetSelector>();
     }
 
     void Update()
@@ -43,7 +53,11 @@ public class PickupSystem : MonoBehaviour
             if(!m_isHandBusy)
                 FindAndHighlightClosestObject();
 
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Axis0))
+                OpenGadgetSelector();
+            else if (device.GetPressUp(SteamVR_Controller.ButtonMask.Axis0))
+                CloseGadgetSelector();
+            else if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
                 EnableInventory();
             else if (device.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu) && m_inventoryOpen)
                 DisableInventory();
@@ -95,6 +109,7 @@ public class PickupSystem : MonoBehaviour
                 itemProperties.Highlight(false);
                 handObject = null;
                 m_isHandBusy = false;
+                m_closestObject = null;
             }
         }
     }
@@ -171,7 +186,11 @@ public class PickupSystem : MonoBehaviour
     private void FindAndHighlightClosestObject()
     {
         m_closestObject = null;
-        if (m_inventory != null && !m_inventory.isEmpty)
+        if(m_gadgetSelectorOpen)
+        {
+            m_gadgetSelector.Highlight(transform.position);
+        }
+        else if (m_inventory != null && !m_inventory.isEmpty)
         {
             m_inventory.Highlight(transform.position);
         }
@@ -248,5 +267,17 @@ public class PickupSystem : MonoBehaviour
         m_itemsInRange.Clear();
         m_inventory = null;
         m_closestObject = null;
+    }
+
+    private void OpenGadgetSelector()
+    {
+        m_gadgetSelectorOpen = true;
+        m_gadgetSelector.OpenGadgetSelector();
+    }
+
+    private void CloseGadgetSelector()
+    {
+        m_gadgetSelectorOpen = false;
+        m_gadgetSelector.CloseGadgetSelector(transform.position);
     }
 }

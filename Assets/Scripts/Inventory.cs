@@ -67,20 +67,23 @@ public class Inventory : MonoBehaviour {
 
     private void OrderObjects()
     {
+        Vector3 oldPosition = transform.position;
+        Quaternion oldRotation = transform.rotation;
+
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+
         // Resize & rearrange inventory
         if(m_inventorySlotPositions.Count != m_storedObjects.Count)
         {
             m_inventorySlotPositions.Clear();
             Vector3 position;
-            Vector3 firstPosition = Vector3.zero;
+            Vector3 firstPosition = transform.position + transform.forward * radius;
 
             float offset = totalOffsetInDegrees - itemOffsetInDegrees * 0.5f * (m_storedObjects.Count - 1);
             for(int i = 0; i < m_storedObjects.Count; i++)
             {
                 position = transform.position;
-               
-                if(m_inventorySlotPositions.Count == 0)
-                    firstPosition = transform.position + transform.forward * radius;
 
                 Vector3 direction = firstPosition - transform.position;
                 direction = Quaternion.Euler(transform.up * offset + transform.up * (itemOffsetInDegrees * i)) * direction;
@@ -97,6 +100,9 @@ public class Inventory : MonoBehaviour {
             m_storedObjects[i].transform.rotation = transform.rotation;
             m_storedObjects[i].transform.parent = transform;
         }
+
+        transform.position = oldPosition;
+        transform.rotation = oldRotation;
     }
 
     public void OpenInventory()
