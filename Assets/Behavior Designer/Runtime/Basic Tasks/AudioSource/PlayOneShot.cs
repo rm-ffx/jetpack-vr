@@ -11,7 +11,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
         [Tooltip("The clip being played")]
         public SharedObject clip;
         [Tooltip("The scale of the volume (0-1)")]
-        float volumeScale = 1;
+        public SharedFloat volumeScale = 1;
 
         private AudioSource audioSource;
         private GameObject prevGameObject;
@@ -32,7 +32,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
                 return TaskStatus.Failure;
             }
 
-            audioSource.PlayOneShot((AudioClip)clip.Value, volumeScale);
+            audioSource.PlayOneShot((AudioClip)clip.Value, volumeScale.Value);
 
             return TaskStatus.Success;
         }

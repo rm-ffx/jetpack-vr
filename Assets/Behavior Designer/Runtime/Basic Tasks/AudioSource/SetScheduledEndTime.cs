@@ -10,7 +10,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
         [Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
         public SharedGameObject targetGameObject;
         [Tooltip("Time in seconds")]
-        float time = 0;
+        public SharedFloat time = 0;
 
         private AudioSource audioSource;
         private GameObject prevGameObject;
@@ -31,7 +31,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
                 return TaskStatus.Failure;
             }
 
-            audioSource.SetScheduledEndTime(time);
+            audioSource.SetScheduledEndTime(time.Value);
 
             return TaskStatus.Success;
         }

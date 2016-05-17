@@ -50,10 +50,10 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityPhysics
 
             RaycastHit hit;
             if (Physics.SphereCast(position, radius.Value, dir, out hit, distance.Value == -1 ? Mathf.Infinity : distance.Value, layerMask)) {
-                storeHitObject = hit.collider.gameObject;
-                storeHitPoint = hit.point;
-                storeHitNormal = hit.normal;
-                storeHitDistance = hit.distance;
+                storeHitObject.Value = hit.collider.gameObject;
+                storeHitPoint.Value = hit.point;
+                storeHitNormal.Value = hit.normal;
+                storeHitDistance.Value = hit.distance;
                 return TaskStatus.Success;
             }
 

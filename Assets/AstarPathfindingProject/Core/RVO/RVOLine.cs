@@ -4,8 +4,8 @@ using System.Collections;
 namespace Pathfinding.RVO {
 	/** ORCA Line.
 	 * Simply holds a point and a direction, nothing fancy.
-	 * 
-	 * \astarpro 
+	 *
+	 * \astarpro
 	 */
 	public struct Line {
 		public Vector2 point;

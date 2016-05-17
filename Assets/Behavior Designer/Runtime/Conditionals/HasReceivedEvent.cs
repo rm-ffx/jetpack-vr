@@ -89,6 +89,10 @@ namespace BehaviorDesigner.Runtime.Tasks
             // Stop receiving the event when the behavior tree is complete
             Owner.UnregisterEvent(eventName.Value, ReceivedEvent);
             Owner.UnregisterEvent<object>(eventName.Value, ReceivedEvent);
+            Owner.UnregisterEvent<object, object>(eventName.Value, ReceivedEvent);
+            Owner.UnregisterEvent<object, object, object>(eventName.Value, ReceivedEvent);
+
+            eventReceived = false;
         }
 
         public override void OnReset()

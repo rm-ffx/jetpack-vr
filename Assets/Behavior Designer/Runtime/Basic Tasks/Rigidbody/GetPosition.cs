@@ -8,6 +8,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
     {
         [Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
         public SharedGameObject targetGameObject;
+        [Tooltip("Can the target GameObject be empty?")]
+        public SharedBool allowEmptyTarget;
         [Tooltip("The position of the Rigidbody")]
         [RequiredField]
         public SharedVector3 storeValue;
@@ -18,10 +20,12 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
 
         public override void OnStart()
         {
-            var currentGameObject = GetDefaultGameObject(targetGameObject.Value);
-            if (currentGameObject != prevGameObject) {
-                rigidbody = currentGameObject.GetComponent<Rigidbody>();
-                prevGameObject = currentGameObject;
+            if (!allowEmptyTarget.Value) {
+                var currentGameObject = GetDefaultGameObject(targetGameObject.Value);
+                if (currentGameObject != prevGameObject) {
+                    rigidbody = currentGameObject.GetComponent<Rigidbody>();
+                    prevGameObject = currentGameObject;
+                }
             }
         }
 
@@ -40,6 +44,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody
         public override void OnReset()
         {
             targetGameObject = null;
+            allowEmptyTarget = false;
             storeValue = Vector3.zero;
         }
     }

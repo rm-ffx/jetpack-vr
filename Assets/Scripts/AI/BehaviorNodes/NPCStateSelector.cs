@@ -2,6 +2,9 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
+/// <summary>
+/// Sets the NPC's state to the selected one
+/// </summary>
 public class NPCStateSelector :  Composite
 {
     public SharedObject npcInfo;

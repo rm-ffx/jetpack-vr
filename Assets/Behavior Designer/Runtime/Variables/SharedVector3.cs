@@ -4,16 +4,8 @@ using System.Collections;
 namespace BehaviorDesigner.Runtime
 {
     [System.Serializable]
-    public class SharedVector3 : SharedVariable
+    public class SharedVector3 : SharedVariable<Vector3>
     {
-        public Vector3 Value { get { return mValue; } set { mValue = value; } }
-        [SerializeField]
-        private Vector3 mValue;
-
-        public override object GetValue() { return mValue; }
-        public override void SetValue(object value) { mValue = (Vector3)value; }
-
-        public override string ToString() { return mValue.ToString(); }
-        public static implicit operator SharedVector3(Vector3 value) { var sharedVariable = new SharedVector3(); sharedVariable.SetValue(value); return sharedVariable; }
+        public static implicit operator SharedVector3(Vector3 value) { return new SharedVector3 { mValue = value }; }
     }
 }

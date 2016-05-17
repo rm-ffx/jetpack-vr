@@ -1,17 +1,25 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using Pathfinding;
 using Pathfinding.RVO;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
 /// <summary>
-/// Moves the NPC via Pathfinding - NPC chases Target transform as long as it is visible
+/// Moves the NPC via Pathfinding - NPC chases Target transform as long as it is visible, then triggers VisibilityBuffer.
+/// Returns success If the NPC is invisible but in "closeEnough" range -> Move on to "Searching" immediatly.
 /// </summary>
 
 public class PathChase : Action
 {
     public SharedObject npcInfo; // Contains all Info about this NPC
     private NPCInfo info;
+
+    public SharedObject animator;
+    private Animator anim;
+    public bool triggerAnimation;
+    private List<string> triggers;
+    public string animTrigger;
 
     public SharedObject seeker; // Contains the Seeker Object
     private Seeker pathSeeker;
@@ -32,8 +40,8 @@ public class PathChase : Action
     public int visibilityBuffer;
     private int m_currentVisibilityBuffer;
 
-    public int minChaseTime; // How long will the NPC Chase the Target min?
-    public int maxChaseTime; // How long will the NPC Chase the Target max?
+    public int minChaseTime; // How long will the NPC Chase the Target min, before Success is triggered?
+    public int maxChaseTime; // How long will the NPC Chase the Target max, before Success is triggered?
     private int m_currentChaseTime;
     private int m_currentMaxChaseTime;
 
@@ -56,6 +64,13 @@ public class PathChase : Action
         info = npcInfo.GetValue() as NPCInfo;
         pathSeeker = seeker.GetValue() as Seeker;
 
+        if (triggerAnimation)
+        {
+            anim = animator.GetValue() as Animator;
+            AnimatorControllerParameter[] parameters = anim.parameters;
+            triggers = new List<string>();
+            for (int i = 0; i < parameters.Length; i++) triggers.Add(parameters[i].name);
+        }
         if (useRVO) controller = rvoController.GetValue() as RVOController;
     }
 
@@ -71,6 +86,13 @@ public class PathChase : Action
         // Generate Path
         path = null;
         currentPathWaypoint = 1;
+
+        // Only Trigger the Animation if movement is actually going to be performed - Check closeEnough distance as well!
+        if (triggerAnimation && Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(chaseTarget.position.x, chaseTarget.position.z)) > closeEnough)
+        {
+            for (int i = 0; i < triggers.Count; i++) anim.ResetTrigger(triggers[i]);
+            anim.SetTrigger(animTrigger);
+        }
     }
 
     public override TaskStatus OnUpdate()
@@ -147,7 +169,7 @@ public class PathChase : Action
 
             // Move Character
             if (!useRVO) transform.position = new Vector3(newPos.x, height, newPos.y);
-            else controller.Move((new Vector3(newPos.x, height, newPos.y) - transform.position).normalized * moveSpeed);
+            else controller.Move((new Vector3(newPos.x, transform.position.y, newPos.y) - transform.position).normalized * moveSpeed);
 
             // Check if the Character's distance to the target location is close enough to move on to the next waypoint
             if (Vector2.Distance(newPos, waypointPos) < errorMargin) currentPathWaypoint++;

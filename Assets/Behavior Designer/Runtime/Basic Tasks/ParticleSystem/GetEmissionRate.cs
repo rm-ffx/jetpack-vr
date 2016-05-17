@@ -31,7 +31,11 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
                 return TaskStatus.Failure;
             }
 
+#if !(UNITY_4_6 || UNITY_4_7 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2)
+            Debug.Log("Warning: GetEmissionRate is not used in Unity 5.3 or later.");
+#else
             storeResult.Value = particleSystem.emissionRate;
+#endif
 
             return TaskStatus.Success;
         }

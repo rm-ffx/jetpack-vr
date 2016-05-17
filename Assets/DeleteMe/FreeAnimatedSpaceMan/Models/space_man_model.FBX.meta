@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: cc50427257039b6489d5f8299ece3b8b
+timeCreated: 1462789834
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arm_02_L
+    100002: Arm_02_R
+    100004: Belt_02
+    100006: Head
+    100008: Helmet_02
+    100010: Jets_02
+    100012: LCalf
+    100014: LCollarbone
+    100016: Leg_02_L
+    100018: Leg_02_R
+    100020: LFoot
+    100022: LForearm
+    100024: Long_Rifle_02
+    100026: LPalm
+    100028: LThigh
+    100030: LUpperarm
+    100032: Neck
+    100034: PalmBone001
+    100036: PalmBone001 1
+    100038: PalmBone002
+    100040: PalmBone002 1
+    100042: Pelvis
+    100044: Plane.013
+    100046: RArmCollarbone
+    100048: RArmForearm
+    100050: RArmIKTarget
+    100052: RArmPalm
+    100054: RArmUpperarm
+    100056: RCalf
+    100058: RFoot
+    100060: Ribcage
+    100062: RThigh
+    100064: //RootNode
+    100066: SpaceMan_Base
+    100068: SpaceMan_Clothe
+    100070: Spine1
+    100072: Spine2
+    100074: Suit_02
+    400000: Arm_02_L
+    400002: Arm_02_R
+    400004: Belt_02
+    400006: Head
+    400008: Helmet_02
+    400010: Jets_02
+    400012: LCalf
+    400014: LCollarbone
+    400016: Leg_02_L
+    400018: Leg_02_R
+    400020: LFoot
+    400022: LForearm
+    400024: Long_Rifle_02
+    400026: LPalm
+    400028: LThigh
+    400030: LUpperarm
+    400032: Neck
+    400034: PalmBone001
+    400036: PalmBone001 1
+    400038: PalmBone002
+    400040: PalmBone002 1
+    400042: Pelvis
+    400044: Plane.013
+    400046: RArmCollarbone
+    400048: RArmForearm
+    400050: RArmIKTarget
+    400052: RArmPalm
+    400054: RArmUpperarm
+    400056: RCalf
+    400058: RFoot
+    400060: Ribcage
+    400062: RThigh
+    400064: //RootNode
+    400066: SpaceMan_Base
+    400068: SpaceMan_Clothe
+    400070: Spine1
+    400072: Spine2
+    400074: Suit_02
+    2300000: Arm_02_L
+    2300002: Arm_02_R
+    2300004: Helmet_02
+    2300006: Jets_02
+    2300008: Leg_02_L
+    2300010: Leg_02_R
+    2300012: Long_Rifle_02
+    2300014: Plane.013
+    2300016: Suit_02
+    3300000: Arm_02_L
+    3300002: Arm_02_R
+    3300004: Helmet_02
+    3300006: Jets_02
+    3300008: Leg_02_L
+    3300010: Leg_02_R
+    3300012: Long_Rifle_02
+    3300014: Plane.013
+    3300016: Suit_02
+    4300000: Belt_02
+    4300002: Leg_02_L
+    4300004: Leg_02_R
+    4300006: Arm_02_L
+    4300008: Helmet_02
+    4300010: Arm_02_R
+    4300012: Suit_02
+    4300014: Jets_02
+    4300016: SpaceMan_Clothe
+    4300018: Plane.013
+    4300020: Long_Rifle_02
+    4300022: SpaceMan_Base
+    9500000: //RootNode
+    13700000: Belt_02
+    13700002: SpaceMan_Base
+    13700004: SpaceMan_Clothe
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "\nInbetween bone default rotation found in this file
+      is different from the one found in the source avatar:\n\t'Ribcage' : rotation
+      error = 2.194472 deg\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

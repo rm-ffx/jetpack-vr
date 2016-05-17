@@ -3,7 +3,7 @@ using System.Collections;
 using Pathfinding;
 
 /** Helper for easier fast updates to recast graphs.
- * 
+ *
  * When updating recast graphs, you might just have plonked down a few
  * GraphUpdateScene objects or issued a few GraphUpdateObjects to the
  * system. This works fine if you are only issuing a few but the problem
@@ -14,32 +14,32 @@ using Pathfinding;
  * updating one tile). This script exists to help with updating only the
  * tiles that need updating and only updating them once instead of
  * multiple times.
-
+ *
  * It is coupled with the RecastTileUpdate component, which works a bit
  * like the GraphUpdateScene component, just with fewer options. You can
  * attach the RecastTileUpdate to any GameObject to have it schedule an
  * update for the tile(s) that contain the GameObject. E.g if you are
  * creating a new building somewhere, you can attach the RecastTileUpdate
  * component to it to make it update the graph when it is instantiated.
-
+ *
  * If a single tile contains multiple RecastTileUpdate components and
  * many try to update the graph at the same time, only one tile update
  * will be done, which greatly improves performance.
-
+ *
  * If you have objects that are instantiated at roughly the same time
  * but not exactly the same frame, you can use the maxThrottlingDelay
  * field. It will delay updates up to that number of seconds to allow
  * more updates to be batched together.
-
+ *
  * \note You should only have one instance of this script in the scene
  * if you only have a single recast graph. If you have more than one
  * graph you can have more than one instance of this script but you need
  * to manually call the SetGraph method to configure it with the correct
  * graph.
  */
-[AddComponentMenu ("Pathfinding/Navmesh/RecastTileUpdateHandler")]
+[AddComponentMenu("Pathfinding/Navmesh/RecastTileUpdateHandler")]
+[HelpURL("http://arongranberg.com/astar/docs/class_recast_tile_update_handler.php")]
 public class RecastTileUpdateHandler : MonoBehaviour {
-
 	/** Graph that handles the updates */
 	RecastGraph graph;
 
@@ -55,7 +55,7 @@ public class RecastTileUpdateHandler : MonoBehaviour {
 	/** All tile updates will be performed within (roughly) this number of seconds */
 	public float maxThrottlingDelay = 0.5f;
 
-	public void SetGraph ( RecastGraph graph ) {
+	public void SetGraph (RecastGraph graph) {
 		this.graph = graph;
 
 		if (graph == null)
@@ -66,16 +66,15 @@ public class RecastTileUpdateHandler : MonoBehaviour {
 	}
 
 	/** Requests an update to all tiles which touch the specified bounds */
-	public void ScheduleUpdate ( Bounds bounds ) {
-
+	public void ScheduleUpdate (Bounds bounds) {
 		if (graph == null) {
 			// If no graph has been set, use the first graph available
 			if (AstarPath.active != null) {
-				SetGraph (AstarPath.active.astarData.recastGraph);
+				SetGraph(AstarPath.active.astarData.recastGraph);
 			}
-			
+
 			if (graph == null) {
-				Debug.LogError ("Received tile update request (from RecastTileUpdate), but no RecastGraph could be found to handle it");
+				Debug.LogError("Received tile update request (from RecastTileUpdate), but no RecastGraph could be found to handle it");
 				return;
 			}
 		}
@@ -83,23 +82,22 @@ public class RecastTileUpdateHandler : MonoBehaviour {
 		// Make sure that tiles which do not strictly
 		// contain this bounds object but which still
 		// might need to be updated are actually updated
-		int voxelCharacterRadius = Mathf.CeilToInt (graph.characterRadius/graph.cellSize);
+		int voxelCharacterRadius = Mathf.CeilToInt(graph.characterRadius/graph.cellSize);
 		int borderSize = voxelCharacterRadius + 3;
 
 		// Expand borderSize voxels on each side
-		bounds.Expand (new Vector3 (borderSize,0,borderSize)*graph.cellSize*2);
+		bounds.Expand(new Vector3(borderSize, 0, borderSize)*graph.cellSize*2);
 
-		var touching = graph.GetTouchingTiles (bounds);
+		var touching = graph.GetTouchingTiles(bounds);
 
 		if (touching.Width * touching.Height > 0) {
-
 			if (!anyDirtyTiles) {
 				earliestDirty = Time.time;
 				anyDirtyTiles = true;
 			}
 
-			for ( int z = touching.ymin; z <= touching.ymax; z++ ) {
-				for ( int x = touching.xmin; x <= touching.xmax; x++ ) {
+			for (int z = touching.ymin; z <= touching.ymax; z++) {
+				for (int x = touching.xmin; x <= touching.xmax; x++) {
 					dirtyTiles[z*graph.tileXCount + x] = true;
 				}
 			}
@@ -116,38 +114,37 @@ public class RecastTileUpdateHandler : MonoBehaviour {
 
 	void Update () {
 		if (anyDirtyTiles && Time.time - earliestDirty >= maxThrottlingDelay && graph != null) {
-			UpdateDirtyTiles ();
+			UpdateDirtyTiles();
 		}
 	}
 
 	/** Update all dirty tiles now */
 	public void UpdateDirtyTiles () {
-
 		if (graph == null) {
-			new System.InvalidOperationException ("No graph is set on this object");
+			new System.InvalidOperationException("No graph is set on this object");
 		}
 
 		if (graph.tileXCount * graph.tileZCount != dirtyTiles.Length) {
-			Debug.LogError ("Graph has changed dimensions. Clearing queued graph updates and resetting.");
-			SetGraph (graph);
+			Debug.LogError("Graph has changed dimensions. Clearing queued graph updates and resetting.");
+			SetGraph(graph);
 			return;
 		}
 
 		for (int z = 0; z < graph.tileZCount; z++) {
 			for (int x = 0; x < graph.tileXCount; x++) {
-				if ( dirtyTiles[z*graph.tileXCount + x] ) {
+				if (dirtyTiles[z*graph.tileXCount + x]) {
 					dirtyTiles[z*graph.tileXCount + x] = false;
 
-					var bounds = graph.GetTileBounds (x, z);
+					var bounds = graph.GetTileBounds(x, z);
 
 					// Shrink it a bit to make sure other tiles
 					// are not included because of rounding errors
 					bounds.extents *= 0.5f;
 
-					var guo = new GraphUpdateObject (bounds);
+					var guo = new GraphUpdateObject(bounds);
 					guo.nnConstraint.graphMask = 1 << (int)graph.graphIndex;
 
-					AstarPath.active.UpdateGraphs (guo);
+					AstarPath.active.UpdateGraphs(guo);
 				}
 			}
 		}
@@ -155,4 +152,3 @@ public class RecastTileUpdateHandler : MonoBehaviour {
 		anyDirtyTiles = false;
 	}
 }
-

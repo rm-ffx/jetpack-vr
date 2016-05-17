@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using Pathfinding;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
 /// <summary>
-/// Sets and Stores a waypoint
+/// Checks if the NPC can see the Player
 /// </summary>
 public class CheckSight : Action
 {
@@ -13,7 +14,6 @@ public class CheckSight : Action
     public SharedTransform target; // Target to look for, if its in sight
 
     // The tag of the targets
-    public string targetTag;
     public bool successIfInvisible;
     public enum checkSightType
     {
@@ -23,21 +23,10 @@ public class CheckSight : Action
     public checkSightType type;
     public float searchRadius;
 
-    // A cache of all of the possible targets
-    private Transform[] possibleTargets;
-
     public override void OnAwake()
     {
         // Cache Variables
         info = npcInfo.GetValue() as NPCInfo;
-
-        // Cache all of the transforms that have a tag of targetTag
-        var targets = GameObject.FindGameObjectsWithTag(targetTag);
-        possibleTargets = new Transform[targets.Length];
-        for (int i = 0; i < targets.Length; ++i)
-        {
-            possibleTargets[i] = targets[i].transform;
-        }
     }
 
     public override TaskStatus OnUpdate()
@@ -61,12 +50,12 @@ public class CheckSight : Action
     public bool CheckObjectInSight()
     {
         // Return success if a target is within sight and range
-        for (int i = 0; i < possibleTargets.Length; ++i)
+        for (int i = 0; i < GameInfo.playersInGame.Length; ++i)
         {
             if (type == checkSightType.FOV)
             {
                 // Search for the Object using the NPC's FOV
-                if (withinSightFov(possibleTargets[i]))
+                if (withinSightFov(GameInfo.playersInGame[i].transform))
                 {
                     return true;
                 }
@@ -74,7 +63,7 @@ public class CheckSight : Action
             else if (type == checkSightType.Spherical)
             {
                 // Search for the Object using a spherical radius around the NPC
-                if (withinSightSpherical(possibleTargets[i]))
+                if (withinSightSpherical(GameInfo.playersInGame[i].transform))
                 {
                     return true;
                 }
@@ -95,7 +84,7 @@ public class CheckSight : Action
         {
             // Check if the object is obscured by something or visible
             RaycastHit hit;
-            if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, info.viewDistance) && hit.transform.gameObject.tag == targetTag) return true;
+            if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, info.viewDistance) && GameInfo.playersInGame.Contains(hit.transform.gameObject)) return true;
             else return false;
         }
         else return false;
@@ -108,7 +97,7 @@ public class CheckSight : Action
     {
         // Check if the object is obscured by something or visible
         RaycastHit hit;
-        if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, searchRadius) && hit.transform.gameObject.tag == targetTag) return true;
+        if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, searchRadius) && GameInfo.playersInGame.Contains(hit.transform.gameObject)) return true;
         else return false;
     }
 }

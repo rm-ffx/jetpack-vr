@@ -11,6 +11,8 @@ namespace BehaviorDesigner.Runtime.Tasks
         public SharedGameObject targetGameObject;
         [Tooltip("The event to send")]
         public SharedString eventName;
+        [Tooltip("The group of the behavior tree that the event should be sent to")]
+        public SharedInt group;
         [Tooltip("Optionally specify a first argument to send")]
         [SharedRequired]
         public SharedVariable argument1;
@@ -25,7 +27,21 @@ namespace BehaviorDesigner.Runtime.Tasks
 
         public override void OnStart()
         {
-            behaviorTree = GetDefaultGameObject(targetGameObject.Value).GetComponent<BehaviorTree>();
+            var behaviorTrees = GetDefaultGameObject(targetGameObject.Value).GetComponents<BehaviorTree>();
+            if (behaviorTrees.Length == 1) {
+                behaviorTree = behaviorTrees[0];
+            } else if (behaviorTrees.Length > 1) {
+                for (int i = 0; i < behaviorTrees.Length; ++i) {
+                    if (behaviorTrees[i].Group == group.Value) {
+                        behaviorTree = behaviorTrees[i];
+                        break;
+                    }
+                }
+                // If the group can't be found then use the first behavior tree
+                if (behaviorTree == null) {
+                    behaviorTree = behaviorTrees[0];
+                }
+            }
         }
 
         public override TaskStatus OnUpdate()

@@ -4,16 +4,8 @@ using System.Collections;
 namespace BehaviorDesigner.Runtime
 {
     [System.Serializable]
-    public class SharedBool : SharedVariable
+    public class SharedBool : SharedVariable<bool>
     {
-        public bool Value { get { return mValue; } set { mValue = value; } }
-        [SerializeField]
-        private bool mValue;
-
-        public override object GetValue() { return mValue; }
-        public override void SetValue(object value) { mValue = (bool)value; }
-
-        public override string ToString() { return mValue.ToString(); }
-        public static implicit operator SharedBool(bool value) { var sharedVariable = new SharedBool(); sharedVariable.SetValue(value); return sharedVariable; }
+        public static implicit operator SharedBool(bool value) { return new SharedBool { mValue = value }; }
     }
 }

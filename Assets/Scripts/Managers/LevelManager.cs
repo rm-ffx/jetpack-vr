@@ -7,14 +7,14 @@ public class LevelManager:MonoBehaviour
     void Awake()
     {
         // Set Players
-        LevelInfo.SetPlayersInGame();
+        GameInfo.SetPlayersInGame();
 
         // Set Waypoints
-        LevelInfo.SetWaypoints();
+        GameInfo.SetWaypoints();
     }
 }
 
-public static class LevelInfo
+public static class GameInfo
 {
     public static GameObject[] playersInGame;
     public static List<Transform> npcPatrolWaypoints;

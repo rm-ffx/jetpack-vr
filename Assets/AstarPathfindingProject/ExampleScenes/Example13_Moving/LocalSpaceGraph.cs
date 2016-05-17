@@ -2,10 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 /** Helper for LocalSpaceRichAI */
+[HelpURL("http://arongranberg.com/astar/docs/class_local_space_graph.php")]
 public class LocalSpaceGraph : MonoBehaviour {
-
 	protected Matrix4x4 originalMatrix;
-	
+
 	void Start () {
 		originalMatrix = transform.localToWorldMatrix;
 	}

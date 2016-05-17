@@ -13,7 +13,8 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
             Multiply,
             Divide,
             Min,
-            Max
+            Max,
+            Modulo
         }
 
         [Tooltip("The operation to perform")]
@@ -45,6 +46,9 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.Math
                     break;
                 case Operation.Max:
                     storeResult.Value = Mathf.Max(float1.Value, float2.Value);
+                    break;
+                case Operation.Modulo:
+                    storeResult.Value = float1.Value % float2.Value;
                     break;
             }
             return TaskStatus.Success;

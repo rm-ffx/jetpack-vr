@@ -5,7 +5,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
 /// <summary>
-/// Sets and Stores a waypoint
+/// NPC Initialization
 /// </summary>
 public class NPCInitialize : Action
 {
@@ -13,6 +13,7 @@ public class NPCInitialize : Action
     public SharedObject seeker; // Seeker for Path Generation
     public SharedTransformList waypointTargets; // Targets for Path-Generation
     public SharedObject rvoController;
+    public SharedObject animator; // Animator of the NPC
 
     private bool m_isInitialized = false;
 
@@ -26,11 +27,10 @@ public class NPCInitialize : Action
             npcInfo.SetValue(GetComponent<NPCInfo>());
             seeker.SetValue(GetComponent<Seeker>());
             rvoController.SetValue(GetComponent<RVOController>());
+            animator.SetValue(GetComponent<Animator>());
         }
         // Get all Target Transforms in the Scene
-        GameObject[] targets = GameObject.FindGameObjectsWithTag("Waypoint");
-        List<Transform> targetsTransform = LevelInfo.npcPatrolWaypoints;
-        //for (int i = 0; i < targets.Length; i++) targetsTransform.Add(targets[i].transform);
+        List<Transform> targetsTransform = GameInfo.npcPatrolWaypoints;
         waypointTargets.SetValue(targetsTransform);
     }
 }

@@ -30,7 +30,12 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityParticleSystem
                 return TaskStatus.Failure;
             }
 
+#if !(UNITY_4_6 || UNITY_4_7 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2)
+            var emission = particleSystem.emission;
+            emission.enabled = enable.Value;
+#else
             particleSystem.enableEmission = enable.Value;
+#endif
 
             return TaskStatus.Success;
         }

@@ -9,7 +9,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
         [Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
         public SharedGameObject targetGameObject;
         [Tooltip("Delay time specified in seconds")]
-        float delay = 0;
+        public SharedFloat delay = 0;
 
         private AudioSource audioSource;
         private GameObject prevGameObject;
@@ -30,7 +30,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityAudioSource
                 return TaskStatus.Failure;
             }
 
-            audioSource.PlayDelayed(delay);
+            audioSource.PlayDelayed(delay.Value);
 
             return TaskStatus.Success;
         }

@@ -8,8 +8,6 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityQuaternion
     {
         [Tooltip("The euler vector")]
         public SharedVector3 eulerVector;
-        [Tooltip("The second Vector3")]
-        public SharedVector3 secondVector3;
         [Tooltip("The stored quaternion")]
         [RequiredField]
         public SharedQuaternion storeResult;

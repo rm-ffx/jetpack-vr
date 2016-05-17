@@ -1,4 +1,3 @@
-#if !(UNITY_4_3 || UNITY_4_4)
 using UnityEngine;
 
 namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
@@ -44,4 +43,3 @@ namespace BehaviorDesigner.Runtime.Tasks.Basic.UnityRigidbody2D
         }
     }
 }
-#endif

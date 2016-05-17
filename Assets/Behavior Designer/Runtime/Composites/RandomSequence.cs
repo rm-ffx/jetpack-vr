@@ -29,7 +29,11 @@ namespace BehaviorDesigner.Runtime.Tasks
         {
             // If specified, use the seed provided.
             if (useSeed) {
+#if !(UNITY_4_6 || UNITY_4_7 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2 || UNITY_5_3)
+                Random.InitState(seed);
+#else
                 Random.seed = seed;
+#endif
             }
 
             // Add the index of each child to a list to make the Fischer-Yates shuffle possible.

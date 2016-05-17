@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
+using System.Reflection;
 
 namespace BehaviorDesigner.Runtime.Tasks
 {
@@ -26,24 +26,21 @@ namespace BehaviorDesigner.Runtime.Tasks
                 Debug.LogWarning("Unable to get property - property value is null");
                 return TaskStatus.Failure;
             }
-
-            if (targetGameObject == null || targetGameObject.Value == null) {
-                Debug.LogWarning("Unable to get property - target GameObject is null");
-                return TaskStatus.Failure;
-            }
-
+            
             var type = TaskUtility.GetTypeWithinAssembly(componentName.Value);
             if (type == null) {
                 Debug.LogWarning("Unable to get property - type is null");
                 return TaskStatus.Failure;
             }
 
-            var component = targetGameObject.Value.GetComponent(type);
+            var component = GetDefaultGameObject(targetGameObject.Value).GetComponent(type);
             if (component == null) {
                 Debug.LogWarning("Unable to get the property with component " + componentName.Value);
                 return TaskStatus.Failure;
             }
 
+            // If you are receiving a compiler error on the Windows Store platform see this topic:
+            // http://www.opsive.com/assets/BehaviorDesigner/documentation.php?id=46 
             var property = component.GetType().GetProperty(propertyName.Value);
             propertyValue.SetValue(property.GetValue(component, null));
 

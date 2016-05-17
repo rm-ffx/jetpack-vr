@@ -10,8 +10,14 @@ using BehaviorDesigner.Runtime.Tasks;
 /// </summary>
 public class PathWander : Action
 {
-    public SharedObject npcInfo; // Contains all Info about this NPC
-    private NPCInfo info;
+    //public SharedObject npcInfo; // Contains all Info about this NPC
+    //private NPCInfo info;
+
+    public SharedObject animator;
+    private Animator anim;
+    public bool triggerAnimation;
+    private List<string> triggers;
+    public string animTrigger;
 
     public SharedObject seeker; // Contains the Seeker Object
     private Seeker pathSeeker;
@@ -47,10 +53,17 @@ public class PathWander : Action
     public override void OnAwake()
     {
         // Cache Variables
-        info = npcInfo.GetValue() as NPCInfo;
+        //info = npcInfo.GetValue() as NPCInfo;
         pathSeeker = seeker.GetValue() as Seeker;
         wanderWaypointsList = wanderWaypoints.GetValue() as List<Transform>;
 
+        if (triggerAnimation)
+        {
+            anim = animator.GetValue() as Animator;
+            AnimatorControllerParameter[] parameters = anim.parameters;
+            triggers = new List<string>();
+            for (int i = 0; i < parameters.Length; i++) triggers.Add(parameters[i].name);
+        }
         if (useRVO) controller = rvoController.GetValue() as RVOController;
     }
 
@@ -61,6 +74,12 @@ public class PathWander : Action
         // Generate Path
         path = null;
         currentPathWaypoint = 1;
+
+        if (triggerAnimation)
+        {
+            for (int i = 0; i < triggers.Count; i++) anim.ResetTrigger(triggers[i]);
+            anim.SetTrigger(animTrigger);
+        }
     }
 
     public override TaskStatus OnUpdate()
@@ -151,7 +170,7 @@ public class PathWander : Action
 
             // Move Character
             if (!useRVO) transform.position = new Vector3(newPos.x, height, newPos.y);
-            else controller.Move((new Vector3(newPos.x, height, newPos.y) - transform.position).normalized * moveSpeed);
+            else controller.Move((new Vector3(newPos.x, transform.position.y, newPos.y) - transform.position).normalized * moveSpeed);
 
             // Check if the Character's distance to the target location is close enough to move on to the next waypoint
             if (Vector2.Distance(newPos, waypointPos) < errorMargin) currentPathWaypoint++;
