@@ -27,7 +27,7 @@ public class NPCInitialize : Action
             npcInfo.SetValue(GetComponent<NPCInfo>());
             seeker.SetValue(GetComponent<Seeker>());
             rvoController.SetValue(GetComponent<RVOController>());
-            animator.SetValue(GetComponent<Animator>());
+            animator.SetValue(gameObject.GetComponentInChildren<Animator>());
         }
         // Get all Target Transforms in the Scene
         List<Transform> targetsTransform = GameInfo.npcPatrolWaypoints;
