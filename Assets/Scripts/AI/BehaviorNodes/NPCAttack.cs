@@ -32,11 +32,12 @@ public class NPCAttack : Action
     private int m_currentAttacks;
     private int m_currentMaxAttacks;
 
-    public int aimTime;
+    public int aimTime; // Time it takes between each shot
     private int m_currentAimTime;
 
     private bool m_charVisibleAtStart = true; // Was the character visible at the start of this node's execution?
 
+    public float accuracy; // How accurate does the NPC shoot? 
 
     public override void OnAwake()
     {
@@ -45,9 +46,12 @@ public class NPCAttack : Action
         if (triggerAnimation)
         {
             anim = animator.GetValue() as Animator;
-            AnimatorControllerParameter[] parameters = anim.parameters;
-            triggers = new List<string>();
-            for (int i = 0; i < parameters.Length; i++) triggers.Add(parameters[i].name);
+            if (anim)
+            {
+                AnimatorControllerParameter[] parameters = anim.parameters;
+                triggers = new List<string>();
+                for (int i = 0; i < parameters.Length; i++) triggers.Add(parameters[i].name);
+            }
         }
         if (useRVO) controller = rvoController.GetValue() as RVOController;
     }
