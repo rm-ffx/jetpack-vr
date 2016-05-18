@@ -114,7 +114,8 @@ public class NPCAttack : Action
             //Debug.DrawLine(transform.position, m_currentTarget.position, Color.red, 0.25f);
             for (int i = 0; i < m_info.gunPos.Length; i++)
             {
-                GameObject.Instantiate(Resources.Load(m_info.projectile.name), m_info.gunPos[i].position, Quaternion.LookRotation(m_currentTarget.position - m_info.gunPos[i].position, Vector3.up));
+                if (!m_info.turretHead) GameObject.Instantiate(Resources.Load(m_info.projectile.name), m_info.gunPos[i].position, Quaternion.LookRotation(m_currentTarget.position - m_info.gunPos[i].position, Vector3.up));
+                else GameObject.Instantiate(Resources.Load(m_info.projectile.name), m_info.gunPos[i].position, Quaternion.LookRotation(m_currentTarget.position - m_info.turretHead.position, Vector3.up));
             }
             m_currentAimTime = 0;
             m_currentAttacks++;

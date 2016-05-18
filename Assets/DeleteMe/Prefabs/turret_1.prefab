@@ -10,7 +10,8 @@ GameObject:
   - 4: {fileID: 496702}
   - 114: {fileID: 11460450}
   - 114: {fileID: 11410938}
-  m_Layer: 0
+  - 136: {fileID: 13664588}
+  m_Layer: 9
   m_Name: turret_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,6 +486,19 @@ MonoBehaviour:
   projectile: {fileID: 102774, guid: e541c7c5445b46742ba13dcb108e7789, type: 2}
   turretHead: {fileID: 472382}
   currentState: 0
+--- !u!136 &13664588
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113372}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.29
+  m_Height: 0.82
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.45, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
