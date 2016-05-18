@@ -39,6 +39,8 @@ public class NPCAttack : Action
 
     public float accuracy; // How accurate does the NPC shoot? 
 
+    public bool isTurret; // Is this NPC a turret?
+
     public override void OnAwake()
     {
         m_info = npcInfo.GetValue() as NPCInfo;
@@ -84,10 +86,22 @@ public class NPCAttack : Action
         if (!m_charVisibleAtStart) return TaskStatus.Success;
 
         // SET ROTATION
-        Quaternion currentRotation = transform.rotation;
-        transform.LookAt(new Vector3(m_currentTarget.position.x, transform.position.y, m_currentTarget.position.z));
-        Quaternion newRotation = transform.rotation;
-        transform.rotation = Quaternion.Slerp(currentRotation, newRotation, rotationSpeed * Time.deltaTime);
+        if (!isTurret)
+        {
+            Quaternion currentRotation = transform.rotation;
+            transform.LookAt(new Vector3(m_currentTarget.position.x, transform.position.y, m_currentTarget.position.z));
+            Quaternion newRotation = transform.rotation;
+            transform.rotation = Quaternion.Slerp(currentRotation, newRotation, rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            Quaternion currentRotation = m_info.turretHead.transform.rotation;
+            //m_info.turretHead.transform.LookAt(new Vector3(m_currentTarget.position.x, transform.position.y, m_currentTarget.position.z));
+            m_info.turretHead.transform.LookAt(new Vector3(m_currentTarget.position.x, m_currentTarget.position.y, m_currentTarget.position.z));
+
+            Quaternion newRotation = m_info.turretHead.transform.rotation;
+            m_info.turretHead.transform.rotation = Quaternion.Slerp(currentRotation, newRotation, rotationSpeed * Time.deltaTime);
+        }
 
         // Wait for AimTime to pass
         if (m_currentAimTime < aimTime) { m_currentAimTime++; return TaskStatus.Running; }

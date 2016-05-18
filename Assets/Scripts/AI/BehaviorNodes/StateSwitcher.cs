@@ -57,10 +57,15 @@ public class StateSwitcher : Conditional
     /// </summary>
     public bool withinSight(Transform targetTransform, float fieldOfViewAngle)
     {
-        Vector3 direction = targetTransform.position - transform.position;
+        Transform usedTransform;
+
+        if (info.turretHead != null) usedTransform = info.turretHead;
+        else usedTransform = transform;
+
+        Vector3 direction = targetTransform.position - usedTransform.position;
 
         // An object is within sight if the angle is less than field of view
-        if (Vector3.Angle(direction, transform.forward) < fieldOfViewAngle)
+        if (Vector3.Angle(direction, usedTransform.forward) < fieldOfViewAngle)
         {
             // Check if the object is obscured by something or visible
             RaycastHit hit;

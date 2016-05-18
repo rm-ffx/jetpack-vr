@@ -77,10 +77,14 @@ public class CheckSight : Action
     /// </summary>
     public bool withinSightFov(Transform targetTransform)
     {
-        Vector3 direction = targetTransform.position - transform.position;
+        Transform usedTransform;
+        if (info.turretHead != null) usedTransform = info.turretHead;
+        else usedTransform = transform;
+
+        Vector3 direction = targetTransform.position - usedTransform.position;
 
         // An object is within sight if the angle is less than field of view
-        if (Vector3.Angle(direction, transform.forward) < info.fov)
+        if (Vector3.Angle(direction, usedTransform.forward) < info.fov)
         {
             // Check if the object is obscured by something or visible
             RaycastHit hit;
