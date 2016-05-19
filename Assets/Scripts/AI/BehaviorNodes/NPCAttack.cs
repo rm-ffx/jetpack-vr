@@ -32,11 +32,14 @@ public class NPCAttack : Action
     private int m_currentAttacks;
     private int m_currentMaxAttacks;
 
-    public int aimTime;
+    public int aimTime; // Time it takes between each shot
     private int m_currentAimTime;
 
     private bool m_charVisibleAtStart = true; // Was the character visible at the start of this node's execution?
 
+    public float accuracy; // How accurate does the NPC shoot? 
+
+    public bool isTurret; // Is this NPC a turret?
 
     public override void OnAwake()
     {
@@ -45,9 +48,12 @@ public class NPCAttack : Action
         if (triggerAnimation)
         {
             anim = animator.GetValue() as Animator;
-            AnimatorControllerParameter[] parameters = anim.parameters;
-            triggers = new List<string>();
-            for (int i = 0; i < parameters.Length; i++) triggers.Add(parameters[i].name);
+            if (anim)
+            {
+                AnimatorControllerParameter[] parameters = anim.parameters;
+                triggers = new List<string>();
+                for (int i = 0; i < parameters.Length; i++) triggers.Add(parameters[i].name);
+            }
         }
         if (useRVO) controller = rvoController.GetValue() as RVOController;
     }
@@ -80,10 +86,22 @@ public class NPCAttack : Action
         if (!m_charVisibleAtStart) return TaskStatus.Success;
 
         // SET ROTATION
-        Quaternion currentRotation = transform.rotation;
-        transform.LookAt(new Vector3(m_currentTarget.position.x, transform.position.y, m_currentTarget.position.z));
-        Quaternion newRotation = transform.rotation;
-        transform.rotation = Quaternion.Slerp(currentRotation, newRotation, rotationSpeed * Time.deltaTime);
+        if (!isTurret)
+        {
+            Quaternion currentRotation = transform.rotation;
+            transform.LookAt(new Vector3(m_currentTarget.position.x, transform.position.y, m_currentTarget.position.z));
+            Quaternion newRotation = transform.rotation;
+            transform.rotation = Quaternion.Slerp(currentRotation, newRotation, rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            Quaternion currentRotation = m_info.turretHead.transform.rotation;
+            //m_info.turretHead.transform.LookAt(new Vector3(m_currentTarget.position.x, transform.position.y, m_currentTarget.position.z));
+            m_info.turretHead.transform.LookAt(new Vector3(m_currentTarget.position.x, m_currentTarget.position.y, m_currentTarget.position.z));
+
+            Quaternion newRotation = m_info.turretHead.transform.rotation;
+            m_info.turretHead.transform.rotation = Quaternion.Slerp(currentRotation, newRotation, rotationSpeed * Time.deltaTime);
+        }
 
         // Wait for AimTime to pass
         if (m_currentAimTime < aimTime) { m_currentAimTime++; return TaskStatus.Running; }
@@ -96,7 +114,8 @@ public class NPCAttack : Action
             //Debug.DrawLine(transform.position, m_currentTarget.position, Color.red, 0.25f);
             for (int i = 0; i < m_info.gunPos.Length; i++)
             {
-                GameObject.Instantiate(Resources.Load(m_info.projectile.name), m_info.gunPos[i].position, Quaternion.LookRotation(m_currentTarget.position - m_info.gunPos[i].position, Vector3.up));
+                if (!m_info.turretHead) GameObject.Instantiate(Resources.Load(m_info.projectile.name), m_info.gunPos[i].position, Quaternion.LookRotation(m_currentTarget.position - m_info.gunPos[i].position, Vector3.up));
+                else GameObject.Instantiate(Resources.Load(m_info.projectile.name), m_info.gunPos[i].position, Quaternion.LookRotation(m_currentTarget.position - m_info.turretHead.position, Vector3.up));
             }
             m_currentAimTime = 0;
             m_currentAttacks++;

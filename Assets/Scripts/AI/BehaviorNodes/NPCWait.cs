@@ -32,9 +32,12 @@ public class NPCWait : Action
         if (triggerAnimation)
         {
             anim = animator.GetValue() as Animator;
-            AnimatorControllerParameter[] parameters = anim.parameters;
-            triggers = new List<string>();
-            for (int i = 0; i < parameters.Length; i++) triggers.Add(parameters[i].name);
+            if (anim)
+            {
+                AnimatorControllerParameter[] parameters = anim.parameters;
+                triggers = new List<string>();
+                for (int i = 0; i < parameters.Length; i++) triggers.Add(parameters[i].name);
+            }
         }
     }
 

@@ -18,6 +18,9 @@ public class NPCInfo : MonoBehaviour
     public Transform[] gunPos;
     public GameObject projectile;
 
+    [Tooltip("Head of the Turret. This transform will be rotated. Leave empty if NPC is not a turret.")]
+    public Transform turretHead;
+
     public enum npcState
     {
         Idle = 0,
@@ -35,9 +38,13 @@ public class NPCInfo : MonoBehaviour
     {
         if (eyePos != null)
         {
+            Transform usedTransform;
+            if (turretHead != null) usedTransform = turretHead;
+            else usedTransform = transform;
+
             // Draw FieldOfView-Frustrum
             Matrix4x4 temp = Gizmos.matrix;
-            Gizmos.matrix = Matrix4x4.TRS(eyePos.position, transform.rotation, Vector3.one);
+            Gizmos.matrix = Matrix4x4.TRS(eyePos.position, usedTransform.rotation, Vector3.one);
 
             if (currentState == npcState.Idle || currentState == npcState.Patrol) Gizmos.color = Color.green;
             else if (currentState == npcState.Attack) Gizmos.color = Color.red;
