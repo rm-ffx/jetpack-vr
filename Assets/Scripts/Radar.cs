@@ -52,17 +52,14 @@ public class Radar : MonoBehaviour {
             {
                 if (Vector3.Distance(m_radarObjects[i].transform.parent.position, playerPos.transform.position) > switchDistance)
                 {
-                    // switch to the border Objects
+                    // place objects on the border
                     Vector3 direction = m_radarObjects[i].transform.parent.position - playerPos.transform.position;
-                
                     m_radarObjects[i].transform.position = playerPos.transform.position + direction.normalized * switchDistance;
-                    //Debug.Log("greater than switchDistance");
                 }
                 else
                 {
-                    // switch to the radar Objects
+                    // place objects on the actual radar position
                     m_radarObjects[i].transform.position = m_radarObjects[i].transform.parent.position;
-                    //Debug.Log("smaller than switchDistance");
                 }
             }
         }
