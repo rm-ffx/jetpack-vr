@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 20450747}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - 33: {fileID: 40440529}
   - 65: {fileID: 40440528}
   - 23: {fileID: 40440527}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 92306639}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: environment_GRP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   - 33: {fileID: 99369189}
   - 65: {fileID: 99369188}
   - 23: {fileID: 99369187}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   - 33: {fileID: 123234199}
   - 65: {fileID: 123234198}
   - 23: {fileID: 123234197}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - 33: {fileID: 215127815}
   - 65: {fileID: 215127814}
   - 23: {fileID: 215127813}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,7 +624,7 @@ GameObject:
   - 33: {fileID: 282015204}
   - 65: {fileID: 282015203}
   - 23: {fileID: 282015202}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +699,7 @@ GameObject:
   - 33: {fileID: 282590790}
   - 65: {fileID: 282590789}
   - 23: {fileID: 282590788}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +816,7 @@ GameObject:
   - 33: {fileID: 446385391}
   - 65: {fileID: 446385390}
   - 23: {fileID: 446385389}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +895,7 @@ GameObject:
   - 33: {fileID: 486878736}
   - 65: {fileID: 486878735}
   - 23: {fileID: 486878734}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1157,7 +1157,7 @@ GameObject:
   - 33: {fileID: 515053359}
   - 65: {fileID: 515053358}
   - 23: {fileID: 515053357}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1232,7 +1232,7 @@ GameObject:
   - 33: {fileID: 592356786}
   - 65: {fileID: 592356785}
   - 23: {fileID: 592356784}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1626,7 +1626,7 @@ GameObject:
   - 33: {fileID: 829774318}
   - 64: {fileID: 829774317}
   - 23: {fileID: 829774316}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1768,134 +1768,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 411424, guid: b5d34d3ae56d1c944830b05f6fe4a785, type: 2}
   m_PrefabInternal: {fileID: 841399603}
---- !u!43 &974586356
-Mesh:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  serializedVersion: 8
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 24
-    topology: 0
-    firstVertex: 0
-    vertexCount: 8
-    localAABB:
-      m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexBuffer: 000001000400010005000400010002000500020006000500020003000600030007000600030000000700000004000700
-  m_Skin: []
-  m_VertexData:
-    m_CurrentChannels: 13
-    m_VertexCount: 8
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 288
-    _typelessdata: 0000c03f0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshOptimized: 0
 --- !u!4 &1036309096 stripped
 Transform:
   m_PrefabParentObject: {fileID: 411424, guid: b5d34d3ae56d1c944830b05f6fe4a785, type: 2}
@@ -1911,7 +1783,7 @@ GameObject:
   - 33: {fileID: 1063332757}
   - 65: {fileID: 1063332756}
   - 23: {fileID: 1063332755}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2013,7 +1885,7 @@ GameObject:
   - 33: {fileID: 1168816208}
   - 65: {fileID: 1168816207}
   - 23: {fileID: 1168816206}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2231,7 +2103,7 @@ GameObject:
   - 33: {fileID: 1254620189}
   - 65: {fileID: 1254620188}
   - 23: {fileID: 1254620187}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2306,7 +2178,7 @@ GameObject:
   - 33: {fileID: 1266163092}
   - 65: {fileID: 1266163091}
   - 23: {fileID: 1266163090}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2408,7 +2280,7 @@ GameObject:
   - 33: {fileID: 1286531854}
   - 65: {fileID: 1286531853}
   - 23: {fileID: 1286531852}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2864,7 +2736,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1506714457}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Towers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2920,7 +2792,7 @@ GameObject:
   - 33: {fileID: 1513010666}
   - 65: {fileID: 1513010665}
   - 23: {fileID: 1513010664}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3213,7 +3085,7 @@ Prefab:
     - target: {fileID: 3303444, guid: c42f1e9084f69dc4a920dff50da1318b, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 974586356}
+      objectReference: {fileID: 1976879106}
     - target: {fileID: 11453970, guid: c42f1e9084f69dc4a920dff50da1318b, type: 2}
       propertyPath: trackedObjects.Array.data[0]
       value: 
@@ -3222,6 +3094,18 @@ Prefab:
       propertyPath: trackedObjects.Array.data[0]
       value: 
       objectReference: {fileID: 461651750}
+    - target: {fileID: 2007324, guid: c42f1e9084f69dc4a920dff50da1318b, type: 2}
+      propertyPath: m_CullingMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441284, guid: c42f1e9084f69dc4a920dff50da1318b, type: 2}
+      propertyPath: drawOverlay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062842, guid: c42f1e9084f69dc4a920dff50da1318b, type: 2}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294963199
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c42f1e9084f69dc4a920dff50da1318b, type: 2}
   m_IsPrefabParent: 0
@@ -3376,7 +3260,7 @@ GameObject:
   - 33: {fileID: 1623269702}
   - 65: {fileID: 1623269701}
   - 23: {fileID: 1623269700}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3676,7 +3560,7 @@ GameObject:
   - 33: {fileID: 1759771449}
   - 65: {fileID: 1759771448}
   - 23: {fileID: 1759771447}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3860,7 +3744,7 @@ GameObject:
   - 33: {fileID: 1778070847}
   - 65: {fileID: 1778070846}
   - 23: {fileID: 1778070845}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3935,7 +3819,7 @@ GameObject:
   - 33: {fileID: 1801338159}
   - 65: {fileID: 1801338158}
   - 23: {fileID: 1801338157}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4037,7 +3921,7 @@ GameObject:
   - 33: {fileID: 1832651893}
   - 65: {fileID: 1832651892}
   - 23: {fileID: 1832651891}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4185,7 +4069,7 @@ GameObject:
   - 33: {fileID: 1861196660}
   - 65: {fileID: 1861196659}
   - 23: {fileID: 1861196658}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4260,7 +4144,7 @@ GameObject:
   - 33: {fileID: 1867076748}
   - 65: {fileID: 1867076747}
   - 23: {fileID: 1867076746}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4335,7 +4219,7 @@ GameObject:
   - 33: {fileID: 1871980846}
   - 65: {fileID: 1871980845}
   - 23: {fileID: 1871980844}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4410,7 +4294,7 @@ GameObject:
   - 33: {fileID: 1880924366}
   - 65: {fileID: 1880924365}
   - 23: {fileID: 1880924364}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4563,7 +4447,7 @@ GameObject:
   - 33: {fileID: 1968103275}
   - 65: {fileID: 1968103274}
   - 23: {fileID: 1968103273}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4638,7 +4522,7 @@ GameObject:
   - 33: {fileID: 1973714186}
   - 65: {fileID: 1973714185}
   - 23: {fileID: 1973714184}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4702,6 +4586,134 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1506714457}
   m_RootOrder: 10
+--- !u!43 &1976879106
+Mesh:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 8
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: 0.01, z: 0}
+      m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexBuffer: 000001000400010005000400010002000500020006000500020003000600030007000600030000000700000004000700
+  m_Skin: []
+  m_VertexData:
+    m_CurrentChannels: 13
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 288
+    _typelessdata: 0000c03f0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.01, z: 0}
+    m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshOptimized: 0
 --- !u!1001 &1977589303
 Prefab:
   m_ObjectHideFlags: 0
@@ -4791,7 +4803,7 @@ GameObject:
   - 33: {fileID: 2006051751}
   - 65: {fileID: 2006051750}
   - 23: {fileID: 2006051749}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5014,7 +5026,7 @@ GameObject:
   - 33: {fileID: 2085380974}
   - 65: {fileID: 2085380973}
   - 23: {fileID: 2085380972}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
