@@ -12,7 +12,9 @@ public class GadgetSelector : MonoBehaviour
     [Tooltip("The maximum ammount of gadgets")]
     public int maxGadgets = 8;
     [Tooltip("How far the gadgets will be from the activation point")]
-    public float distance = 0.5f;
+    public float radialDistance = 0.5f;
+    [Tooltip("How far the gadgets will be from the activation point")]
+    public float forwardDistance = 0.18f;
 
     private Vector3[] m_calculatedPositions;
     private GameObject[] m_gadgetObjects;
@@ -126,14 +128,14 @@ public class GadgetSelector : MonoBehaviour
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
 
-        Vector3 firstPosition = transform.position + transform.up * distance;
-        Vector3 position;
+        Vector3 position = transform.position + transform.forward * forwardDistance;
+        Vector3 firstPosition = position + transform.up * radialDistance;
         Vector3 direction;
         float offsetInDegrees = (float)360 / maxGadgets;
 
         for (int i = 0; i < maxGadgets; i++)
         {
-            position = transform.position;
+            position = transform.position + transform.forward * forwardDistance;
             direction = firstPosition - transform.position;
             direction = Quaternion.Euler(transform.forward * (offsetInDegrees * i)) * direction;
             position += direction;
