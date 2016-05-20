@@ -82,12 +82,13 @@ public class RaycastGun : MonoBehaviour
         {
             if(hit.transform.gameObject.layer == 9)
             {
-                NPCInfo npcInfo = hit.transform.gameObject.GetComponent<NPCInfo>();
+                NPCInfo npcInfo = hit.transform.root.gameObject.GetComponent<NPCInfo>();
                 npcInfo.health -= damage;
                 if (npcInfo.health <= 0.0f)
                 {
                     if (npcInfo.puppetMaster) npcInfo.TriggerPuppetMaster(hit.collider, impactForce, hit.point, 0);
-                    Destroy(hit.transform.gameObject);
+                    else
+                        Destroy(hit.transform.gameObject);
                 }
             }
         }

@@ -96,6 +96,7 @@ public class GadgetSelector : MonoBehaviour
                     RaycastGun newGadgetRG = gameObject.AddComponent<RaycastGun>();
                     newGadgetRG.cooldown = gadgetRG.cooldown;
                     newGadgetRG.damage = gadgetRG.damage;
+                    newGadgetRG.impactForce = gadgetRG.impactForce;
                     newGadgetRG.gadgetPreviewPrefab = gadgetRG.gadgetPreviewPrefab;
                     newGadgetRG.angleMultiplier = gadgetRG.angleMultiplier;
                     newGadgetRG.pointerModel = gadgetRG.pointerModel;

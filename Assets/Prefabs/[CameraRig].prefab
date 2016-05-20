@@ -1037,7 +1037,7 @@ MonoBehaviour:
   - {fileID: 11448730}
   maxGadgets: 4
   radialDistance: 0.3
-  forwardDistance: 1
+  forwardDistance: 0.18
 --- !u!114 &11406612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1132,7 +1132,7 @@ MonoBehaviour:
   cooldown: 0.3
   projectilePrefab: {fileID: 193666, guid: 8aa0f256c0ddb84468eeac034434fc94, type: 2}
   gadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
-  shootingAngle: {x: 45, y: 0, z: 0}
+  angleMultiplier: 1
   pointerModel: {fileID: 113292}
 --- !u!114 &11441284
 MonoBehaviour:
@@ -1178,7 +1178,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0.3
   damage: 100
+  impactForce: 3000
   gadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
+  angleMultiplier: 1
   pointerModel: {fileID: 113292}
 --- !u!114 &11450326
 MonoBehaviour:
@@ -1243,7 +1245,7 @@ MonoBehaviour:
   cooldown: 0.3
   projectilePrefab: {fileID: 193666, guid: 8aa0f256c0ddb84468eeac034434fc94, type: 2}
   gadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
-  shootingAngle: {x: 45, y: 0, z: 0}
+  angleMultiplier: 1
   pointerModel: {fileID: 189704}
 --- !u!114 &11460374
 MonoBehaviour:
@@ -1279,7 +1281,7 @@ MonoBehaviour:
   - {fileID: 11488612}
   maxGadgets: 4
   radialDistance: 0.3
-  forwardDistance: 1
+  forwardDistance: 0.18
 --- !u!114 &11464056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1386,7 +1388,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0.3
   damage: 100
+  impactForce: 3000
   gadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
+  angleMultiplier: 1
   pointerModel: {fileID: 189704}
 --- !u!114 &11492724
 MonoBehaviour:
