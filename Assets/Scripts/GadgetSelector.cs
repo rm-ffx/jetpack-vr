@@ -86,7 +86,7 @@ public class GadgetSelector : MonoBehaviour
                     newGadgetPG.cooldown = gadgetPG.cooldown;
                     newGadgetPG.projectilePrefab = gadgetPG.projectilePrefab;
                     newGadgetPG.gadgetPreviewPrefab = gadgetPG.gadgetPreviewPrefab;
-                    newGadgetPG.shootingAngle = gadgetPG.shootingAngle;
+                    newGadgetPG.angleMultiplier = gadgetPG.angleMultiplier;
                     newGadgetPG.pointerModel = gadgetPG.pointerModel;
                     gadgets.Add(newGadgetPG);
                     newGadgetPG.enabled = false;
@@ -97,6 +97,7 @@ public class GadgetSelector : MonoBehaviour
                     newGadgetRG.cooldown = gadgetRG.cooldown;
                     newGadgetRG.damage = gadgetRG.damage;
                     newGadgetRG.gadgetPreviewPrefab = gadgetRG.gadgetPreviewPrefab;
+                    newGadgetRG.angleMultiplier = gadgetRG.angleMultiplier;
                     newGadgetRG.pointerModel = gadgetRG.pointerModel;
                     gadgets.Add(newGadgetRG);
                     newGadgetRG.enabled = false;

@@ -13,8 +13,8 @@ public class ProjectileGun : MonoBehaviour
     public GameObject projectilePrefab;
     [Tooltip("The model that will be used for the gadget selector")]
     public GameObject gadgetPreviewPrefab;
-    [Tooltip("The angle the gun will shoot at. 45° around X should be just fine")]
-    public Vector3 shootingAngle;
+    [Tooltip("Higher multiplier results in the gun shooting farther down.")]
+    public float angleMultiplier = 1.0f;
     [Tooltip("The model that will be used as pointer. Note that this is only used for visual feedback")]
     public GameObject pointerModel;
 
@@ -74,9 +74,9 @@ public class ProjectileGun : MonoBehaviour
     {
         m_device.TriggerHapticPulse(1500);
         m_remainingCooldown = cooldown;
-        Vector3 eulerShootingAngle = transform.rotation.eulerAngles + shootingAngle;
-
-        GameObject newProjectile = (GameObject)Instantiate(projectilePrefab, transform.position, Quaternion.Euler(eulerShootingAngle));
+        
+        Quaternion rot = Quaternion.LookRotation((transform.forward + transform.up * -1 * angleMultiplier) / 2, (transform.forward * angleMultiplier + transform.up) / 2);
+        GameObject newProjectile = (GameObject)Instantiate(projectilePrefab, transform.position, rot);
         newProjectile.layer = 11;
     }
 }

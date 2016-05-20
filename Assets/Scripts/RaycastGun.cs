@@ -13,6 +13,8 @@ public class RaycastGun : MonoBehaviour
     public float damage;
     [Tooltip("The model that will be used for the gadget selector")]
     public GameObject gadgetPreviewPrefab;
+    [Tooltip("Higher multiplier results in the gun shooting farther down.")]
+    public float angleMultiplier = 1.0f;
     [Tooltip("The model that will be used as pointer. Note that this is only used for visual feedback")]
     public GameObject pointerModel;
 
@@ -73,7 +75,7 @@ public class RaycastGun : MonoBehaviour
         m_remainingCooldown = cooldown;
         RaycastHit hit;
 
-        Vector3 newForward = (transform.forward + transform.up * -1) / 2;
+        Vector3 newForward = (transform.forward + transform.up * -1 * angleMultiplier) / 2;
         if (Physics.Raycast(transform.position, newForward, out hit, maxDistance: 100.0f))
         {
             if(hit.transform.gameObject.layer == 9)
