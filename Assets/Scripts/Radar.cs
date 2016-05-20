@@ -50,7 +50,13 @@ public class Radar : MonoBehaviour {
         
             for (int i = 0; i < m_radarObjects.Count; i++)
             {
-                if (Vector3.Distance(m_radarObjects[i].transform.parent.position, playerPos.transform.position) > switchDistance)
+                if (m_radarObjects[i] == null)
+                {
+                    m_radarObjects.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+                else if (Vector3.Distance(m_radarObjects[i].transform.parent.position, playerPos.transform.position) > switchDistance)
                 {
                     // place objects on the border
                     Vector3 direction = m_radarObjects[i].transform.parent.position - playerPos.transform.position;
@@ -81,6 +87,5 @@ public class Radar : MonoBehaviour {
             obj.transform.parent = o.transform;
             m_radarObjects.Add(obj);
         }
-        Debug.Log("Radarobjects created");
     }
 }
