@@ -1768,7 +1768,7 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 411424, guid: b5d34d3ae56d1c944830b05f6fe4a785, type: 2}
   m_PrefabInternal: {fileID: 841399603}
---- !u!43 &935847440
+--- !u!43 &974586356
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -3213,7 +3213,7 @@ Prefab:
     - target: {fileID: 3303444, guid: c42f1e9084f69dc4a920dff50da1318b, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 935847440}
+      objectReference: {fileID: 974586356}
     - target: {fileID: 11453970, guid: c42f1e9084f69dc4a920dff50da1318b, type: 2}
       propertyPath: trackedObjects.Array.data[0]
       value: 

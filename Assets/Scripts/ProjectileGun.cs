@@ -43,6 +43,7 @@ public class ProjectileGun : MonoBehaviour
 
     private void Shoot()
     {
+        m_device.TriggerHapticPulse(1500);
         m_remainingCooldown = Cooldown;
         Vector3 eulerShootingAngle = transform.rotation.eulerAngles + shootingAngle;
 

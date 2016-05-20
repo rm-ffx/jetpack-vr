@@ -69,6 +69,7 @@ public class RaycastGun : MonoBehaviour
 
     private void Shoot()
     {
+        m_device.TriggerHapticPulse(1500);
         m_remainingCooldown = Cooldown;
         RaycastHit hit;
 

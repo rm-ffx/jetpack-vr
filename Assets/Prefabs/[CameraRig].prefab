@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cooldown: 0.3
-  ProjectilePrefab: {fileID: 193666, guid: ed2b82dba1ca13a45a1c1e070fe771c8, type: 2}
+  ProjectilePrefab: {fileID: 193666, guid: 8aa0f256c0ddb84468eeac034434fc94, type: 2}
   GadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
   shootingAngle: {x: 45, y: 0, z: 0}
 --- !u!114 &11441284
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cooldown: 0.3
-  ProjectilePrefab: {fileID: 193666, guid: ed2b82dba1ca13a45a1c1e070fe771c8, type: 2}
+  ProjectilePrefab: {fileID: 193666, guid: 8aa0f256c0ddb84468eeac034434fc94, type: 2}
   GadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
   shootingAngle: {x: 45, y: 0, z: 0}
 --- !u!114 &11460374
