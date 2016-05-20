@@ -121,7 +121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 100
   speed: 200
-  damage: 50
+  damage: 100
+  force: 350
+  unpin: 0
 --- !u!136 &13688034
 CapsuleCollider:
   m_ObjectHideFlags: 1

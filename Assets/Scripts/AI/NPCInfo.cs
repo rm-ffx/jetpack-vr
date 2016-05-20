@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using RootMotion.Dynamics;
 
 public class NPCInfo : MonoBehaviour
 {
@@ -30,6 +31,14 @@ public class NPCInfo : MonoBehaviour
     }
     [Tooltip("State the NPC is currently in.")]
     public npcState currentState;
+
+    public PuppetMaster puppetMaster { get; private set;}
+
+    void Awake()
+    {
+        // Cache Variables
+        puppetMaster = GetComponentInChildren<PuppetMaster>();
+    }
 
     /// <summary>
     /// Debug Gizmos

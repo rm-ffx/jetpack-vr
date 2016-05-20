@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using RootMotion.Dynamics;
 
 public class Projectile : MonoBehaviour
 {
@@ -7,8 +8,10 @@ public class Projectile : MonoBehaviour
     public float speed = 200;
     public float damage = 50;
 
+    public float force = 10f; // Impact force of this Projectile on Ragdolls
+    public float unpin = 10f; // Unpin-Force of this Projectile on Ragdolls
+
     private float m_currentLifeTime;
-    //private bool m_isPlayerProjectile;
 
     void Update()
     {
@@ -25,11 +28,15 @@ public class Projectile : MonoBehaviour
     {
         if(collider.gameObject.layer == 9)
         {
-            NPCInfo npcInfo = collider.gameObject.GetComponent<NPCInfo>();
+            NPCInfo npcInfo = collider.transform.root.gameObject.GetComponent<NPCInfo>();
             npcInfo.health -= damage;
             if (npcInfo.health <= 0.0f)
             {
-                Destroy(collider.gameObject);
+                if (npcInfo.puppetMaster) TriggerPuppetMaster(collider, npcInfo);
+                npcInfo.gameObject.GetComponent<BehaviorDesigner.Runtime.Behavior>().enabled = false;
+                npcInfo.gameObject.GetComponent<Pathfinding.RVO.RVOController>().enabled = false;
+
+                //Destroy(collider.gameObject);
             }
         }
         else if(collider.gameObject.layer == 11)
@@ -41,5 +48,27 @@ public class Projectile : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Triggers the Ragdoll behaviour of the NPC
+    /// </summary>
+    /// <param name="col">Collider that was hit</param>
+    void TriggerPuppetMaster(Collider col, NPCInfo info)
+    {
+        // Check for Muscles
+        MuscleCollisionBroadcaster broadcaster = col.attachedRigidbody.GetComponent<MuscleCollisionBroadcaster>();
+
+        // Apply HIT-Force to the given Collider
+        if (broadcaster)
+        {
+            // NPC Drops Dead
+            info.puppetMaster.mode = PuppetMaster.Mode.Active;
+            info.puppetMaster.state = PuppetMaster.State.Dead;
+            info.puppetMaster.pinWeight = 0;
+
+            // Process with With Force
+            broadcaster.Hit(unpin, (col.gameObject.transform.position - gameObject.transform.position) * force, transform.position);
+        }
     }
 }
