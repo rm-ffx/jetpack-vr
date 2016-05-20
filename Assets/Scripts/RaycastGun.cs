@@ -43,7 +43,7 @@ public class RaycastGun : MonoBehaviour
     {
         m_remainingCooldown = Cooldown;
         RaycastHit hit;
-        if(Physics.Raycast(transform.position + transform.forward.normalized, transform.forward, out hit, maxDistance: 100.0f))
+        if(Physics.Raycast(transform.position, transform.forward, out hit, maxDistance: 100.0f))
         {
             if(hit.transform.gameObject.layer == 9)
             {
