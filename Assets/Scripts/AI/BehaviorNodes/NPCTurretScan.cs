@@ -16,6 +16,8 @@ public class NPCTurretScan : Action
     public float scanAngle; // Maximum Scan-Angle of the Turrent
     public float waitAtMaxAngle; // Time the Turrent should wait when it reaches on max-angle
 
+    public NPCInfo.npcState stateOnStart; // State will be set to this when the node starts
+
     private Quaternion startRotation; // Rotation when the game starts.
 
     private Vector3 minDirection;
@@ -46,6 +48,7 @@ public class NPCTurretScan : Action
         // Rotate towards maxRotationPoint on start
         currentDir = 1;
         m_init = true;
+        m_info.currentState = stateOnStart;
     }
 
     public override TaskStatus OnUpdate()

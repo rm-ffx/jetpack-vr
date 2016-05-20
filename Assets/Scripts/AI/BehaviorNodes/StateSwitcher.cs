@@ -67,9 +67,12 @@ public class StateSwitcher : Conditional
         // An object is within sight if the angle is less than field of view
         if (Vector3.Angle(direction, usedTransform.forward) < fieldOfViewAngle)
         {
+            int layerMask = 1 << 9;
+            layerMask = ~layerMask;
+
             // Check if the object is obscured by something or visible
             RaycastHit hit;
-            if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, info.viewDistance) && GameInfo.playersInGame.Contains(hit.transform.gameObject)) return true; // hit.transform.gameObject.tag == targetTag) return true;
+            if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, info.viewDistance, layerMask) && GameInfo.playersInGame.Contains(hit.transform.gameObject)) return true; // hit.transform.gameObject.tag == targetTag) return true;
             else return false;
         }
         else return false;
