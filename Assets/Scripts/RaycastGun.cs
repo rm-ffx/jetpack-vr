@@ -8,13 +8,13 @@ using Valve.VR;
 public class RaycastGun : MonoBehaviour
 {
     [Tooltip("How many seconds the gun needs to be ready again")]
-    public float Cooldown;
+    public float cooldown;
     [Tooltip("The damage this weapon deals")]
-    public float Damage;
+    public float damage;
     [Tooltip("The model that will be used for the gadget selector")]
-    public GameObject GadgetPreviewPrefab;
+    public GameObject gadgetPreviewPrefab;
     [Tooltip("The model that will be used as pointer. Note that this is only used for visual feedback")]
-    public GameObject PointerModel;
+    public GameObject pointerModel;
 
     private SteamVR_Controller.Device m_device = null;
     private PickupSystem m_pickupSystem;
@@ -28,18 +28,18 @@ public class RaycastGun : MonoBehaviour
         m_device = SteamVR_Controller.Input((int)GetComponent<SteamVR_TrackedObject>().index);
         m_pickupSystem = GetComponent<PickupSystem>();
         m_triggerX = 0.0f;
-        PointerModel.SetActive(false);
-        m_pointerModelLocalScale = PointerModel.transform.localScale;
+        pointerModel.SetActive(false);
+        m_pointerModelLocalScale = pointerModel.transform.localScale;
     }
 
     void OnDisable()
     {
-        PointerModel.SetActive(false);
+        pointerModel.SetActive(false);
     }
 
     void OnEnable()
     {
-        PointerModel.SetActive(true);
+        pointerModel.SetActive(true);
     }
 
     // Update is called once per frame
@@ -48,29 +48,29 @@ public class RaycastGun : MonoBehaviour
         if (!m_pickupSystem.m_isHandBusy)
         {
             m_triggerX = m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x;
-            if (!PointerModel.activeInHierarchy)
-                PointerModel.SetActive(true);
+            if (!pointerModel.activeInHierarchy)
+                pointerModel.SetActive(true);
         }
         else
-            PointerModel.SetActive(false);
+            pointerModel.SetActive(false);
 
         if (m_triggerX >= 0.1f && m_remainingCooldown <= 0.0f)
         {
             Shoot();
-            PointerModel.transform.localScale = new Vector3(m_pointerModelLocalScale.x * 10.0f, m_pointerModelLocalScale.y, m_pointerModelLocalScale.z * 10.0f);
+            pointerModel.transform.localScale = new Vector3(m_pointerModelLocalScale.x * 10.0f, m_pointerModelLocalScale.y, m_pointerModelLocalScale.z * 10.0f);
         }
         else
         {
             m_remainingCooldown -= Time.deltaTime;
-            if (m_remainingCooldown < Cooldown / 2f)
-                PointerModel.transform.localScale = m_pointerModelLocalScale;
+            if (m_remainingCooldown < cooldown / 2f)
+                pointerModel.transform.localScale = m_pointerModelLocalScale;
         }
     }
 
     private void Shoot()
     {
         m_device.TriggerHapticPulse(1500);
-        m_remainingCooldown = Cooldown;
+        m_remainingCooldown = cooldown;
         RaycastHit hit;
 
         Vector3 newForward = (transform.forward + transform.up * -1) / 2;
@@ -79,7 +79,7 @@ public class RaycastGun : MonoBehaviour
             if(hit.transform.gameObject.layer == 9)
             {
                 NPCInfo npcInfo = hit.transform.gameObject.GetComponent<NPCInfo>();
-                npcInfo.health -= Damage;
+                npcInfo.health -= damage;
                 if (npcInfo.health <= 0.0f)
                 {
                     Destroy(hit.transform.gameObject);

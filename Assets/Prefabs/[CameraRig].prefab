@@ -159,7 +159,6 @@ GameObject:
   - 33: {fileID: 3303444}
   - 114: {fileID: 11472264}
   - 54: {fileID: 5431720}
-  - 136: {fileID: 13685944}
   - 114: {fileID: 11464056}
   - 65: {fileID: 6579436}
   m_Layer: 2
@@ -559,7 +558,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 0
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -627,7 +626,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294955007
+    m_Bits: 4294963199
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1034,12 +1033,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae5d49e03e28084fb52c0f2df9e2da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gadgets:
+  gadgets:
   - {fileID: 11477944}
   - {fileID: 11434668}
   - {fileID: 11448730}
-  MaxGadgets: 4
-  Distance: 0.3
+  maxGadgets: 4
+  distance: 0.5
 --- !u!114 &11406612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1051,9 +1050,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2e9f965fc646c40bf12fc741669282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UpwardMultiplier: 1
-  DownwardMultiplier: 1
-  GadgetPreviewPrefab: {fileID: 127930, guid: 84549a4a663e67d4aaedc573e2385b21, type: 2}
+  upwardMultiplier: 1
+  downwardMultiplier: 1
+  gadgetPreviewPrefab: {fileID: 127930, guid: 84549a4a663e67d4aaedc573e2385b21, type: 2}
 --- !u!114 &11410516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1131,10 +1130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e830cee3cf67e83458ed9def28d02509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0.3
-  ProjectilePrefab: {fileID: 193666, guid: 8aa0f256c0ddb84468eeac034434fc94, type: 2}
-  GadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
+  cooldown: 0.3
+  projectilePrefab: {fileID: 193666, guid: 8aa0f256c0ddb84468eeac034434fc94, type: 2}
+  gadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
   shootingAngle: {x: 45, y: 0, z: 0}
+  pointerModel: {fileID: 113292}
 --- !u!114 &11441284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1177,10 +1177,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2cd63dcc7c9d044ac05d013a459ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0.3
-  Damage: 100
-  GadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
-  PointerModel: {fileID: 113292}
+  cooldown: 0.3
+  damage: 100
+  gadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
+  pointerModel: {fileID: 113292}
 --- !u!114 &11450326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1241,10 +1241,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e830cee3cf67e83458ed9def28d02509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0.3
-  ProjectilePrefab: {fileID: 193666, guid: 8aa0f256c0ddb84468eeac034434fc94, type: 2}
-  GadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
+  cooldown: 0.3
+  projectilePrefab: {fileID: 193666, guid: 8aa0f256c0ddb84468eeac034434fc94, type: 2}
+  gadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
   shootingAngle: {x: 45, y: 0, z: 0}
+  pointerModel: {fileID: 189704}
 --- !u!114 &11460374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1273,12 +1274,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae5d49e03e28084fb52c0f2df9e2da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gadgets:
+  gadgets:
   - {fileID: 11406612}
   - {fileID: 11458160}
   - {fileID: 11488612}
-  MaxGadgets: 4
-  Distance: 0.3
+  maxGadgets: 4
+  distance: 0.5
 --- !u!114 &11464056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1354,9 +1355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2e9f965fc646c40bf12fc741669282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UpwardMultiplier: 1
-  DownwardMultiplier: 1
-  GadgetPreviewPrefab: {fileID: 127930, guid: 84549a4a663e67d4aaedc573e2385b21, type: 2}
+  upwardMultiplier: 1
+  downwardMultiplier: 1
+  gadgetPreviewPrefab: {fileID: 127930, guid: 84549a4a663e67d4aaedc573e2385b21, type: 2}
 --- !u!114 &11486232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1383,10 +1384,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2cd63dcc7c9d044ac05d013a459ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0.3
-  Damage: 100
-  GadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
-  PointerModel: {fileID: 189704}
+  cooldown: 0.3
+  damage: 100
+  gadgetPreviewPrefab: {fileID: 136892, guid: eaf7de280a15acf43964b28e1186af19, type: 2}
+  pointerModel: {fileID: 189704}
 --- !u!114 &11492724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1457,19 +1458,6 @@ CapsuleCollider:
   m_Height: 1.36
   m_Direction: 1
   m_Center: {x: 0, y: -0.3, z: 0}
---- !u!136 &13685944
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148078}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.3
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.86, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

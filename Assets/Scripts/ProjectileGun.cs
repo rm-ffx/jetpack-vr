@@ -8,13 +8,15 @@ using Valve.VR;
 public class ProjectileGun : MonoBehaviour
 {
     [Tooltip("How many seconds the gun needs to be ready again")]
-    public float Cooldown;
+    public float cooldown;
     [Tooltip("The model that will be used as projectile")]
-    public GameObject ProjectilePrefab;
+    public GameObject projectilePrefab;
     [Tooltip("The model that will be used for the gadget selector")]
-    public GameObject GadgetPreviewPrefab;
+    public GameObject gadgetPreviewPrefab;
     [Tooltip("The angle the gun will shoot at. 45° around X should be just fine")]
     public Vector3 shootingAngle;
+    [Tooltip("The model that will be used as pointer. Note that this is only used for visual feedback")]
+    public GameObject pointerModel;
 
     private SteamVR_Controller.Device m_device = null;
     private PickupSystem m_pickupSystem;
@@ -44,10 +46,10 @@ public class ProjectileGun : MonoBehaviour
     private void Shoot()
     {
         m_device.TriggerHapticPulse(1500);
-        m_remainingCooldown = Cooldown;
+        m_remainingCooldown = cooldown;
         Vector3 eulerShootingAngle = transform.rotation.eulerAngles + shootingAngle;
 
-        GameObject newProjectile = (GameObject)Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(eulerShootingAngle));
+        GameObject newProjectile = (GameObject)Instantiate(projectilePrefab, transform.position, Quaternion.Euler(eulerShootingAngle));
         newProjectile.layer = 11;
     }
 }

@@ -8,11 +8,11 @@ using System.Collections.Generic;
 public class GadgetSelector : MonoBehaviour
 {
     [Tooltip("Connect all gadget scripts to this list. Gadgets should have a display model connected")]
-    public List<MonoBehaviour> Gadgets;
+    public List<MonoBehaviour> gadgets;
     [Tooltip("The maximum ammount of gadgets")]
-    public int MaxGadgets = 8;
+    public int maxGadgets = 8;
     [Tooltip("How far the gadgets will be from the activation point")]
-    public float Distance = 0.5f;
+    public float distance = 0.5f;
 
     private Vector3[] m_calculatedPositions;
     private GameObject[] m_gadgetObjects;
@@ -20,27 +20,27 @@ public class GadgetSelector : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        m_calculatedPositions = new Vector3[MaxGadgets];
-        m_gadgetObjects = new GameObject[MaxGadgets];
+        m_calculatedPositions = new Vector3[maxGadgets];
+        m_gadgetObjects = new GameObject[maxGadgets];
 
         SetPositions();
 
         Vector3 position;
-        for(int i = 0; i < MaxGadgets; i++)
+        for(int i = 0; i < maxGadgets; i++)
         {
             position = m_calculatedPositions[i];
 
-            if(i < Gadgets.Count)
-                switch (Gadgets[i].GetType().ToString())
+            if(i < gadgets.Count)
+                switch (gadgets[i].GetType().ToString())
                 {
                     case "JetpackMovement":
-                        m_gadgetObjects[i] = Instantiate(Gadgets[i].GetComponent<JetpackMovement>().GadgetPreviewPrefab);
+                        m_gadgetObjects[i] = Instantiate(gadgets[i].GetComponent<JetpackMovement>().gadgetPreviewPrefab);
                         break;
                     case "ProjectileGun":
-                        m_gadgetObjects[i] = Instantiate(Gadgets[i].GetComponent<ProjectileGun>().GadgetPreviewPrefab);
+                        m_gadgetObjects[i] = Instantiate(gadgets[i].GetComponent<ProjectileGun>().gadgetPreviewPrefab);
                         break;
                     case "RaycastGun":
-                        m_gadgetObjects[i] = Instantiate(Gadgets[i].GetComponent<RaycastGun>().GadgetPreviewPrefab);
+                        m_gadgetObjects[i] = Instantiate(gadgets[i].GetComponent<RaycastGun>().gadgetPreviewPrefab);
                         break;
                     default:
                         m_gadgetObjects[i] = GetDefaultGadgetPreview();
@@ -54,7 +54,7 @@ public class GadgetSelector : MonoBehaviour
             m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = false;
         }
 
-        foreach (MonoBehaviour gadget in Gadgets)
+        foreach (MonoBehaviour gadget in gadgets)
             gadget.enabled = false;
     }
 
@@ -77,12 +77,12 @@ public class GadgetSelector : MonoBehaviour
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
 
-        Vector3 firstPosition = transform.position + transform.up * Distance;
+        Vector3 firstPosition = transform.position + transform.up * distance;
         Vector3 position;
         Vector3 direction;
-        float offsetInDegrees = (float)360 / MaxGadgets;
+        float offsetInDegrees = (float)360 / maxGadgets;
 
-        for (int i = 0; i < MaxGadgets; i++)
+        for (int i = 0; i < maxGadgets; i++)
         {
             position = transform.position;
             direction = firstPosition - transform.position;
@@ -99,7 +99,7 @@ public class GadgetSelector : MonoBehaviour
         transform.rotation = Quaternion.Euler(oldRotationXZ);
 
         // Set positions & parent
-        for (int i = 0; i < MaxGadgets; i++)
+        for (int i = 0; i < maxGadgets; i++)
         {
             if(m_gadgetObjects[i] != null)
             {
@@ -111,7 +111,7 @@ public class GadgetSelector : MonoBehaviour
         // Apply Y rotation of Camera (head) object to ensure GadgetPreview is rotated properly
         transform.rotation = Quaternion.Euler(oldRotationEuler);
 
-        for(int i = 0; i < MaxGadgets; i++)
+        for(int i = 0; i < maxGadgets; i++)
         {
             if(m_gadgetObjects[i] != null)
             {
@@ -130,7 +130,7 @@ public class GadgetSelector : MonoBehaviour
     {
         SetPositions();
 
-        for (int i = 0; i < MaxGadgets; i++)
+        for (int i = 0; i < maxGadgets; i++)
         {
             m_gadgetObjects[i].transform.parent = transform.parent;
             m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = true;
@@ -155,17 +155,17 @@ public class GadgetSelector : MonoBehaviour
     {
         int closestIndex = ClosestIndexToPosition(controllerPosition);
 
-        for (int i = 0; i < MaxGadgets; i++)
+        for (int i = 0; i < maxGadgets; i++)
         {
             m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = false;
             //m_gadgetObjects[i].GetComponent<Collider>().enabled = false;
 
-            if(i < Gadgets.Count)
+            if(i < gadgets.Count)
             {
                 if (i == closestIndex)
-                    Gadgets[i].enabled = true;
+                    gadgets[i].enabled = true;
                 else
-                    Gadgets[i].enabled = false;
+                    gadgets[i].enabled = false;
             }
         }
     }
@@ -190,7 +190,7 @@ public class GadgetSelector : MonoBehaviour
     {
         float minMagnitude = float.MaxValue;
         int closestIndex = -1;
-        for(int i = 0; i < MaxGadgets; i++)
+        for(int i = 0; i < maxGadgets; i++)
         {
             float dist = (m_gadgetObjects[i].transform.position - controllerPosition).magnitude;
             if (dist < minMagnitude)

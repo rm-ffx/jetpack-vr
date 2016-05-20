@@ -7,26 +7,26 @@ using System.Collections;
 public class ItemProperties : MonoBehaviour
 {
     [HideInInspector]
-    public bool IsInUse = false;
+    public bool isInUse = false;
     //private bool m_oldIsInUse = false;
 
     [Tooltip("Gatherable items can be picked up by the player")]
-    public bool Gatherable = false;
+    public bool gatherable = false;
     [Tooltip("Keep in mind that Tossable objects need a non-zero drag to behave properly")]
-    public bool Tossable = false;
+    public bool tossable = false;
     [Tooltip("Storable items can be put into the inventory")]
-    public bool Storable = false;
+    public bool storable = false;
     [Tooltip("The item's default material")]
-    public Material Material;
+    public Material material;
     [Tooltip("The item's highlit material, which is used when the player can interact with it")]
-    public Material HighlightMaterial;
+    public Material highlightMaterial;
 
     private MeshRenderer m_meshRenderer;
 
     void Start()
     {
         m_meshRenderer = GetComponent<MeshRenderer>();
-        m_meshRenderer.material = Material;
+        m_meshRenderer.material = material;
     }
 
     //void Update()
@@ -43,9 +43,9 @@ public class ItemProperties : MonoBehaviour
     public void Highlight(bool highlightOn)
     {
         if (highlightOn)
-            m_meshRenderer.material = HighlightMaterial;
+            m_meshRenderer.material = highlightMaterial;
         else
-            m_meshRenderer.material = Material;
+            m_meshRenderer.material = material;
     }
 }
 

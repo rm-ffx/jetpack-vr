@@ -69,12 +69,12 @@ public class PickupSystem : MonoBehaviour
                 ItemProperties itemProperties = handObject.GetComponent<ItemProperties>();
 
                 // If possible, store the item in the inventory
-                if (m_inventory != null && itemProperties.Storable && !m_inventory.isFull)
+                if (m_inventory != null && itemProperties.storable && !m_inventory.isFull)
                 {
                     m_inventory.StoreItem(handObject);
                 }
                 // If possible, toss the item
-                else if (itemProperties.Tossable)
+                else if (itemProperties.tossable)
                 {
                     Rigidbody handObjectRigidbody = handObject.GetComponent<Rigidbody>();
                     Rigidbody playerRigidbody = transform.parent.GetComponent<Rigidbody>();
@@ -100,7 +100,7 @@ public class PickupSystem : MonoBehaviour
                 {
                     handObject.transform.parent = null;
                 }
-                itemProperties.IsInUse = false;
+                itemProperties.isInUse = false;
                 itemProperties.Highlight(false);
                 handObject.GetComponent<Collider>().enabled = true;
                 handObject = null;
@@ -120,9 +120,9 @@ public class PickupSystem : MonoBehaviour
             {
                 if (m_inventory != null && !m_inventory.isEmpty)
                     PickupItem(m_inventory.WithdrawItem(transform.position));
-                else if(m_closestObject != null && m_closestObject.tag == "Item" && m_closestObject.GetComponent<ItemProperties>().Gatherable && !m_closestObject.GetComponent<ItemProperties>().IsInUse)
+                else if(m_closestObject != null && m_closestObject.tag == "Item" && m_closestObject.GetComponent<ItemProperties>().gatherable && !m_closestObject.GetComponent<ItemProperties>().isInUse)
                     PickupItem(m_closestObject);
-                else if (collider.tag == "Item" && collider.GetComponent<ItemProperties>().Gatherable && !collider.GetComponent<ItemProperties>().IsInUse)
+                else if (collider.tag == "Item" && collider.GetComponent<ItemProperties>().gatherable && !collider.GetComponent<ItemProperties>().isInUse)
                     PickupItem(collider.gameObject);
             }
         }
@@ -139,7 +139,7 @@ public class PickupSystem : MonoBehaviour
         m_isHandBusy = true;
 
         ItemProperties itemProperties = handObject.GetComponent<ItemProperties>();
-        itemProperties.IsInUse = true;
+        itemProperties.isInUse = true;
         itemProperties.Highlight(false);
     }
 
@@ -190,7 +190,7 @@ public class PickupSystem : MonoBehaviour
         else if (m_itemsInRange.Count == 1)
         {
             ItemProperties itemProperties = m_itemsInRange[0].GetComponent<ItemProperties>();
-            if(itemProperties.IsInUse)
+            if(itemProperties.isInUse)
             {
                 itemProperties.Highlight(false);
             }
@@ -209,7 +209,7 @@ public class PickupSystem : MonoBehaviour
             {
                 itemProperties = item.GetComponent<ItemProperties>();
                 itemProperties.Highlight(false);
-                if (itemProperties.IsInUse)
+                if (itemProperties.isInUse)
                     continue;
 
                 float dist = (item.transform.position - transform.position).magnitude;

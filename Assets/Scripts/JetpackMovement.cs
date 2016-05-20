@@ -10,11 +10,11 @@ using Valve.VR;
 public class JetpackMovement : MonoBehaviour
 {
     [Tooltip("Multiplier to control upward speed")]
-    public float UpwardMultiplier = 1.0f;
+    public float upwardMultiplier = 1.0f;
     [Tooltip("Multiplier to control downward speed in order to make falling down more realistic")]
-    public float DownwardMultiplier = 1.0f;
+    public float downwardMultiplier = 1.0f;
     [Tooltip("The model that will be used for the gadget selector")]
-    public GameObject GadgetPreviewPrefab;
+    public GameObject gadgetPreviewPrefab;
 
     private Rigidbody m_rigidBody;
     private PickupSystem m_pickupSystem;
@@ -95,11 +95,11 @@ public class JetpackMovement : MonoBehaviour
             otherTriggerX = 0.0f;
 
         if (triggerX >= 0.02f)
-            m_rigidBody.AddForce(Vector3.Normalize(m_device.transform.rot * Vector3.forward) * triggerX * UpwardMultiplier, ForceMode.Impulse);
+            m_rigidBody.AddForce(Vector3.Normalize(m_device.transform.rot * Vector3.forward) * triggerX * upwardMultiplier, ForceMode.Impulse);
         else
-            m_rigidBody.AddForce(Vector3.down * 0.5f * DownwardMultiplier, ForceMode.Acceleration);
+            m_rigidBody.AddForce(Vector3.down * 0.5f * downwardMultiplier, ForceMode.Acceleration);
 
         if (triggerX + otherTriggerX <= 0.1f)
-            m_rigidBody.AddForce(Vector3.down * 0.5f * DownwardMultiplier, ForceMode.VelocityChange);
+            m_rigidBody.AddForce(Vector3.down * 0.5f * downwardMultiplier, ForceMode.VelocityChange);
     }
 }
