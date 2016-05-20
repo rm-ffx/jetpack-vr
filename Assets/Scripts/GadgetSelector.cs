@@ -20,17 +20,22 @@ public class GadgetSelector : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        Initialize();
+    }
+
+    void Initialize()
+    {
         m_calculatedPositions = new Vector3[maxGadgets];
         m_gadgetObjects = new GameObject[maxGadgets];
 
         SetPositions();
 
         Vector3 position;
-        for(int i = 0; i < maxGadgets; i++)
+        for (int i = 0; i < maxGadgets; i++)
         {
             position = m_calculatedPositions[i];
 
-            if(i < gadgets.Count)
+            if (i < gadgets.Count)
                 switch (gadgets[i].GetType().ToString())
                 {
                     case "JetpackMovement":
@@ -56,6 +61,50 @@ public class GadgetSelector : MonoBehaviour
 
         foreach (MonoBehaviour gadget in gadgets)
             gadget.enabled = false;
+    }
+
+    public void AddGadget(MonoBehaviour gadget)
+    {
+        if(gadgets.Count < maxGadgets)
+        {
+            switch (gadget.GetType().ToString())
+            {
+                case "JetpackMovement":
+                    JetpackMovement gadgetJM = gadget.GetComponent<JetpackMovement>();
+                    JetpackMovement newGadgetJM = gameObject.AddComponent<JetpackMovement>();
+                    newGadgetJM.upwardMultiplier = gadgetJM.upwardMultiplier;
+                    newGadgetJM.downwardMultiplier = gadgetJM.downwardMultiplier;
+                    newGadgetJM.gadgetPreviewPrefab = gadgetJM.gadgetPreviewPrefab;
+                    gadgets.Add(newGadgetJM);
+                    newGadgetJM.enabled = false;
+                    break;
+                case "ProjectileGun":
+                    ProjectileGun gadgetPG = gadget.GetComponent<ProjectileGun>();
+                    ProjectileGun newGadgetPG = gameObject.AddComponent<ProjectileGun>();
+                    newGadgetPG.cooldown = gadgetPG.cooldown;
+                    newGadgetPG.projectilePrefab = gadgetPG.projectilePrefab;
+                    newGadgetPG.gadgetPreviewPrefab = gadgetPG.gadgetPreviewPrefab;
+                    newGadgetPG.shootingAngle = gadgetPG.shootingAngle;
+                    newGadgetPG.pointerModel = gadgetPG.pointerModel;
+                    gadgets.Add(newGadgetPG);
+                    newGadgetPG.enabled = false;
+                    break;
+                case "RaycastGun":
+                    RaycastGun gadgetRG = gadget.GetComponent<RaycastGun>();
+                    RaycastGun newGadgetRG = gameObject.AddComponent<RaycastGun>();
+                    newGadgetRG.cooldown = gadgetRG.cooldown;
+                    newGadgetRG.damage = gadgetRG.damage;
+                    newGadgetRG.gadgetPreviewPrefab = gadgetRG.gadgetPreviewPrefab;
+                    newGadgetRG.pointerModel = gadgetRG.pointerModel;
+                    gadgets.Add(newGadgetRG);
+                    newGadgetRG.enabled = false;
+                    break;
+                default:
+                    Debug.LogError("Gadget not listed, unable to add");
+                    break;
+            }
+            Initialize();
+        }
     }
 
     private GameObject GetDefaultGadgetPreview()
@@ -158,7 +207,6 @@ public class GadgetSelector : MonoBehaviour
         for (int i = 0; i < maxGadgets; i++)
         {
             m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = false;
-            //m_gadgetObjects[i].GetComponent<Collider>().enabled = false;
 
             if(i < gadgets.Count)
             {

@@ -1038,7 +1038,7 @@ MonoBehaviour:
   - {fileID: 11434668}
   - {fileID: 11448730}
   maxGadgets: 4
-  distance: 0.5
+  distance: 0.3
 --- !u!114 &11406612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   - {fileID: 11458160}
   - {fileID: 11488612}
   maxGadgets: 4
-  distance: 0.5
+  distance: 0.3
 --- !u!114 &11464056
 MonoBehaviour:
   m_ObjectHideFlags: 1
