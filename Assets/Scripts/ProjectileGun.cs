@@ -13,6 +13,8 @@ public class ProjectileGun : MonoBehaviour
     public GameObject ProjectilePrefab;
     [Tooltip("The model that will be used for the gadget selector")]
     public GameObject GadgetPreviewPrefab;
+    [Tooltip("The angle the gun will shoot at. 45° around X should be just fine")]
+    public Vector3 shootingAngle;
 
     private SteamVR_Controller.Device m_device = null;
     private PickupSystem m_pickupSystem;
@@ -42,7 +44,9 @@ public class ProjectileGun : MonoBehaviour
     private void Shoot()
     {
         m_remainingCooldown = Cooldown;
-        GameObject newProjectile = (GameObject)Instantiate(ProjectilePrefab, transform.position, transform.rotation);
+        Vector3 eulerShootingAngle = transform.rotation.eulerAngles + shootingAngle;
+
+        GameObject newProjectile = (GameObject)Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(eulerShootingAngle));
         newProjectile.layer = 11;
     }
 }
