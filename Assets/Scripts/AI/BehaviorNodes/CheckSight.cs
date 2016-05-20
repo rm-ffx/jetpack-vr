@@ -86,9 +86,12 @@ public class CheckSight : Action
         // An object is within sight if the angle is less than field of view
         if (Vector3.Angle(direction, usedTransform.forward) < info.fov)
         {
+            int layerMask = 1 << 9;
+            layerMask = ~layerMask;
+
             // Check if the object is obscured by something or visible
             RaycastHit hit;
-            if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, info.viewDistance) && GameInfo.playersInGame.Contains(hit.transform.gameObject)) return true;
+            if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, info.viewDistance, layerMask) && GameInfo.playersInGame.Contains(hit.transform.gameObject)) return true;
             else return false;
         }
         else return false;
@@ -99,9 +102,11 @@ public class CheckSight : Action
     /// </summary>
     public bool withinSightSpherical(Transform targetTransform)
     {
+        int layerMask = 1 << 9;
+        layerMask = ~layerMask;
         // Check if the object is obscured by something or visible
         RaycastHit hit;
-        if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, searchRadius) && GameInfo.playersInGame.Contains(hit.transform.gameObject)) return true;
+        if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, searchRadius, layerMask) && GameInfo.playersInGame.Contains(hit.transform.gameObject)) return true;
         else return false;
     }
 }
