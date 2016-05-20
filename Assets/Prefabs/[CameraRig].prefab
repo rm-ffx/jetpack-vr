@@ -64,7 +64,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 413414}
   - 33: {fileID: 3389714}
-  - 136: {fileID: 13651358}
   - 23: {fileID: 2338978}
   m_Layer: 0
   m_Name: RaygunPointerModel_deleteMe
@@ -248,7 +247,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 488794}
   - 33: {fileID: 3352122}
-  - 136: {fileID: 13653254}
   - 23: {fileID: 2369352}
   m_Layer: 0
   m_Name: RaygunPointerModel_deleteMe
@@ -1038,7 +1036,8 @@ MonoBehaviour:
   - {fileID: 11434668}
   - {fileID: 11448730}
   maxGadgets: 4
-  distance: 0.3
+  radialDistance: 0.3
+  forwardDistance: 1
 --- !u!114 &11406612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1279,7 +1278,8 @@ MonoBehaviour:
   - {fileID: 11458160}
   - {fileID: 11488612}
   maxGadgets: 4
-  distance: 0.3
+  radialDistance: 0.3
+  forwardDistance: 1
 --- !u!114 &11464056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1418,32 +1418,6 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &13651358
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 113292}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &13653254
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 189704}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13675206
 CapsuleCollider:
