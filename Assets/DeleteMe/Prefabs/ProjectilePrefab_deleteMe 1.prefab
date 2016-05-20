@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 11475322}
   - 54: {fileID: 5442804}
   m_Layer: 0
-  m_Name: ProjectilePrefab_deleteMe
+  m_Name: ProjectilePrefab_deleteMe 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
