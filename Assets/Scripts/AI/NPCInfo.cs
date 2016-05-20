@@ -41,6 +41,32 @@ public class NPCInfo : MonoBehaviour
     }
 
     /// <summary>
+    /// Triggers the Ragdoll behaviour of the NPC
+    /// </summary>
+    /// <param name="col">Collider that was hit</param>
+    public void TriggerPuppetMaster(Collider col, float impactForce, Vector3 impactPosition, float unpin)
+    {
+        // Check for Muscles
+        MuscleCollisionBroadcaster broadcaster = col.attachedRigidbody.GetComponent<MuscleCollisionBroadcaster>();
+
+        // Apply HIT-Force to the given Collider
+        if (broadcaster)
+        {
+            // NPC Drops Dead
+            puppetMaster.mode = PuppetMaster.Mode.Active;
+            puppetMaster.state = PuppetMaster.State.Dead;
+            puppetMaster.pinWeight = 0;
+
+            // Process with Force
+            broadcaster.Hit(unpin, (col.gameObject.transform.position - impactPosition) * impactForce, impactPosition);
+        }
+        
+        // Disable Behavior and Controller
+        GetComponent<BehaviorDesigner.Runtime.Behavior>().enabled = false;
+        GetComponent<Pathfinding.RVO.RVOController>().enabled = false;
+    }
+
+    /// <summary>
     /// Debug Gizmos
     /// </summary>
     void OnDrawGizmosSelected()

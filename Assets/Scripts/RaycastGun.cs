@@ -11,6 +11,8 @@ public class RaycastGun : MonoBehaviour
     public float cooldown;
     [Tooltip("The damage this weapon deals")]
     public float damage;
+    [Tooltip("The impact this weapon has on Physics.")]
+    public float impactForce;
     [Tooltip("The model that will be used for the gadget selector")]
     public GameObject gadgetPreviewPrefab;
     [Tooltip("Higher multiplier results in the gun shooting farther down.")]
@@ -84,6 +86,7 @@ public class RaycastGun : MonoBehaviour
                 npcInfo.health -= damage;
                 if (npcInfo.health <= 0.0f)
                 {
+                    if (npcInfo.puppetMaster) npcInfo.TriggerPuppetMaster(hit.collider, impactForce, hit.point, 0);
                     Destroy(hit.transform.gameObject);
                 }
             }
