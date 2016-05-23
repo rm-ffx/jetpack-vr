@@ -1480,12 +1480,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7d824b03548a44ebff529461e57deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  looseEnergyOverTime: 0
-  looseEnergyOnHit: 0
-  startWithFullEnergy: 1
   maxEnergy: 100
-  energyRestoration: 1
+  startWithFullEnergy: 1
+  looseEnergyOnHit: 1
+  looseEnergyOverTime: 0
+  energyRestoration: 0
   shieldObject: {fileID: 148142}
+  shieldActiveMaterial: {fileID: 2100000, guid: 7906cc3031441044aa3793be3a0f790b,
+    type: 2}
+  shieldDeactivatedMaterial: {fileID: 2100000, guid: f6d747e2c2629574fae55df4a9d2be6b,
+    type: 2}
 --- !u!114 &11492724
 MonoBehaviour:
   m_ObjectHideFlags: 1

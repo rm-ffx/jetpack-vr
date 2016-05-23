@@ -50,7 +50,13 @@ public class Projectile : MonoBehaviour
                 if (playerInfo.health <= 0.0f)
                     Debug.Log("Player died. Insert gamestate change here");
             }
-
+            else if (collider.gameObject.layer == 14)
+            {
+                Debug.Log("projectile hit shield");
+                Shield shield = collider.transform.parent.GetComponent<Shield>();
+                if (shield.looseEnergyOnHit)
+                    shield.GetHit(damage);
+            }
             Destroy(gameObject);
         //}
     }
