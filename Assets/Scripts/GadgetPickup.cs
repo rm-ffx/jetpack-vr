@@ -6,6 +6,11 @@ public class GadgetPickup : MonoBehaviour
     public MonoBehaviour gadget;
     private bool m_isPickedUp = false;
 
+    void Start()
+    {
+        gadget.enabled = false;
+    }
+
     void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.layer == 10 && !m_isPickedUp)
