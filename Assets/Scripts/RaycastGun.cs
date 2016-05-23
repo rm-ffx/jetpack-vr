@@ -36,14 +36,14 @@ public class RaycastGun : MonoBehaviour
         m_pointerModelLocalScale = pointerModel.transform.localScale;
     }
 
-    void OnDisable()
-    {
-        pointerModel.SetActive(false);
-    }
-
     void OnEnable()
     {
         pointerModel.SetActive(true);
+    }
+
+    void OnDisable()
+    {
+        pointerModel.SetActive(false);
     }
 
     // Update is called once per frame

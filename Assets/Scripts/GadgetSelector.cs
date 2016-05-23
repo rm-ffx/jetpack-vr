@@ -49,6 +49,9 @@ public class GadgetSelector : MonoBehaviour
                     case "RaycastGun":
                         m_gadgetObjects[i] = Instantiate(gadgets[i].GetComponent<RaycastGun>().gadgetPreviewPrefab);
                         break;
+                    case "Shield":
+                        m_gadgetObjects[i] = Instantiate(gadgets[i].GetComponent<Shield>().gadgetPreviewPrefab);
+                        break;
                     default:
                         m_gadgetObjects[i] = GetDefaultGadgetPreview();
                         break;
@@ -99,9 +102,22 @@ public class GadgetSelector : MonoBehaviour
                     newGadgetRG.impactForce = gadgetRG.impactForce;
                     newGadgetRG.gadgetPreviewPrefab = gadgetRG.gadgetPreviewPrefab;
                     newGadgetRG.angleMultiplier = gadgetRG.angleMultiplier;
-                    newGadgetRG.pointerModel = gadgetRG.pointerModel;
+                    newGadgetRG.pointerModel = GetComponent<GadgetReferences>().raycastGunPointer;
                     gadgets.Add(newGadgetRG);
                     newGadgetRG.enabled = false;
+                    break;
+                case "Shield":
+                    Shield gadgetSh = gadget.GetComponent<Shield>();
+                    Shield newGadgetSh = gameObject.AddComponent<Shield>();
+                    newGadgetSh.maxEnergy = gadgetSh.maxEnergy;
+                    newGadgetSh.startWithFullEnergy = gadgetSh.startWithFullEnergy;
+                    newGadgetSh.looseEnergyOnHit = gadgetSh.looseEnergyOnHit;
+                    newGadgetSh.looseEnergyOverTime = gadgetSh.looseEnergyOverTime;
+                    newGadgetSh.energyRegeneration = gadgetSh.energyRegeneration;
+                    newGadgetSh.shieldObject = GetComponent<GadgetReferences>().shield;
+                    newGadgetSh.shieldActiveMaterial = gadgetSh.shieldActiveMaterial;
+                    newGadgetSh.shieldDeactivatedMaterial = gadgetSh.shieldDeactivatedMaterial;
+                    newGadgetSh.gadgetPreviewPrefab = gadgetSh.gadgetPreviewPrefab;
                     break;
                 default:
                     Debug.LogError("Gadget not listed, unable to add");

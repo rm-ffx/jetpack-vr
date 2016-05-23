@@ -5,15 +5,25 @@ using Valve.VR;
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class Shield : MonoBehaviour
 {
+    [Tooltip("The maximum ammount of energy the shield can have")]
     public float maxEnergy = 100.0f;
+    [Tooltip("Wheter or not the shield starts off with full energy")]
     public bool startWithFullEnergy = true;
+    [Tooltip("Wheter or not the shield looses energy when hit by a projectile")]
     public bool looseEnergyOnHit = false;
+    [Tooltip("How fast energy is consumed while the shield is active. Setting this value to 0 results in the shield not losing energy over time")]
     public float looseEnergyOverTime = 0.0f;
-    public float energyRestoration = 0.0f;
+    [Tooltip("How fast energy regenerates while the shield is deactivated. Setting this value to 0 results in the shield not regenerating energy over time")]
+    public float energyRegeneration = 0.0f;
 
+    [Tooltip("The GameObject holding the shield's model and collider")]
     public GameObject shieldObject;
+    [Tooltip("The material that will be used when the shield is active")]
     public Material shieldActiveMaterial;
+    [Tooltip("The material that will be used when the shield is deactivated")]
     public Material shieldDeactivatedMaterial;
+    [Tooltip("The model that will be used for the gadget selector")]
+    public GameObject gadgetPreviewPrefab;
 
     private Collider m_shieldCollider;
     private MeshRenderer m_shieldRenderer;
@@ -36,10 +46,22 @@ public class Shield : MonoBehaviour
             m_shieldRenderer = shieldObject.GetComponent<MeshRenderer>();
         }
 
+        shieldObject.SetActive(false);
+
         m_device = SteamVR_Controller.Input((int)GetComponent<SteamVR_TrackedObject>().index);
         m_pickupSystem = GetComponent<PickupSystem>();
     }
 	
+    void OnEnable()
+    {
+        shieldObject.SetActive(true);
+    }
+
+    void OnDisable()
+    {
+        shieldObject.SetActive(false);
+    }
+
 	// Update is called once per frame
 	void Update ()
     {
@@ -56,8 +78,8 @@ public class Shield : MonoBehaviour
         }
         else
         {
-            if (energyRestoration > 0.0f)
-                m_actualEnergy += Time.deltaTime * energyRestoration;
+            if (energyRegeneration > 0.0f)
+                m_actualEnergy += Time.deltaTime * energyRegeneration;
 
             m_shieldCollider.enabled = false;
             m_shieldRenderer.material = shieldDeactivatedMaterial;
