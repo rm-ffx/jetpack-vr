@@ -102,7 +102,7 @@ public class CheckSight : Action
     /// </summary>
     public bool withinSightSpherical(Transform targetTransform)
     {
-        var layerMask = 1 << 2 | 1 << 9 | 1 << 14; // Ignore NPCs, Ignore Raycast and Shield
+        var layerMask = 1 << 2 | 1 << 9 | 1 << 10 | 1 << 14; // Ignore NPCs, Ignore Raycast, Controller and Shield
         layerMask = ~layerMask;
         // Check if the object is obscured by something or visible
         RaycastHit hit;
