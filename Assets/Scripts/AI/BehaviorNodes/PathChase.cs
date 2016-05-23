@@ -215,8 +215,13 @@ public class PathChase : Action
     public bool withinSightSpherical(Transform targetTransform)
     {
         // Check if the object is obscured by something or visible
+        var layerMask = 1 << 2 | 1 << 9; // Ignore NPCs and Ignore Raycast
+
+        //var layerMask = 1 << 9;
+        layerMask = ~layerMask;
+
         RaycastHit hit;
-        if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, info.viewDistance) && hit.transform == targetTransform) return true;
+        if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, info.viewDistance, layerMask) && hit.transform == targetTransform) return true;
         else return false;
     }
 }

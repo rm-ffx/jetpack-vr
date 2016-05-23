@@ -132,7 +132,7 @@ public class NPCAttack : Action
     public bool withinSightSpherical(Transform targetTransform)
     {
         // Check if the object is obscured by something or visible
-        var layerMask = 1 << 9;
+        var layerMask = 1 << 2 | 1 << 9; // Ignore NPCs and Ignore Raycast
 
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
