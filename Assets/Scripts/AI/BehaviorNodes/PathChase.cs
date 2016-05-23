@@ -215,7 +215,7 @@ public class PathChase : Action
     public bool withinSightSpherical(Transform targetTransform)
     {
         // Check if the object is obscured by something or visible
-        var layerMask = 1 << 2 | 1 << 9; // Ignore NPCs and Ignore Raycast
+        var layerMask = 1 << 2 | 1 << 9 | 1 << 14; // Ignore NPCs, Ignore Raycast and Shield
 
         //var layerMask = 1 << 9;
         layerMask = ~layerMask;
