@@ -5,6 +5,7 @@ using Valve.VR;
 /// <summary>
 /// Handles the raycast gun gadget
 /// </summary>
+[RequireComponent(typeof(SteamVR_TrackedObject))]
 public class RaycastGun : MonoBehaviour
 {
     [Tooltip("How many seconds the gun needs to be ready again.")]
@@ -13,6 +14,8 @@ public class RaycastGun : MonoBehaviour
     public float damage;
     [Tooltip("The impact this weapon has on Physics.")]
     public float impactForce;
+    [Tooltip("The range of the gun")]
+    public float range = 100.0f;
     [Tooltip("The model that will be used for the gadget selector.")]
     public GameObject gadgetPreviewPrefab;
     [Tooltip("Higher multiplier results in the gun shooting farther down.")]
@@ -78,7 +81,7 @@ public class RaycastGun : MonoBehaviour
         RaycastHit hit;
 
         Vector3 newForward = (transform.forward + transform.up * -1 * angleMultiplier) / 2;
-        if (Physics.Raycast(transform.position, newForward, out hit, maxDistance: 100.0f))
+        if (Physics.Raycast(transform.position, newForward, out hit, maxDistance: range))
         {
             if(hit.transform.gameObject.layer == 9)
             {
