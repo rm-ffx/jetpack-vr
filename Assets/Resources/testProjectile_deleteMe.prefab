@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 407618}
   - 114: {fileID: 11449808}
+  - 136: {fileID: 13607890}
   m_Layer: 0
   m_Name: testProjectile_deleteMe
   m_TagString: Untagged
@@ -40,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 102774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 14.6254225, y: 2.281, z: -3.8312728}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 464036}
@@ -102,9 +103,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10db16f4c32c2c04f9077c0872a24d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifeTime: 10
-  Speed: 20
-  Damage: 50
+  lifeTime: 100
+  speed: 50
+  damage: 50
+  force: 10
+--- !u!136 &13607890
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.05
+  m_Height: 0.52
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.24}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
