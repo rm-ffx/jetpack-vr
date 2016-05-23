@@ -67,7 +67,7 @@ public class StateSwitcher : Conditional
         // An object is within sight if the angle is less than field of view
         if (Vector3.Angle(direction, usedTransform.forward) < fieldOfViewAngle)
         {
-            var layerMask = 1 << 2 | 1 << 9 | 1 << 14; // Ignore NPCs, Ignore Raycast and Shield
+            var layerMask = 1 << 2 | 1 << 9 | 1 << 10 | 1 << 14; // Ignore NPCs, Ignore Raycast, Controller and Shield
             layerMask = ~layerMask;
 
             // Check if the object is obscured by something or visible
