@@ -73,22 +73,34 @@ public class Shield : MonoBehaviour
             if (looseEnergyOverTime > 0.0f)
                 m_actualEnergy -= Time.deltaTime * looseEnergyOverTime;
 
-            m_shieldCollider.enabled = true;
-            m_shieldRenderer.material = shieldActiveMaterial;
+            if (m_actualEnergy > 0.0f)
+                ActivateShield();
+            else
+                DeactivateShield();
         }
         else
         {
             if (energyRegeneration > 0.0f)
                 m_actualEnergy += Time.deltaTime * energyRegeneration;
 
-            m_shieldCollider.enabled = false;
-            m_shieldRenderer.material = shieldDeactivatedMaterial;
+            DeactivateShield();
         }
 	}
 
     public void GetHit(float damage)
     {
-        Debug.Log("inflicting damage to shield");
         m_actualEnergy -= damage;
+    }
+
+    private void ActivateShield()
+    {
+        m_shieldCollider.enabled = true;
+        m_shieldRenderer.material = shieldActiveMaterial;
+    }
+
+    private void DeactivateShield()
+    {
+        m_shieldCollider.enabled = false;
+        m_shieldRenderer.material = shieldDeactivatedMaterial;
     }
 }

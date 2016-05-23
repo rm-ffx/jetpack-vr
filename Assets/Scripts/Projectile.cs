@@ -55,7 +55,6 @@ public class Projectile : MonoBehaviour
             }
             else if (collider.gameObject.layer == 14)
             {
-                Debug.Log("projectile hit shield");
                 Shield shield = collider.transform.parent.GetComponent<Shield>();
                 if (shield.looseEnergyOnHit)
                     shield.GetHit(damage);

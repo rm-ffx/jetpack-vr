@@ -417,7 +417,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113292}
   m_LocalRotation: {x: -0.38268346, y: 0, z: 0, w: 0.9238795}
-  m_LocalPosition: {x: 0, y: -0.848, z: 0.808}
+  m_LocalPosition: {x: 0, y: -0.837, z: 0.819}
   m_LocalScale: {x: 0.0015152791, y: 1.1229309, z: 0.0015152802}
   m_Children: []
   m_Father: {fileID: 484202}
@@ -428,8 +428,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119660}
-  m_LocalRotation: {x: -0.6712339, y: 0, z: 0, w: 0.7412456}
-  m_LocalPosition: {x: 0, y: 0.069000006, z: 0.459}
+  m_LocalRotation: {x: 0.38268328, y: 0, z: 0, w: -0.9238796}
+  m_LocalPosition: {x: 0, y: 0, z: 0.14182}
   m_LocalScale: {x: 0.05, y: 1, z: 0.05}
   m_Children: []
   m_Father: {fileID: 484202}
@@ -468,7 +468,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148142}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
   m_LocalPosition: {x: 0, y: 0, z: 0.14182}
   m_LocalScale: {x: 0.73945045, y: 0.7394507, z: 0.065780595}
   m_Children: []
@@ -504,7 +504,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183046}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
   m_LocalPosition: {x: 0, y: 0, z: 0.14182}
   m_LocalScale: {x: 0.73945045, y: 0.7394507, z: 0.065780595}
   m_Children: []
@@ -528,8 +528,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192378}
-  m_LocalRotation: {x: -0.6712339, y: 0, z: 0, w: 0.7412456}
-  m_LocalPosition: {x: 0, y: 0.069, z: 0.459}
+  m_LocalRotation: {x: 0.38268328, y: 0, z: 0, w: -0.9238796}
+  m_LocalPosition: {x: 0, y: 0, z: 0.14182}
   m_LocalScale: {x: 0.05, y: 1, z: 0.05}
   m_Children: []
   m_Father: {fileID: 430380}
@@ -581,7 +581,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189704}
   m_LocalRotation: {x: -0.38268346, y: 0, z: 0, w: 0.9238795}
-  m_LocalPosition: {x: 0, y: -0.848, z: 0.808}
+  m_LocalPosition: {x: 0, y: -0.837, z: 0.819}
   m_LocalScale: {x: 0.0015152791, y: 1.1229309, z: 0.0015152802}
   m_Children: []
   m_Father: {fileID: 430380}
@@ -1112,8 +1112,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9999999, y: 1, z: 1.4744322}
-  m_Center: {x: 0, y: -1.321246e-14, z: 0.2372156}
+  m_Size: {x: 0.9999999, y: 1, z: 4.21194}
+  m_Center: {x: 0, y: 0, z: 1.6059688}
 --- !u!65 &6543698
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1124,8 +1124,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9999999, y: 1, z: 1.4744322}
-  m_Center: {x: 0, y: -1.321246e-14, z: 0.2372156}
+  m_Size: {x: 0.9999999, y: 1, z: 4.21194}
+  m_Center: {x: 0, y: 0, z: 1.6059688}
 --- !u!65 &6545654
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1349,6 +1349,7 @@ MonoBehaviour:
   cooldown: 0.3
   damage: 100
   impactForce: 3000
+  range: 100
   gadgetPreviewPrefab: {fileID: 136892, guid: 3aa3cc0fa0463174896e479929deec93, type: 2}
   angleMultiplier: 1
   pointerModel: {fileID: 113292}
@@ -1559,9 +1560,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnergy: 100
   startWithFullEnergy: 1
-  looseEnergyOnHit: 1
+  looseEnergyOnHit: 0
   looseEnergyOverTime: 0
-  energyRegeneration: 0
+  energyRegeneration: 100
   shieldObject: {fileID: 148142}
   shieldActiveMaterial: {fileID: 2100000, guid: 7906cc3031441044aa3793be3a0f790b,
     type: 2}
@@ -1582,6 +1583,7 @@ MonoBehaviour:
   cooldown: 0.3
   damage: 100
   impactForce: 3000
+  range: 100
   gadgetPreviewPrefab: {fileID: 136892, guid: 3aa3cc0fa0463174896e479929deec93, type: 2}
   angleMultiplier: 1
   pointerModel: {fileID: 189704}
@@ -1598,9 +1600,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnergy: 100
   startWithFullEnergy: 1
-  looseEnergyOnHit: 1
+  looseEnergyOnHit: 0
   looseEnergyOverTime: 0
-  energyRegeneration: 0
+  energyRegeneration: 100
   shieldObject: {fileID: 183046}
   shieldActiveMaterial: {fileID: 2100000, guid: 7906cc3031441044aa3793be3a0f790b,
     type: 2}
