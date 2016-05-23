@@ -101,6 +101,7 @@ public class GadgetSelector : MonoBehaviour
                     newGadgetRG.damage = gadgetRG.damage;
                     newGadgetRG.impactForce = gadgetRG.impactForce;
                     newGadgetRG.range = gadgetRG.range;
+                    newGadgetRG.impactParticleSystem = gadgetRG.impactParticleSystem;
                     newGadgetRG.gadgetPreviewPrefab = gadgetRG.gadgetPreviewPrefab;
                     newGadgetRG.angleMultiplier = gadgetRG.angleMultiplier;
                     newGadgetRG.pointerModel = GetComponent<GadgetReferences>().raycastGunPointer;

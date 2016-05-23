@@ -16,6 +16,8 @@ public class RaycastGun : MonoBehaviour
     public float impactForce;
     [Tooltip("The range of the gun")]
     public float range = 100.0f;
+    [Tooltip("The prefab holding the impact particle system")]
+    public GameObject impactParticleSystem;
     [Tooltip("The model that will be used for the gadget selector.")]
     public GameObject gadgetPreviewPrefab;
     [Tooltip("Higher multiplier results in the gun shooting farther down.")]
@@ -83,6 +85,7 @@ public class RaycastGun : MonoBehaviour
         Vector3 newForward = (transform.forward + transform.up * -1 * angleMultiplier) / 2;
         if (Physics.Raycast(transform.position, newForward, out hit, maxDistance: range))
         {
+            Instantiate(impactParticleSystem, hit.point, Quaternion.identity);
             if(hit.transform.gameObject.layer == 9)
             {
                 NPCInfo npcInfo = hit.transform.root.gameObject.GetComponent<NPCInfo>();

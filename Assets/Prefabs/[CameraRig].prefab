@@ -1350,6 +1350,7 @@ MonoBehaviour:
   damage: 100
   impactForce: 3000
   range: 100
+  impactParticleSystem: {fileID: 162032, guid: 024f1417c82652d47bee4ded26c3fbce, type: 2}
   gadgetPreviewPrefab: {fileID: 136892, guid: 3aa3cc0fa0463174896e479929deec93, type: 2}
   angleMultiplier: 1
   pointerModel: {fileID: 113292}
@@ -1584,6 +1585,7 @@ MonoBehaviour:
   damage: 100
   impactForce: 3000
   range: 100
+  impactParticleSystem: {fileID: 162032, guid: 024f1417c82652d47bee4ded26c3fbce, type: 2}
   gadgetPreviewPrefab: {fileID: 136892, guid: 3aa3cc0fa0463174896e479929deec93, type: 2}
   angleMultiplier: 1
   pointerModel: {fileID: 189704}
