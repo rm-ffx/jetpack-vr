@@ -4,10 +4,13 @@ using RootMotion.Dynamics;
 
 public class Projectile : MonoBehaviour
 {
+    [Tooltip("How long the projectile will fly before getting destroyed.")]
     public float lifeTime = 100;
+    [Tooltip("How fast the projectile travels.")]
     public float speed = 200;
+    [Tooltip("How much damage the projectile deals.")]
     public float damage = 50;
-
+    [Tooltip("The impact force of this projectile on Ragdolls.")]
     public float force = 10f; // Impact force of this Projectile on Ragdolls
 
     //public LayerMask collisionTargets; // Collides with Objects in those layers

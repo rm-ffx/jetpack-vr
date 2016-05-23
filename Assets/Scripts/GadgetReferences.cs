@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GadgetReferences : MonoBehaviour
 {
-    [Tooltip("The object that will be used for the RaycastGun Gadget pointer model")]
+    [Tooltip("The object that will be used for the RaycastGun Gadget pointer model.")]
     public GameObject raycastGunPointer;
-    [Tooltip("The object taht will be used for the Shield Gadget")]
+    [Tooltip("The object that will be used for the Shield Gadget.")]
     public GameObject shield;
 }

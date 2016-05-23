@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GadgetPickup : MonoBehaviour
 {
+    [Tooltip("The gadget that can be picked up by touching this object. The values of the gadget will be copied!")]
     public MonoBehaviour gadget;
     private bool m_isPickedUp = false;
 

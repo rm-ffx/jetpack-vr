@@ -12,11 +12,17 @@ using System.Collections.Generic;
 public class Radar : MonoBehaviour {
     SteamVR_TrackedObject trackedObj;
 
+    [Tooltip("List of the objects tracked on the radar.")]
     public GameObject[] trackedObjects;
+    [Tooltip("The prefab that will be used to display on the radar.")]
     public GameObject radarPrefab;
+    [Tooltip("The camera that renders the radar.")]
     public Transform radarCamera;
+    [Tooltip("The plane to which will be rendered.")]
     public GameObject radarCameraPlane;
+    [Tooltip("Reference to the player position.")]
     public Transform playerPos;
+    [Tooltip("Radius of the radar.")]
     public float switchDistance;
 
     private static bool m_isInuse;

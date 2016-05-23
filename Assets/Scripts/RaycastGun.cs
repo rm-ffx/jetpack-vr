@@ -7,17 +7,17 @@ using Valve.VR;
 /// </summary>
 public class RaycastGun : MonoBehaviour
 {
-    [Tooltip("How many seconds the gun needs to be ready again")]
+    [Tooltip("How many seconds the gun needs to be ready again.")]
     public float cooldown;
-    [Tooltip("The damage this weapon deals")]
+    [Tooltip("The damage this weapon deals.")]
     public float damage;
     [Tooltip("The impact this weapon has on Physics.")]
     public float impactForce;
-    [Tooltip("The model that will be used for the gadget selector")]
+    [Tooltip("The model that will be used for the gadget selector.")]
     public GameObject gadgetPreviewPrefab;
     [Tooltip("Higher multiplier results in the gun shooting farther down.")]
     public float angleMultiplier = 1.0f;
-    [Tooltip("The model that will be used as pointer. Note that this is only used for visual feedback")]
+    [Tooltip("The model that will be used as pointer. Note that this is only used for visual feedback.")]
     public GameObject pointerModel;
 
     private SteamVR_Controller.Device m_device = null;

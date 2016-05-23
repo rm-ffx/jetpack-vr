@@ -5,24 +5,24 @@ using Valve.VR;
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class Shield : MonoBehaviour
 {
-    [Tooltip("The maximum ammount of energy the shield can have")]
+    [Tooltip("The maximum ammount of energy the shield can have.")]
     public float maxEnergy = 100.0f;
-    [Tooltip("Wheter or not the shield starts off with full energy")]
+    [Tooltip("Wheter or not the shield starts off with full energy.")]
     public bool startWithFullEnergy = true;
-    [Tooltip("Wheter or not the shield looses energy when hit by a projectile")]
+    [Tooltip("Wheter or not the shield looses energy when hit by a projectile.")]
     public bool looseEnergyOnHit = false;
-    [Tooltip("How fast energy is consumed while the shield is active. Setting this value to 0 results in the shield not losing energy over time")]
+    [Tooltip("How fast energy is consumed while the shield is active. Setting this value to 0 results in the shield not losing energy over time.")]
     public float looseEnergyOverTime = 0.0f;
-    [Tooltip("How fast energy regenerates while the shield is deactivated. Setting this value to 0 results in the shield not regenerating energy over time")]
+    [Tooltip("How fast energy regenerates while the shield is deactivated. Setting this value to 0 results in the shield not regenerating energy over time.")]
     public float energyRegeneration = 0.0f;
 
-    [Tooltip("The GameObject holding the shield's model and collider")]
+    [Tooltip("The GameObject holding the shield's model and collider.")]
     public GameObject shieldObject;
-    [Tooltip("The material that will be used when the shield is active")]
+    [Tooltip("The material that will be used when the shield is active.")]
     public Material shieldActiveMaterial;
-    [Tooltip("The material that will be used when the shield is deactivated")]
+    [Tooltip("The material that will be used when the shield is deactivated.")]
     public Material shieldDeactivatedMaterial;
-    [Tooltip("The model that will be used for the gadget selector")]
+    [Tooltip("The model that will be used for the gadget selector.")]
     public GameObject gadgetPreviewPrefab;
 
     private Collider m_shieldCollider;

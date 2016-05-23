@@ -10,15 +10,15 @@ public class ItemProperties : MonoBehaviour
     public bool isInUse = false;
     //private bool m_oldIsInUse = false;
 
-    [Tooltip("Gatherable items can be picked up by the player")]
+    [Tooltip("Gatherable items can be picked up by the player.")]
     public bool gatherable = false;
-    [Tooltip("Keep in mind that Tossable objects need a non-zero drag to behave properly")]
+    [Tooltip("Keep in mind that Tossable objects need a non-zero drag to behave properly.")]
     public bool tossable = false;
-    [Tooltip("Storable items can be put into the inventory")]
+    [Tooltip("Storable items can be put into the inventory.")]
     public bool storable = false;
-    [Tooltip("The item's default material")]
+    [Tooltip("The item's default material.")]
     public Material material;
-    [Tooltip("The item's highlit material, which is used when the player can interact with it")]
+    [Tooltip("The item's highlit material, which is used when the player can interact with it.")]
     public Material highlightMaterial;
 
     private MeshRenderer m_meshRenderer;

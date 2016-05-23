@@ -9,11 +9,11 @@ using Valve.VR;
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class JetpackMovement : MonoBehaviour
 {
-    [Tooltip("Multiplier to control upward speed")]
+    [Tooltip("Multiplier to control upward speed.")]
     public float upwardMultiplier = 1.0f;
-    [Tooltip("Multiplier to control downward speed in order to make falling down more realistic")]
+    [Tooltip("Multiplier to control downward speed in order to make falling down more realistic.")]
     public float downwardMultiplier = 1.0f;
-    [Tooltip("The model that will be used for the gadget selector")]
+    [Tooltip("The model that will be used for the gadget selector.")]
     public GameObject gadgetPreviewPrefab;
 
     private Rigidbody m_rigidBody;

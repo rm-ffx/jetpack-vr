@@ -11,7 +11,8 @@ public class PickupSystem : MonoBehaviour
 {
     SteamVR_TrackedObject trackedObj;
     GameObject handObject;
-    [Tooltip("Connect an inventory here. It will be used as the player's portable inventory")]
+
+    [Tooltip("Connect an inventory here. It will be used as the player's portable inventory.")]
     public Inventory portableInventory;
     private bool m_inventoryOpen;
     public Inventory m_inventory { get; private set; }
