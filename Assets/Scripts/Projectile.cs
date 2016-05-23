@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour
 
     public float force = 10f; // Impact force of this Projectile on Ragdolls
 
+    //public LayerMask collisionTargets; // Collides with Objects in those layers
+
     private float m_currentLifeTime;
 
     void Update()
@@ -25,27 +27,31 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.layer == 9)
-        {
-            // Collides with NPC
-            NPCInfo npcInfo = collider.transform.root.gameObject.GetComponent<NPCInfo>();
-            npcInfo.health -= damage;
-            if (npcInfo.health <= 0.0f)
+        //if (collisionTargets.value == collider.gameObject.layer)
+        //{
+            if (collider.gameObject.layer == 9)
             {
-                // If the NPC has a Ragdoll - Activate Ragdoll. Else Destroy GameObject
-                if (npcInfo.puppetMaster) npcInfo.TriggerPuppetMaster(collider, force, transform.position, 0);
-                else Destroy(collider.gameObject);
+                // Collides with NPC
+                NPCInfo npcInfo = collider.transform.root.gameObject.GetComponent<NPCInfo>();
+                npcInfo.health -= damage;
+                if (npcInfo.health <= 0.0f)
+                {
+                    // If the NPC has a Ragdoll - Activate Ragdoll. Else Destroy GameObject
+                    if (npcInfo.puppetMaster) npcInfo.TriggerPuppetMaster(collider, force, transform.position, 0);
+                    else Destroy(collider.gameObject);
+                }
             }
-        }
-        else if(collider.gameObject.layer == 11)
-        {
-            // Collides with Player
-            PlayerInfo playerInfo = collider.gameObject.GetComponent<PlayerInfo>();
-            playerInfo.health -= damage;
-            if (playerInfo.health <= 0.0f)
-                Debug.Log("Player died. Insert gamestate change here");
-        }
+            else if (collider.gameObject.layer == 11)
+            {
+                // Collides with Player
+                Debug.Log("HIT PLAYER!");
+                PlayerInfo playerInfo = collider.gameObject.transform.root.GetComponent<PlayerInfo>();
+                playerInfo.health -= damage;
+                if (playerInfo.health <= 0.0f)
+                    Debug.Log("Player died. Insert gamestate change here");
+            }
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        //}
     }
 }
