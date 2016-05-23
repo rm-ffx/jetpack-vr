@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
 
     public float force = 10f; // Impact force of this Projectile on Ragdolls
 
-    public LayerMask collisionTargets; // Collides with Objects in those layers
+    //public LayerMask collisionTargets; // Collides with Objects in those layers
 
     private float m_currentLifeTime;
 
@@ -27,8 +27,8 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collisionTargets.value == collider.gameObject.layer)
-        {
+        //if (collisionTargets.value == collider.gameObject.layer)
+        //{
             if (collider.gameObject.layer == 9)
             {
                 // Collides with NPC
@@ -52,6 +52,6 @@ public class Projectile : MonoBehaviour
             }
 
             Destroy(gameObject);
-        }
+        //}
     }
 }
