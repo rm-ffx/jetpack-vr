@@ -26,7 +26,7 @@ public class Levelborder : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.name == "[CameraRig]")
+        if (other.tag == "Player")
         {
             Debug.Log("Warning you are leaving the flyable area!");
             m_isOutsideBorder = true;
@@ -36,7 +36,7 @@ public class Levelborder : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.name == "[CameraRig]")
+        if (other.tag == "Player")
         {
             Debug.Log("In Level");
             m_isOutsideBorder = false;

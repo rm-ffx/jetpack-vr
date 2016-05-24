@@ -5,7 +5,7 @@ public class GameOver : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
     {
-        if (other.name == "[CameraRig]")
+        if (other.tag == "Player")
         {
             Debug.Log("Game Over");
         }
