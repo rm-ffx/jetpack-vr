@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class LevelManager:MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     void Awake()
     {
@@ -12,12 +12,27 @@ public class LevelManager:MonoBehaviour
         // Set Waypoints
         GameInfo.SetWaypoints();
     }
+
+    void OnLevelWasLoaded(int level)
+    {
+        Debug.Log("CALLED");
+        if(level > 1)
+        {
+            // Set Players
+            GameInfo.SetPlayersInGame();
+
+            // Set Waypoints
+            GameInfo.SetWaypoints();
+
+        }
+    }
 }
 
 public static class GameInfo
 {
     public static GameObject[] playersInGame;
     public static List<Transform> npcPatrolWaypoints;
+    public static int mainMenuIndex = 1;
 
     public static void SetPlayersInGame()
     {

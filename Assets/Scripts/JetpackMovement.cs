@@ -30,7 +30,6 @@ public class JetpackMovement : MonoBehaviour
     public float triggerX { get; private set; }
     private float otherTriggerX = 0.0f;
 
-
     void Start()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();

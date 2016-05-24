@@ -121,6 +121,7 @@ public class PickupSystem : MonoBehaviour
     {
         if (collider.tag == "Interactive")
             m_interactiveInRange = true;
+
         if (SteamVR_Controller.Input((int)trackedObj.index).GetPressDown(SteamVR_Controller.ButtonMask.Axis0))
         {
             if (handObject == null && !m_isHandBusy)
