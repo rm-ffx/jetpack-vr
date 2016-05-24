@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ImpactParticleSystem_deleteMe : MonoBehaviour {
+public class ImpactParticleSystem_deleteMe : MonoBehaviour
+{
+    [Tooltip("The lifetime of the particle system")]
     public float lifetime = 0.3f;
 	
 	// Update is called once per frame

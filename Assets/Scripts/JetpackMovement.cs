@@ -9,6 +9,8 @@ using Valve.VR;
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class JetpackMovement : MonoBehaviour
 {
+    SteamVR_TrackedObject trackedObj;
+
     [Tooltip("Multiplier to control upward speed.")]
     public float upwardMultiplier = 1.0f;
     [Tooltip("Multiplier to control downward speed in order to make falling down more realistic.")]
@@ -24,18 +26,14 @@ public class JetpackMovement : MonoBehaviour
     private GameObject m_otherDeviceGameObject;
     private SteamVR_TrackedObject m_otherDeviceTrackedObject = null;
     private JetpackMovement m_otherDeviceJetpackMovement = null;
-    //private SteamVR_Controller.Device m_otherDevice = null;
 
     public float triggerX { get; private set; }
     private float otherTriggerX = 0.0f;
 
-    // In case controlls do not work, enable this stuff again
-    //private bool m_isInitialized = false;
 
     void Start()
     {
-        //if ((int)GetComponent<SteamVR_TrackedObject>().index < 0)
-        //    return;
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
 
         m_otherDeviceGameObject = transform.parent.GetComponent<SteamVR_ControllerManager>().left;
         if(m_otherDeviceGameObject == gameObject)
@@ -45,45 +43,18 @@ public class JetpackMovement : MonoBehaviour
         m_rigidBody = transform.parent.GetComponent<Rigidbody>();
         m_pickupSystem = GetComponent<PickupSystem>();
 
-        m_device = SteamVR_Controller.Input((int)GetComponent<SteamVR_TrackedObject>().index);
+        m_device = SteamVR_Controller.Input((int)trackedObj.index);
 
         m_otherDeviceTrackedObject = m_otherDeviceGameObject.GetComponent<SteamVR_TrackedObject>();
         m_otherDeviceJetpackMovement = m_otherDeviceGameObject.GetComponent<JetpackMovement>();
 
         triggerX = 0.0f;
         otherTriggerX = 0.0f;
-
-        //m_otherDeviceGameObject.GetComponent<JetpackMovement>().ReInitialize();
-        //m_isInitialized = true;
     }
 
-    //public void ReInitialize()
-    //{
-    //    if ((int)GetComponent<SteamVR_TrackedObject>().index < 0)
-    //        return;
-
-    //    m_otherDeviceGameObject = transform.parent.GetComponent<SteamVR_ControllerManager>().left;
-    //    if (m_otherDeviceGameObject == gameObject)
-    //        m_otherDeviceGameObject = transform.parent.GetComponent<SteamVR_ControllerManager>().right;
-
-    //    m_rigidBody = transform.parent.GetComponent<Rigidbody>();
-
-    //    m_device = SteamVR_Controller.Input((int)GetComponent<SteamVR_TrackedObject>().index);
-
-    //    m_otherDeviceTrackedObject = m_otherDeviceGameObject.GetComponent<SteamVR_TrackedObject>();
-    //    m_otherDeviceJetpackMovement = m_otherDeviceGameObject.GetComponent<JetpackMovement>();
-
-    //    triggerX = 0.0f;
-    //    otherTriggerX = 0.0f;
-
-    //    m_isInitialized = true;
-    //}
-
-    // Update is called once per frame
     void FixedUpdate ()
     {
-        //if (!m_isInitialized)
-        //    ReInitialize();
+        m_device = SteamVR_Controller.Input((int)trackedObj.index);
 
         // Vive controls
         if (!m_pickupSystem.m_isHandBusy)

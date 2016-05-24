@@ -25,6 +25,9 @@ public class ItemProperties : MonoBehaviour
 
     void Start()
     {
+        // To make manual tagging unnecessary
+        if (tag == "Untagged")
+            tag = "Item";
         m_meshRenderer = GetComponent<MeshRenderer>();
         m_meshRenderer.material = material;
     }

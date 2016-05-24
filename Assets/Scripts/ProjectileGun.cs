@@ -7,6 +7,8 @@ using Valve.VR;
 /// </summary>
 public class ProjectileGun : MonoBehaviour
 {
+    SteamVR_TrackedObject trackedObj;
+
     [Tooltip("How many seconds the gun needs to be ready again.")]
     public float cooldown;
     [Tooltip("The model that will be used as projectile.")]
@@ -27,7 +29,9 @@ public class ProjectileGun : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        m_device = SteamVR_Controller.Input((int)GetComponent<SteamVR_TrackedObject>().index);
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
+        m_device = SteamVR_Controller.Input((int)trackedObj.index);
+
         m_pickupSystem = GetComponent<PickupSystem>();
         m_triggerX = 0.0f;
         pointerModel.SetActive(false);
@@ -47,6 +51,8 @@ public class ProjectileGun : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        m_device = SteamVR_Controller.Input((int)trackedObj.index);
+
         if (!m_pickupSystem.m_isHandBusy)
         { 
             m_triggerX = m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x;

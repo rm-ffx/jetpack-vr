@@ -27,6 +27,8 @@ public class PickupSystem : MonoBehaviour
     private List<GameObject> m_itemsInRange;
     private GameObject m_closestObject;
 
+    private bool m_interactiveInRange;
+
     void Start()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -44,6 +46,8 @@ public class PickupSystem : MonoBehaviour
         m_otherDevicePickupSystem = m_otherDeviceGameObject.GetComponent<PickupSystem>();
 
         m_gadgetSelector = GetComponent<GadgetSelector>();
+
+        m_interactiveInRange = false;
     }
 
     void Update()
@@ -54,7 +58,7 @@ public class PickupSystem : MonoBehaviour
             if(!m_isHandBusy)
                 FindAndHighlightClosestObject();
 
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Axis0))
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Axis0) && !m_interactiveInRange)
                 OpenGadgetSelector();
             else if (device.GetPressUp(SteamVR_Controller.ButtonMask.Axis0))
                 CloseGadgetSelector();
@@ -115,13 +119,19 @@ public class PickupSystem : MonoBehaviour
 
     void OnTriggerStay(Collider collider)
     {
+        if (collider.tag == "Interactive")
+            m_interactiveInRange = true;
         if (SteamVR_Controller.Input((int)trackedObj.index).GetPressDown(SteamVR_Controller.ButtonMask.Axis0))
         {
             if (handObject == null && !m_isHandBusy)
             {
                 if (m_inventory != null && !m_inventory.isEmpty)
                     PickupItem(m_inventory.WithdrawItem(transform.position));
-                else if(m_closestObject != null && m_closestObject.tag == "Item" && m_closestObject.GetComponent<ItemProperties>().gatherable && !m_closestObject.GetComponent<ItemProperties>().isInUse)
+                else if (m_closestObject != null && m_closestObject.tag == "Interactive")
+                    InteractWith(m_closestObject);
+                else if (collider.tag == "Interactive")
+                    InteractWith(collider.gameObject);
+                else if (m_closestObject != null && m_closestObject.tag == "Item" && m_closestObject.GetComponent<ItemProperties>().gatherable && !m_closestObject.GetComponent<ItemProperties>().isInUse)
                     PickupItem(m_closestObject);
                 else if (collider.tag == "Item" && collider.GetComponent<ItemProperties>().gatherable && !collider.GetComponent<ItemProperties>().isInUse)
                     PickupItem(collider.gameObject);
@@ -142,6 +152,15 @@ public class PickupSystem : MonoBehaviour
         ItemProperties itemProperties = handObject.GetComponent<ItemProperties>();
         itemProperties.isInUse = true;
         itemProperties.Highlight(false);
+    }
+
+    private void InteractWith(GameObject go)
+    {
+        Interactive goInteractive = go.GetComponent<Interactive>();
+        if(goInteractive.isSwitch)
+        {
+            goInteractive.UseSwitch();
+        }
     }
 
     void OnTriggerEnter(Collider collider)
@@ -173,6 +192,8 @@ public class PickupSystem : MonoBehaviour
             //}
             m_inventory = null;
         }
+        else if (collider.tag == "Interactive")
+            m_interactiveInRange = false;
     }
 
     private void FindAndHighlightClosestObject()
