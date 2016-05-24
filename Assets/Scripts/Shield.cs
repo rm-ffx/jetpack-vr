@@ -5,6 +5,8 @@ using Valve.VR;
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class Shield : MonoBehaviour
 {
+    SteamVR_TrackedObject trackedObj;
+
     [Tooltip("The maximum ammount of energy the shield can have.")]
     public float maxEnergy = 100.0f;
     [Tooltip("Wheter or not the shield starts off with full energy.")]
@@ -34,9 +36,17 @@ public class Shield : MonoBehaviour
     private SteamVR_Controller.Device m_device = null;
     private PickupSystem m_pickupSystem;
 
-    // Use this for initialization
+    void Awake()
+    {
+        // Make sure this is in Awake, not Start in order to be executed before OnEnable()
+        shieldObject.SetActive(false);
+    }
+
     void Start ()
     {
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
+        m_device = SteamVR_Controller.Input((int)trackedObj.index);
+
         if (startWithFullEnergy)
             m_actualEnergy = maxEnergy;
 
@@ -46,9 +56,6 @@ public class Shield : MonoBehaviour
             m_shieldRenderer = shieldObject.GetComponent<MeshRenderer>();
         }
 
-        shieldObject.SetActive(false);
-
-        m_device = SteamVR_Controller.Input((int)GetComponent<SteamVR_TrackedObject>().index);
         m_pickupSystem = GetComponent<PickupSystem>();
     }
 	
@@ -65,6 +72,10 @@ public class Shield : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        m_device = SteamVR_Controller.Input((int)trackedObj.index);
+
+        //if (!shieldObject.activeInHierarchy)
+        //    shieldObject.SetActive(true);
         if (!m_pickupSystem.m_isHandBusy)
             m_shieldActive = (m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x > 0.1f) ? true : false;
 
