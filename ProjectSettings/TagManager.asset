@@ -8,6 +8,7 @@ TagManager:
   - Inventory
   - Waypoint
   - Interactive
+  - GameManager
   layers:
   - Default
   - TransparentFX

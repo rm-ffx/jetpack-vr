@@ -9,12 +9,14 @@ public class Interactive : MonoBehaviour
     public bool isActiveOnStart = false;
     [Tooltip("How long before the object can be used again.")]
     public float cooldown = 1.0f;
+
     [Tooltip("Wheter or not an item is needed to activate the object.")]
     public bool requiresItem = false;
     [Tooltip("The collider of the item required to activate the object.")]
     public Collider requiredItemCollider;
 
-    private bool m_isActive = false;
+    [Tooltip("The script that gets executed. Script needs to have Activate and/or Deactivate function.")]
+    public TriggerScript triggeredScript;
 
     [Tooltip("The material used when the object is active.")]
     public Material ActiveMaterial;
@@ -23,11 +25,12 @@ public class Interactive : MonoBehaviour
 
     private MeshRenderer m_meshRenderer;
 
+    private bool m_isActive = false;
     private float m_remainingCooldown = 0.0f;
 
 	void Start ()
     {
-        // So the controller can interact with it
+        // Tag needed for the controller to be able to interact with it
         if (isSwitch)
             tag = "Interactive";
 
@@ -38,6 +41,9 @@ public class Interactive : MonoBehaviour
             m_meshRenderer.material = ActiveMaterial;
         else
             m_meshRenderer.material = DeactivatedMaterial;
+
+        if(triggeredScript == null)
+            triggeredScript = GetComponent<TriggerScript>();
     }
 	
 	void Update ()
@@ -76,11 +82,15 @@ public class Interactive : MonoBehaviour
     {
         m_isActive = true;
         m_meshRenderer.material = ActiveMaterial;
+        if (triggeredScript != null)
+            triggeredScript.Activate();
     }
 
     private void Deactivate()
     {
         m_isActive = false;
         m_meshRenderer.material = DeactivatedMaterial;
+        if (triggeredScript != null)
+            triggeredScript.Deactivate();
     }
 }
