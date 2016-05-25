@@ -14,6 +14,7 @@ public class Levelborder : MonoBehaviour
     public GameObject LeftController;
     public GameObject RightController;
     public int WarningTime;
+    public bool WarningOn = false;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class Levelborder : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("Warning you are leaving the flyable area!");
+            WarningOn = true;
             m_isOutsideBorder = true;
         }
     }
@@ -39,6 +41,7 @@ public class Levelborder : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("In Level");
+            WarningOn = false;
             m_isOutsideBorder = false;
             m_TimerCounter = WarningTime;
             m_pickUpSystemLeft.enabled = true;

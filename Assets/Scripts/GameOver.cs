@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Game Over");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(GameInfo.mainMenuIndex, UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
     }
 }

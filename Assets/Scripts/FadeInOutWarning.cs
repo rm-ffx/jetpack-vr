@@ -1,29 +1,69 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FadeInOutWarning : MonoBehaviour {
+public class FadeInOutWarning : MonoBehaviour
+{
 
     private Texture m_warning;
-    public float FadeSpeed = 1.0f;
-    public Renderer Warning;
+    private MeshRenderer Warning;
+    private float m_fadeDir = -1;
+    private float m_alpha;
+    private bool m_isAlpha = false;
 
-	// Use this for initialization
-	void Start () {
-        Warning = GetComponent<Renderer>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
+    public Levelborder Border;
+    public float FadeSpeed = 1000.0f;
 
-    void FadeIn()
+
+    // Use this for initialization
+    void Start()
     {
-        
+        Warning = GetComponent<MeshRenderer>();
+        m_alpha = Warning.material.color.a;
     }
 
-    void FadeOut()
+    IEnumerator FadeOut(float from, float to)
     {
+        for (float f = from; f >= to; f -= FadeSpeed)
+        {
+            Color c = Warning.material.color;
+            c.a = f;
+            Warning.material.color = c;
+            yield return null;
+        }
+        m_isAlpha = true;
+        m_switchFade = true;
+    }
 
+    IEnumerator FadeIn(float from, float to)
+    {
+        for (float f = from; f < to; f += FadeSpeed)
+        {
+            Color c = Warning.material.color;
+            c.a = f;
+            Warning.material.color = c;
+            yield return null;
+        }
+        m_isAlpha = false;
+        m_switchFade = true;
+    }
+
+    // Update is called once per frame
+    bool m_switchFade = true;
+    void Update()
+    {
+        if (Border.WarningOn && m_switchFade)
+        {
+            m_switchFade = false;
+            if (!m_isAlpha)
+            {
+                StartCoroutine(FadeIn(0.0f, 1.0f));
+                Debug.Log("FadeOut");
+            }
+            if (m_isAlpha)
+            {
+                StartCoroutine(FadeOut(1.0f, 0.0f));
+                Debug.Log("FadeIn");
+            }
+        }
     }
 }
