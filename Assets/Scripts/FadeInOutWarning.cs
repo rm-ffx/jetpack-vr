@@ -6,9 +6,8 @@ public class FadeInOutWarning : MonoBehaviour
 
     private Texture m_warning;
     private MeshRenderer Warning;
-    private float m_fadeDir = -1;
-    private float m_alpha;
     private bool m_isAlpha = false;
+    private bool m_switchFade = true;
 
     public Levelborder Border;
     public float FadeSpeed = 0.01f;
@@ -18,7 +17,6 @@ public class FadeInOutWarning : MonoBehaviour
     void Start()
     {
         Warning = GetComponent<MeshRenderer>();
-        m_alpha = Warning.material.color.a;
     }
 
     IEnumerator FadeOut(float from, float to)
@@ -48,7 +46,7 @@ public class FadeInOutWarning : MonoBehaviour
     }
 
     // Update is called once per frame
-    bool m_switchFade = true;
+    //bool m_switchFade = true;
     void Update()
     {
         if (Border.WarningOn && m_switchFade)
