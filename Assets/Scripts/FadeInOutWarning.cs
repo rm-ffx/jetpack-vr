@@ -11,7 +11,7 @@ public class FadeInOutWarning : MonoBehaviour
     private bool m_isAlpha = false;
 
     public Levelborder Border;
-    public float FadeSpeed = 1000.0f;
+    public float FadeSpeed = 0.01f;
 
 
     // Use this for initialization
@@ -56,14 +56,20 @@ public class FadeInOutWarning : MonoBehaviour
             m_switchFade = false;
             if (!m_isAlpha)
             {
-                StartCoroutine(FadeIn(0.0f, 1.0f));
+                StartCoroutine(FadeIn(0.0f, 0.75f));
                 Debug.Log("FadeOut");
             }
             if (m_isAlpha)
             {
-                StartCoroutine(FadeOut(1.0f, 0.0f));
+                StartCoroutine(FadeOut(0.75f, 0.0f));
                 Debug.Log("FadeIn");
             }
+        }
+        if (!Border.WarningOn)
+        {
+            Color c = Warning.material.color;
+            c.a = 0.0f;
+            Warning.material.color = c;
         }
     }
 }
