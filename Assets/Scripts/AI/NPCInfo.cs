@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using RootMotion.Dynamics;
 
 public class NPCInfo : MonoBehaviour
@@ -32,8 +32,10 @@ public class NPCInfo : MonoBehaviour
     [Tooltip("State the NPC is currently in.")]
     public npcState currentState;
 
-    public PuppetMaster puppetMaster { get; private set;}
+    public PuppetMaster puppetMaster { get; private set;} // Controls the Ragdoll
 
+    [HideInInspector]
+    public List<Transform> patrolWaypoints; // Waypoints this NPC will patrol between
     void Awake()
     {
         // Cache Variables

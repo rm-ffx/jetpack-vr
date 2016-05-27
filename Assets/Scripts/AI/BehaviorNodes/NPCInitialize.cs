@@ -30,7 +30,7 @@ public class NPCInitialize : Action
             animator.SetValue(gameObject.GetComponentInChildren<Animator>());
         }
         // Get all Target Transforms in the Scene
-        List<Transform> targetsTransform = GameInfo.npcPatrolWaypoints;
+        List<Transform> targetsTransform = GetComponent<NPCInfo>().patrolWaypoints; //GameInfo.npcPatrolWaypoints;
         waypointTargets.SetValue(targetsTransform);
     }
 }
