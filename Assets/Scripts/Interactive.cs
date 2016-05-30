@@ -9,13 +9,14 @@ public class Interactive : MonoBehaviour
     public bool isSwitch = false;
     [Tooltip("Whether or not this is active from start.")]
     public bool isActiveOnStart = false;
+    [Tooltip("Whether or not the object will be destroyed after interacting with it.")]
+    public bool destroyOnUse = false;
     [Tooltip("How long before the object can be used again.")]
     public float cooldown = 1.0f;
 
     [Tooltip("Whether or not an item is needed to activate the object.")]
     public bool requiresItem = false;
-    [Tooltip("The collider of the item required to activate the object.")]
-    //public Collider requiredItemCollider;
+    [Tooltip("The list of the items colliders required to activate the object.")]
     public List<Collider> requiredItemsCollider;
     private bool[] detectedItems;
 
@@ -23,9 +24,9 @@ public class Interactive : MonoBehaviour
     public TriggerScript triggeredScript;
 
     [Tooltip("The material used when the object is active.")]
-    public Material ActiveMaterial;
+    public Material activeMaterial;
     [Tooltip("The material used when the object is deactivated.")]
-    public Material DeactivatedMaterial;
+    public Material deactivatedMaterial;
 
     private MeshRenderer m_meshRenderer;
 
@@ -45,9 +46,9 @@ public class Interactive : MonoBehaviour
         m_meshRenderer = GetComponent<MeshRenderer>();
 
         if (m_isActive)
-            m_meshRenderer.material = ActiveMaterial;
+            m_meshRenderer.material = activeMaterial;
         else
-            m_meshRenderer.material = DeactivatedMaterial;
+            m_meshRenderer.material = deactivatedMaterial;
 
         if(triggeredScript == null)
             triggeredScript = GetComponent<TriggerScript>();
@@ -139,16 +140,20 @@ public class Interactive : MonoBehaviour
     private void Activate()
     {
         m_isActive = true;
-        m_meshRenderer.material = ActiveMaterial;
+        m_meshRenderer.material = activeMaterial;
         if (triggeredScript != null)
             triggeredScript.Activate();
+        if (destroyOnUse)
+            Destroy(gameObject);
     }
 
     private void Deactivate()
     {
         m_isActive = false;
-        m_meshRenderer.material = DeactivatedMaterial;
+        m_meshRenderer.material = deactivatedMaterial;
         if (triggeredScript != null)
             triggeredScript.Deactivate();
+        if (destroyOnUse)
+            Destroy(gameObject);
     }
 }

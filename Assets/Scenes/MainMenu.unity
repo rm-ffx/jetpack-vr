@@ -221,12 +221,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSwitch: 1
   isActiveOnStart: 0
+  destroyOnUse: 0
   cooldown: 1
   requiresItem: 0
   requiredItemsCollider: []
   triggeredScript: {fileID: 22612262}
-  ActiveMaterial: {fileID: 2100000, guid: b77ed09432257a843aea03d85c97e3b2, type: 2}
-  DeactivatedMaterial: {fileID: 2100000, guid: 59bcb0f21ad6be540b6ac5ba20015d75, type: 2}
+  activeMaterial: {fileID: 2100000, guid: b77ed09432257a843aea03d85c97e3b2, type: 2}
+  deactivatedMaterial: {fileID: 2100000, guid: 59bcb0f21ad6be540b6ac5ba20015d75, type: 2}
 --- !u!114 &22612262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,12 +404,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSwitch: 1
   isActiveOnStart: 0
+  destroyOnUse: 0
   cooldown: 1
   requiresItem: 0
   requiredItemsCollider: []
   triggeredScript: {fileID: 1114616208}
-  ActiveMaterial: {fileID: 2100000, guid: b77ed09432257a843aea03d85c97e3b2, type: 2}
-  DeactivatedMaterial: {fileID: 2100000, guid: 4d0d8ac46eac1ef4585056baf3111e22, type: 2}
+  activeMaterial: {fileID: 2100000, guid: b77ed09432257a843aea03d85c97e3b2, type: 2}
+  deactivatedMaterial: {fileID: 2100000, guid: 4d0d8ac46eac1ef4585056baf3111e22, type: 2}
 --- !u!23 &1114616210
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -569,11 +571,11 @@ Prefab:
     - target: {fileID: 3339418, guid: 12a760cfea7da5f48a3bbbabcf06db63, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1469165174}
+      objectReference: {fileID: 1661453984}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12a760cfea7da5f48a3bbbabcf06db63, type: 2}
   m_IsPrefabParent: 0
---- !u!43 &1469165174
+--- !u!43 &1661453984
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
