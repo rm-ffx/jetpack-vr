@@ -5,14 +5,14 @@ using System.Linq;
 
 public class Interactive : MonoBehaviour
 {
-    [Tooltip("Wheter or not this is a switch. Note that this may not work when cooldown is 0.")]
+    [Tooltip("Whether or not this is a switch. Note that this may not work when cooldown is 0.")]
     public bool isSwitch = false;
-    [Tooltip("Wheter or not this is active from start.")]
+    [Tooltip("Whether or not this is active from start.")]
     public bool isActiveOnStart = false;
     [Tooltip("How long before the object can be used again.")]
     public float cooldown = 1.0f;
 
-    [Tooltip("Wheter or not an item is needed to activate the object.")]
+    [Tooltip("Whether or not an item is needed to activate the object.")]
     public bool requiresItem = false;
     [Tooltip("The collider of the item required to activate the object.")]
     //public Collider requiredItemCollider;

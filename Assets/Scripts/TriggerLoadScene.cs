@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TriggerLoadScene : TriggerScript
 {
-    [Tooltip("Wheter or not the MainMenu should be loaded.")]
+    [Tooltip("Whether or not the MainMenu should be loaded.")]
     public bool SwitchToMainMenu = false;
     [Tooltip("Index of the scene to load. Only used when SwitchToMainMenu is set to false.")]
     public int sceneIndex = 0;
