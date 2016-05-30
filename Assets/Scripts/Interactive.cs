@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Interactive : MonoBehaviour
 {
@@ -13,7 +15,9 @@ public class Interactive : MonoBehaviour
     [Tooltip("Wheter or not an item is needed to activate the object.")]
     public bool requiresItem = false;
     [Tooltip("The collider of the item required to activate the object.")]
-    public Collider requiredItemCollider;
+    //public Collider requiredItemCollider;
+    public List<Collider> requiredItemsCollider;
+    private bool[] detectedItems;
 
     [Tooltip("The script that gets executed. Script needs to have Activate and/or Deactivate function.")]
     public TriggerScript triggeredScript;
@@ -34,6 +38,9 @@ public class Interactive : MonoBehaviour
         if (isSwitch)
             tag = "Interactive";
 
+        detectedItems = new bool[requiredItemsCollider.Count];
+        detectedItems = Enumerable.Repeat(false, requiredItemsCollider.Count).ToArray();
+
         m_isActive = isActiveOnStart;
         m_meshRenderer = GetComponent<MeshRenderer>();
 
@@ -50,8 +57,17 @@ public class Interactive : MonoBehaviour
     {
         m_remainingCooldown -= Time.deltaTime;
         if (requiresItem)
-            if (requiredItemCollider.enabled == false)
-                Deactivate();
+        {
+            for(int i = 0; i < requiredItemsCollider.Count; i++)
+            {
+                if (requiredItemsCollider[i].enabled == false)
+                {
+                    detectedItems[i] = false;
+                    if(m_isActive)
+                        Deactivate();
+                }
+            }
+        }
 	}
 
     public void UseSwitch()
@@ -68,14 +84,56 @@ public class Interactive : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(collider == requiredItemCollider)
-            Activate();
+        bool change = false;
+        for (int i = 0; i < requiredItemsCollider.Count; i++)
+        {
+            if(collider == requiredItemsCollider[i])
+            {
+                detectedItems[i] = true;
+                change = true;
+            }
+        }
+        if(change)
+        {
+            bool allItemsDetected = true;
+            for (int i = 0; i < detectedItems.Length; i++)
+            {
+                if (detectedItems[i] == false)
+                {
+                    allItemsDetected = false;
+                    break;
+                }
+            }
+            if(allItemsDetected)
+                Activate();
+        }
     }
 
     void OnTriggerExit(Collider collider)
     {
-        if(collider == requiredItemCollider)
-            Deactivate();
+        bool change = false;
+        for (int i = 0; i < requiredItemsCollider.Count; i++)
+        {
+            if (collider == requiredItemsCollider[i])
+            {
+                detectedItems[i] = false;
+                change = true;
+            }
+        }
+        if (change)
+        {
+            bool allItemsDetected = true;
+            for (int i = 0; i < detectedItems.Length; i++)
+            {
+                if (detectedItems[i] == false)
+                {
+                    allItemsDetected = false;
+                    break;
+                }
+            }
+            if (!allItemsDetected)
+                Deactivate();
+        }
     }
 
     private void Activate()
