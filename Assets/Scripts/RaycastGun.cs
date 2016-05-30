@@ -96,7 +96,13 @@ public class RaycastGun : MonoBehaviour
                 npcInfo.health -= damage;
                 if (npcInfo.health <= 0.0f)
                 {
-                    if (npcInfo.puppetMaster) npcInfo.TriggerPuppetMaster(hit.collider, impactForce, hit.point, 0);
+                    if(npcInfo.triggerScriptOnDeath)
+                        if (npcInfo.triggerScript != null)
+                            npcInfo.triggerScript.Activate();
+
+                    // If the NPC has a Ragdoll - Activate Ragdoll. Else Destroy GameObject
+                    if (npcInfo.puppetMaster)
+                        npcInfo.TriggerPuppetMaster(hit.collider, impactForce, hit.point, 0);
                     else
                         Destroy(hit.transform.gameObject);
                 }

@@ -29,8 +29,14 @@ public class NPCInfo : MonoBehaviour
         Search = 2,
         Attack = 3
     }
+
     [Tooltip("State the NPC is currently in.")]
     public npcState currentState;
+
+    [Tooltip("Whether or not the death of this NPC should trigger a script.")]
+    public bool triggerScriptOnDeath = false;
+    [Tooltip("The triggered script. Will only be used if Trigger Script On Death is true.")]
+    public TriggerScript triggerScript;
 
     public PuppetMaster puppetMaster { get; private set;} // Controls the Ragdoll
 

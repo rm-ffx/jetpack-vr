@@ -87,9 +87,15 @@ public class Projectile : MonoBehaviour
             npcInfo.health -= damage;
             if (npcInfo.health <= 0.0f)
             {
+                if (npcInfo.triggerScriptOnDeath)
+                    if (npcInfo.triggerScript != null)
+                        npcInfo.triggerScript.Activate();
+
                 // If the NPC has a Ragdoll - Activate Ragdoll. Else Destroy GameObject
-                if (npcInfo.puppetMaster) npcInfo.TriggerPuppetMaster(hit.collider, force, transform.position, 0);
-                else Destroy(hit.collider.gameObject);
+                if (npcInfo.puppetMaster)
+                    npcInfo.TriggerPuppetMaster(hit.collider, force, transform.position, 0);
+                else
+                    Destroy(hit.collider.gameObject);
             }
         }
         else if (hit.collider.gameObject.layer == 11)
