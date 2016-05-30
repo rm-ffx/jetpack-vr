@@ -33,7 +33,8 @@ public class Radar : MonoBehaviour {
 	void Start ()
     {
         trackedObj = GetComponent<SteamVR_TrackedObject>();
-        createRadarObjects();
+        if(trackedObjects.Length > 0)
+            createRadarObjects();
         m_isInuse = false;
         m_selfIsInuse = false;
     }
@@ -89,6 +90,9 @@ public class Radar : MonoBehaviour {
 
         foreach (GameObject o in trackedObjects)
         {
+            if (o == null)
+                continue;
+
             GameObject obj = Instantiate(radarPrefab, o.transform.position, Quaternion.identity) as GameObject;
             obj.transform.parent = o.transform;
             m_radarObjects.Add(obj);
