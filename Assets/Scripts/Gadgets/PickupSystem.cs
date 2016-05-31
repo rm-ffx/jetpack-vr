@@ -111,8 +111,8 @@ public class PickupSystem : MonoBehaviour
                 handObject = null;
                 m_isHandBusy = false;
                 m_closestObject = null;
+                m_itemsInRange.Clear();
                 FindAndHighlightClosestObject();
-                //m_itemsInRange.Clear();
             }
         }
     }
@@ -186,11 +186,7 @@ public class PickupSystem : MonoBehaviour
                 m_itemsInRange.Remove(go);
                 go.GetComponent<ItemProperties>().Highlight(false);
             }
-
-            //if (m_otherDevicePickupSystem.m_inventory != m_inventory)
-            //{
-            //    m_inventory.CloseInventory();
-            //}
+            
             m_inventory = null;
         }
         else if (collider.tag == "Interactive")
@@ -299,13 +295,19 @@ public class PickupSystem : MonoBehaviour
 
     private void OpenGadgetSelector()
     {
-        m_gadgetSelectorOpen = true;
-        m_gadgetSelector.OpenGadgetSelector();
+        if(!m_gadgetSelectorOpen)
+        {
+            m_gadgetSelectorOpen = true;
+            m_gadgetSelector.OpenGadgetSelector();
+        }
     }
 
     private void CloseGadgetSelector()
     {
-        m_gadgetSelectorOpen = false;
-        m_gadgetSelector.CloseGadgetSelector(transform.position);
+        if(m_gadgetSelectorOpen)
+        {
+            m_gadgetSelectorOpen = false;
+            m_gadgetSelector.CloseGadgetSelector(transform.position);
+        }
     }
 }
