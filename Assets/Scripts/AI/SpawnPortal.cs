@@ -16,6 +16,12 @@ public class SpawnPortal : MonoBehaviour
         for (int i = 0; i < patrolWaypoints.transform.childCount; i++) waypoints.Add(patrolWaypoints.transform.GetChild(i));
     }
 
+    void Start()
+    {
+        GameObject spaceMan = Instantiate(spawnObject, transform.position, transform.rotation) as GameObject;
+        spaceMan.GetComponent<NPCInfo>().patrolWaypoints = waypoints;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
