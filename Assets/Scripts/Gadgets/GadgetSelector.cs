@@ -78,7 +78,6 @@ public class GadgetSelector : MonoBehaviour
                     JetpackMovement gadgetJM = gadget.GetComponent<JetpackMovement>();
                     JetpackMovement newGadgetJM = gameObject.AddComponent<JetpackMovement>();
                     newGadgetJM.upwardMultiplier = gadgetJM.upwardMultiplier;
-                    newGadgetJM.downwardMultiplier = gadgetJM.downwardMultiplier;
                     newGadgetJM.gadgetPreviewPrefab = gadgetJM.gadgetPreviewPrefab;
                     gadgets.Add(newGadgetJM);
                     newGadgetJM.enabled = false;

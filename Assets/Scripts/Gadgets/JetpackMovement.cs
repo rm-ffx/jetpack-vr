@@ -13,8 +13,6 @@ public class JetpackMovement : MonoBehaviour
 
     [Tooltip("Multiplier to control upward speed.")]
     public float upwardMultiplier = 1.0f;
-    [Tooltip("Multiplier to control downward speed in order to make falling down more realistic.")]
-    public float downwardMultiplier = 1.0f;
     [Tooltip("The model that will be used for the gadget selector.")]
     public GameObject gadgetPreviewPrefab;
 
@@ -29,6 +27,7 @@ public class JetpackMovement : MonoBehaviour
 
     public float triggerX { get; private set; }
     private float otherTriggerX = 0.0f;
+    private float m_downwardMultiplier = 1.0f;
 
     void Start()
     {
@@ -49,6 +48,7 @@ public class JetpackMovement : MonoBehaviour
 
         triggerX = 0.0f;
         otherTriggerX = 0.0f;
+        m_downwardMultiplier = transform.parent.GetComponent<JetpackMovementDownwardMultiplier>().downwardMultiplier;
     }
 
     void FixedUpdate ()
@@ -59,17 +59,17 @@ public class JetpackMovement : MonoBehaviour
         if (!m_pickupSystem.m_isHandBusy)
             triggerX = m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x;
 
-        if (m_otherDeviceTrackedObject.isValid)
+        if(m_otherDeviceJetpackMovement.enabled)
             otherTriggerX = m_otherDeviceJetpackMovement.triggerX;
         else
             otherTriggerX = 0.0f;
 
         if (triggerX >= 0.02f)
             m_rigidBody.AddForce(Vector3.Normalize(m_device.transform.rot * Vector3.forward) * triggerX * upwardMultiplier, ForceMode.Impulse);
+        else if (triggerX + otherTriggerX <= 0.1f)
+            m_rigidBody.AddForce(Vector3.down * 0.5f * m_downwardMultiplier, ForceMode.VelocityChange);
         else
-            m_rigidBody.AddForce(Vector3.down * 0.5f * downwardMultiplier, ForceMode.Acceleration);
+            m_rigidBody.AddForce(Vector3.down * 0.5f * m_downwardMultiplier, ForceMode.Acceleration);
 
-        if (triggerX + otherTriggerX <= 0.1f)
-            m_rigidBody.AddForce(Vector3.down * 0.5f * downwardMultiplier, ForceMode.VelocityChange);
     }
 }
