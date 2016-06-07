@@ -67,7 +67,7 @@ public class JetpackMovement : MonoBehaviour
         if (triggerX >= 0.02f)
             m_rigidBody.AddForce(Vector3.Normalize(m_device.transform.rot * Vector3.forward) * triggerX * upwardMultiplier, ForceMode.Impulse);
         else if (triggerX + otherTriggerX <= 0.1f)
-            m_rigidBody.AddForce(Vector3.down * 0.5f * m_downwardMultiplier, ForceMode.VelocityChange);
+            m_rigidBody.AddForce(Vector3.down * m_downwardMultiplier, ForceMode.VelocityChange);
         else
             m_rigidBody.AddForce(Vector3.down * 0.5f * m_downwardMultiplier, ForceMode.Acceleration);
 

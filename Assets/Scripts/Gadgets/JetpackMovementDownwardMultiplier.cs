@@ -23,7 +23,7 @@ public class JetpackMovementDownwardMultiplier : MonoBehaviour
     {
 	    if(LeftHandJM.enabled == false && RightHandJM.enabled == false)
         {
-            m_rigidBody.AddForce(Vector3.down * 0.5f * downwardMultiplier, ForceMode.VelocityChange);
+            m_rigidBody.AddForce(Vector3.down * downwardMultiplier, ForceMode.VelocityChange);
         }
     }
 }
