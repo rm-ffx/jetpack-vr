@@ -19,10 +19,9 @@ public class JetpackMovement : MonoBehaviour
     private Rigidbody m_rigidBody;
     private PickupSystem m_pickupSystem;
 
-    private SteamVR_Controller.Device m_device = null; 
-
     private GameObject m_otherDeviceGameObject;
-    private SteamVR_TrackedObject m_otherDeviceTrackedObject = null;
+
+    private SteamVR_Controller.Device m_device = null; 
     private JetpackMovement m_otherDeviceJetpackMovement = null;
 
     public float triggerX { get; private set; }
@@ -42,8 +41,6 @@ public class JetpackMovement : MonoBehaviour
         m_pickupSystem = GetComponent<PickupSystem>();
 
         m_device = SteamVR_Controller.Input((int)trackedObj.index);
-
-        m_otherDeviceTrackedObject = m_otherDeviceGameObject.GetComponent<SteamVR_TrackedObject>();
         m_otherDeviceJetpackMovement = m_otherDeviceGameObject.GetComponent<JetpackMovement>();
 
         triggerX = 0.0f;
