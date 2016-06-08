@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Scenes/AITest_05.unity
   - enabled: 1
     path: Assets/Scenes/AITest_06.unity
+  - enabled: 1
+    path: Assets/Scenes/AITest_07.unity
