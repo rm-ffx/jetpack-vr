@@ -162,6 +162,7 @@ GameObject:
   - 54: {fileID: 5431720}
   - 114: {fileID: 11464056}
   - 65: {fileID: 6579436}
+  - 114: {fileID: 11444766}
   m_Layer: 2
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -359,7 +360,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.042, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 430380}
@@ -470,7 +471,7 @@ Transform:
   m_GameObject: {fileID: 148142}
   m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
   m_LocalPosition: {x: 0, y: 0, z: 0.14182}
-  m_LocalScale: {x: 0.73945045, y: 0.7394507, z: 0.065780595}
+  m_LocalScale: {x: 1.00945, y: 1.6172729, z: 0.065780595}
   m_Children: []
   m_Father: {fileID: 430380}
   m_RootOrder: 3
@@ -506,7 +507,7 @@ Transform:
   m_GameObject: {fileID: 183046}
   m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
   m_LocalPosition: {x: 0, y: 0, z: 0.14182}
-  m_LocalScale: {x: 0.73945045, y: 0.7394507, z: 0.065780595}
+  m_LocalScale: {x: 1.00945, y: 1.6172729, z: 0.065780595}
   m_Children: []
   m_Father: {fileID: 484202}
   m_RootOrder: 3
@@ -1207,7 +1208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upwardMultiplier: 1
-  downwardMultiplier: 1
   gadgetPreviewPrefab: {fileID: 127930, guid: 84549a4a663e67d4aaedc573e2385b21, type: 2}
 --- !u!114 &11410516
 MonoBehaviour:
@@ -1324,11 +1324,25 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  radarPrefab: {fileID: 161264, guid: 783f858fee0e2144cb6488f0dc4d2ea1, type: 2}
+  radarPrefab: {fileID: 178900, guid: abbe06cea8950574496d5ca11892074e, type: 2}
   radarCamera: {fileID: 408560}
   radarCameraPlane: {fileID: 119660}
   playerPos: {fileID: 407646}
   switchDistance: 10
+--- !u!114 &11444766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b4248ff1f98654eb4d0dc949991540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LeftHandJM: {fileID: 11406612}
+  RightHandJM: {fileID: 11477944}
+  downwardMultiplier: 1
 --- !u!114 &11447992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1395,11 +1409,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  radarPrefab: {fileID: 161264, guid: 783f858fee0e2144cb6488f0dc4d2ea1, type: 2}
+  radarPrefab: {fileID: 178900, guid: abbe06cea8950574496d5ca11892074e, type: 2}
   radarCamera: {fileID: 408560}
   radarCameraPlane: {fileID: 192378}
   playerPos: {fileID: 407646}
-  switchDistance: 10
+  switchDistance: 30
 --- !u!114 &11456028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1545,7 +1559,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upwardMultiplier: 1
-  downwardMultiplier: 1
   gadgetPreviewPrefab: {fileID: 127930, guid: 84549a4a663e67d4aaedc573e2385b21, type: 2}
 --- !u!114 &11486232
 MonoBehaviour:
