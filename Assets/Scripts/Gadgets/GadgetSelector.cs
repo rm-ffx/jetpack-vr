@@ -202,7 +202,7 @@ public class GadgetSelector : MonoBehaviour
 
         for (int i = 0; i < maxGadgets; i++)
         {
-            m_gadgetObjects[i].transform.parent = transform.parent;
+            //m_gadgetObjects[i].transform.parent = transform.parent;
             m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = true;
             //m_gadgetObjects[i].GetComponent<Collider>().enabled = true;
         }
@@ -221,9 +221,9 @@ public class GadgetSelector : MonoBehaviour
     //    }
     //}
 
-    public void CloseGadgetSelector(Vector3 controllerPosition)
+    public void CloseGadgetSelector(Vector3 controllerPosition, Vector2 axisOffset)
     {
-        int closestIndex = ClosestIndexToPosition(controllerPosition);
+        int closestIndex = ClosestIndexToPosition(controllerPosition, axisOffset);
 
         for (int i = 0; i < maxGadgets; i++)
         {
@@ -239,13 +239,15 @@ public class GadgetSelector : MonoBehaviour
         }
     }
     
-	private GameObject ClosestObjectToPosition(Vector3 controllerPosition)
+	private GameObject ClosestObjectToPosition(Vector3 controllerPosition, Vector2 axisOffset)
     {
+        Vector3 xOffset = transform.right * axisOffset.x * 5;
+        Vector3 alteredControllerPosition = new Vector3(controllerPosition.x + xOffset.x, controllerPosition.y + axisOffset.y * 5, controllerPosition.z + xOffset.z);
         float minMagnitude = float.MaxValue;
         GameObject closestObject = null;
         foreach (GameObject gadgetObject in m_gadgetObjects)
         {
-            float dist = (gadgetObject.transform.position - controllerPosition).magnitude;
+            float dist = (gadgetObject.transform.position - alteredControllerPosition).magnitude;
             if (dist < minMagnitude)
             {
                 minMagnitude = dist;
@@ -255,13 +257,15 @@ public class GadgetSelector : MonoBehaviour
         return closestObject;
     }
 
-    private int ClosestIndexToPosition(Vector3 controllerPosition)
+    private int ClosestIndexToPosition(Vector3 controllerPosition, Vector2 axisOffset)
     {
+        Vector3 xOffset= transform.right * axisOffset.x * 5;
+        Vector3 alteredControllerPosition = new Vector3(controllerPosition.x + xOffset.x, controllerPosition.y + axisOffset.y * 5, controllerPosition.z + xOffset.z);
         float minMagnitude = float.MaxValue;
         int closestIndex = -1;
         for(int i = 0; i < maxGadgets; i++)
         {
-            float dist = (m_gadgetObjects[i].transform.position - controllerPosition).magnitude;
+            float dist = (m_gadgetObjects[i].transform.position - alteredControllerPosition).magnitude;
             if (dist < minMagnitude)
             {
                 minMagnitude = dist;
@@ -271,10 +275,10 @@ public class GadgetSelector : MonoBehaviour
         return closestIndex;
     }
 
-    public void Highlight(Vector3 controllerPosition)
+    public void Highlight(Vector3 controllerPosition, Vector2 axisOffset)
     {
         foreach(GameObject go in m_gadgetObjects)
             go.GetComponent<MeshRenderer>().material.color = Color.cyan;
-        ClosestObjectToPosition(controllerPosition).GetComponent<MeshRenderer>().material.color = Color.red;
+        ClosestObjectToPosition(controllerPosition, axisOffset).GetComponent<MeshRenderer>().material.color = Color.red;
     }
 }

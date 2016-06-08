@@ -61,7 +61,7 @@ public class PickupSystem : MonoBehaviour
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Axis0) && !m_interactiveInRange)
                 OpenGadgetSelector();
             else if (device.GetPressUp(SteamVR_Controller.ButtonMask.Axis0))
-                CloseGadgetSelector();
+                CloseGadgetSelector(device.GetAxis());
             else if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
                 EnableInventory();
             else if (device.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu) && m_inventoryOpen)
@@ -198,7 +198,7 @@ public class PickupSystem : MonoBehaviour
         m_closestObject = null;
         if(m_gadgetSelectorOpen)
         {
-            m_gadgetSelector.Highlight(transform.position);
+            m_gadgetSelector.Highlight(transform.position, SteamVR_Controller.Input((int)trackedObj.index).GetAxis());
         }
         else if (m_inventory != null && !m_inventory.isEmpty)
         {
@@ -302,12 +302,12 @@ public class PickupSystem : MonoBehaviour
         }
     }
 
-    private void CloseGadgetSelector()
+    private void CloseGadgetSelector(Vector2 axisOffset)
     {
         if(m_gadgetSelectorOpen)
         {
             m_gadgetSelectorOpen = false;
-            m_gadgetSelector.CloseGadgetSelector(transform.position);
+            m_gadgetSelector.CloseGadgetSelector(transform.position, axisOffset);
         }
     }
 }
