@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c031b737ca2b24dbefac1e73c37f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SwitchToMainMenu: 0
-  sceneIndex: 2
+  SwitchToMainMenu: 1
+  sceneIndex: 6
 --- !u!1001 &177345058
 Prefab:
   m_ObjectHideFlags: 0
@@ -393,7 +393,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
---- !u!43 &358933626
+--- !u!43 &346480740
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -809,7 +809,7 @@ Prefab:
     - target: {fileID: 3339418, guid: 12a760cfea7da5f48a3bbbabcf06db63, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 358933626}
+      objectReference: {fileID: 346480740}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12a760cfea7da5f48a3bbbabcf06db63, type: 2}
   m_IsPrefabParent: 0
