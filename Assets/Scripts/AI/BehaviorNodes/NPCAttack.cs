@@ -7,77 +7,42 @@ using BehaviorDesigner.Runtime.Tasks;
 /// <summary>
 /// Makes the NPC Attack the Target
 /// </summary>
-public class NPCAttack : Action
+public class NPCAttack : NPCActionNode
 {
-    public SharedObject npcInfo;
-    private NPCInfo m_info;
-
-    public SharedObject animator;
-    private Animator anim;
-    public bool triggerAnimation;
-    private List<string> triggers;
-    public string animTrigger;
-
-    public bool useRVO;
-    public SharedObject rvoController;
-    private RVOController controller;
-
-    public SharedTransform target; // CurrentTarget
-    public float rotationSpeed;
-
-    private Transform m_currentTarget;
-    public int minAttacks; // Minimum Number of Attacks
-    public int maxAttacks; // Maximum Number of Attacks
+    [BehaviorDesigner.Runtime.Tasks.Tooltip("Minimum Number of fired shots")]
+    public int minAttacks;
+    [BehaviorDesigner.Runtime.Tasks.Tooltip("Maximum Number of fired shots")]
+    public int maxAttacks;
 
     private int m_currentAttacks;
     private int m_currentMaxAttacks;
 
-    public int aimTime; // Time it takes between each shot
+    [BehaviorDesigner.Runtime.Tasks.Tooltip("The Time it takes between each fired shot")]
+    public int aimTime;
     private int m_currentAimTime;
 
     private bool m_charVisibleAtStart = true; // Was the character visible at the start of this node's execution?
 
-    public float accuracy; // How accurate does the NPC shoot? 
+    [BehaviorDesigner.Runtime.Tasks.Tooltip("How accurate does the NPC shoot?")]
+    public float accuracy;
 
-    public bool isTurret; // Is this NPC a turret?
-
-    public override void OnAwake()
-    {
-        m_info = npcInfo.GetValue() as NPCInfo;
-
-        if (triggerAnimation)
-        {
-            anim = animator.GetValue() as Animator;
-            if (anim)
-            {
-                AnimatorControllerParameter[] parameters = anim.parameters;
-                triggers = new List<string>();
-                for (int i = 0; i < parameters.Length; i++) triggers.Add(parameters[i].name);
-            }
-        }
-        if (useRVO) controller = rvoController.GetValue() as RVOController;
-    }
+    // Is this NPC a turret? Relevant for Rotation!
+    public bool isTurret;
 
     public override void OnStart()
     {
+        base.OnStart();
+
         // Stop Movement
-        if (useRVO) controller.Move(Vector3.zero);
+        if (m_rvoController != null) m_rvoController.Move(Vector3.zero);
         
-        // Set Variables
+        // Set Attack Variables
         m_currentAttacks = 0;
-        m_currentMaxAttacks = Random.Range(minAttacks, maxAttacks + 1);
+        m_currentMaxAttacks = UnityEngine.Random.Range(minAttacks, maxAttacks + 1);
         m_currentAimTime = 0;
-        m_currentTarget = target.GetValue() as Transform;
 
-        // Check Visibility - is it necessary to perform and attack? Is character visible?
+        // Check Visibility - is it necessary to perform an attack? Is the target visible?
         m_charVisibleAtStart = withinSightSpherical(m_currentTarget);
-
-        // Trigger Animation
-        if (triggerAnimation)
-        {
-            for (int i = 0; i < triggers.Count; i++) anim.ResetTrigger(triggers[i]);
-            anim.SetTrigger(animTrigger);
-        }
     }
 
     public override TaskStatus OnUpdate()
@@ -96,7 +61,6 @@ public class NPCAttack : Action
         else
         {
             Quaternion currentRotation = m_info.turretHead.transform.rotation;
-            //m_info.turretHead.transform.LookAt(new Vector3(m_currentTarget.position.x, transform.position.y, m_currentTarget.position.z));
             m_info.turretHead.transform.LookAt(new Vector3(m_currentTarget.position.x, m_currentTarget.position.y, m_currentTarget.position.z));
 
             Quaternion newRotation = m_info.turretHead.transform.rotation;
@@ -111,7 +75,6 @@ public class NPCAttack : Action
             if (!withinSightSpherical(m_currentTarget)) return TaskStatus.Success;
 
             // Perform Attack
-            //Debug.DrawLine(transform.position, m_currentTarget.position, Color.red, 0.25f);
             for (int i = 0; i < m_info.gunPos.Length; i++)
             {
                 if (!m_info.turretHead) GameObject.Instantiate(Resources.Load(m_info.projectile.name), m_info.gunPos[i].position, Quaternion.LookRotation(m_currentTarget.position - m_info.gunPos[i].position, Vector3.up));
@@ -124,22 +87,5 @@ public class NPCAttack : Action
             if (m_currentAttacks >= m_currentMaxAttacks) return TaskStatus.Success;
             else return TaskStatus.Running;
         }
-    }
-
-    /// <summary>
-    /// Returns true if targetTransform is within sight of current transform
-    /// </summary>
-    public bool withinSightSpherical(Transform targetTransform)
-    {
-        // Check if the object is obscured by something or visible
-        var layerMask = 1 << 2 | 1 << 9 | 1 << 10 | 1 << 14; // Ignore NPCs, Ignore Raycast, Controller and Shield
-
-        // This would cast rays only against colliders in layer 8.
-        // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
-        layerMask = ~layerMask;
-
-        RaycastHit hit;
-        if (Physics.Raycast(m_info.eyePos.position, (targetTransform.position - m_info.eyePos.position)*1.25f, out hit, Mathf.Infinity, layerMask) && hit.transform == targetTransform) return true;
-        else return false;
     }
 }

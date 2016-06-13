@@ -7,12 +7,8 @@ using BehaviorDesigner.Runtime.Tasks;
 /// <summary>
 /// Checks if the NPC can see the Player
 /// </summary>
-public class CheckSight : Action
+public class CheckSight : NPCActionNode
 {
-    public SharedObject npcInfo;
-    private NPCInfo info;
-    public SharedTransform target; // Target to look for, if its in sight
-
     // The tag of the targets
     public bool successIfInvisible;
     public enum checkSightType
@@ -21,13 +17,6 @@ public class CheckSight : Action
         Spherical = 1
     }
     public checkSightType type;
-    public float searchRadius;
-
-    public override void OnAwake()
-    {
-        // Cache Variables
-        info = npcInfo.GetValue() as NPCInfo;
-    }
 
     public override TaskStatus OnUpdate()
     {
@@ -70,43 +59,5 @@ public class CheckSight : Action
             }
         }
         return false;
-    }
-
-    /// <summary>
-    /// Returns true if targetTransform is within sight of current transform
-    /// </summary>
-    public bool withinSightFov(Transform targetTransform)
-    {
-        Transform usedTransform;
-        if (info.turretHead != null) usedTransform = info.turretHead;
-        else usedTransform = transform;
-
-        Vector3 direction = targetTransform.position - usedTransform.position;
-
-        // An object is within sight if the angle is less than field of view
-        if (Vector3.Angle(direction, usedTransform.forward) < info.fov)
-        {
-            var layerMask = 1 << 2 | 1 << 9 | 1 << 14; // Ignore NPCs, Ignore Raycast and Shield
-            layerMask = ~layerMask;
-
-            // Check if the object is obscured by something or visible
-            RaycastHit hit;
-            if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, info.viewDistance, layerMask) && GameInfo.playersInGame.Contains(hit.transform.gameObject)) return true;
-            else return false;
-        }
-        else return false;
-    }
-
-    /// <summary>
-    /// Returns true if targetTransform is within sight of current transform
-    /// </summary>
-    public bool withinSightSpherical(Transform targetTransform)
-    {
-        var layerMask = 1 << 2 | 1 << 9 | 1 << 10 | 1 << 14; // Ignore NPCs, Ignore Raycast, Controller and Shield
-        layerMask = ~layerMask;
-        // Check if the object is obscured by something or visible
-        RaycastHit hit;
-        if (Physics.Raycast(info.eyePos.position, (targetTransform.position - info.eyePos.position).normalized, out hit, searchRadius, layerMask) && GameInfo.playersInGame.Contains(hit.transform.gameObject)) return true;
-        else return false;
     }
 }
