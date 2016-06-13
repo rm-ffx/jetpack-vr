@@ -12,7 +12,6 @@ public class LevelManager : MonoBehaviour
 
     void OnLevelWasLoaded(int level)
     {
-        Debug.Log("CALLED");
         if(level > 1)
         {
             // Set Players

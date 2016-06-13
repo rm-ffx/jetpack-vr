@@ -2903,6 +2903,8 @@ MonoBehaviour:
   projectile: {fileID: 102774, guid: b9f500c14200f354db1baeffa5ae9884, type: 2}
   turretHead: {fileID: 0}
   currentState: 0
+  triggerScriptOnDeath: 0
+  triggerScript: {fileID: 0}
   patrolWaypoints: []
 --- !u!136 &13601420
 CapsuleCollider:
