@@ -193,7 +193,7 @@ public class PathChase : Action
     public void OnPathComplete(Path p)
     {
         //We got our path back
-        if (p.error) Debug.Log("Error!");
+        if (p.error) Debug.Log("Error: " + p.errorLog);
         else
         {
             // Completed the Path Generation

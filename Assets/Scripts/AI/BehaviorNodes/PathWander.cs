@@ -74,6 +74,7 @@ public class PathWander : Action
         // Generate Path
         path = null;
         currentPathWaypoint = 1;
+        m_generatePath = true;
 
         if (triggerAnimation)
         {
