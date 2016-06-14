@@ -112,8 +112,8 @@ public class GadgetSelector : MonoBehaviour
                     Shield newGadgetSh = gameObject.AddComponent<Shield>();
                     newGadgetSh.maxEnergy = gadgetSh.maxEnergy;
                     newGadgetSh.startWithFullEnergy = gadgetSh.startWithFullEnergy;
-                    newGadgetSh.looseEnergyOnHit = gadgetSh.looseEnergyOnHit;
-                    newGadgetSh.looseEnergyOverTime = gadgetSh.looseEnergyOverTime;
+                    newGadgetSh.loseEnergyOnHit = gadgetSh.loseEnergyOnHit;
+                    newGadgetSh.loseEnergyOverTime = gadgetSh.loseEnergyOverTime;
                     newGadgetSh.energyRegeneration = gadgetSh.energyRegeneration;
                     newGadgetSh.shieldObject = GetComponent<GadgetReferences>().shield;
                     newGadgetSh.shieldActiveMaterial = gadgetSh.shieldActiveMaterial;

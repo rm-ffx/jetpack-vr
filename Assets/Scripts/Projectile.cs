@@ -72,7 +72,7 @@ public class Projectile : MonoBehaviour
     //    else if (collider.gameObject.layer == 14)
     //    {
     //        Shield shield = collider.transform.parent.GetComponent<Shield>();
-    //        if (shield.looseEnergyOnHit)
+    //        if (shield.loseEnergyOnHit)
     //            shield.GetHit(damage);
     //    }
     //    Destroy(gameObject);
@@ -109,7 +109,7 @@ public class Projectile : MonoBehaviour
         else if (hit.collider.gameObject.layer == 14)
         {
             Shield shield = hit.collider.transform.parent.GetComponent<Shield>();
-            if (shield.looseEnergyOnHit)
+            if (shield.loseEnergyOnHit)
                 shield.GetHit(damage);
         }
         Destroy(gameObject);
