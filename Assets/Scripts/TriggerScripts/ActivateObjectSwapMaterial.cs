@@ -12,17 +12,15 @@ public class ActivateObjectSwapMaterial : ActivateObjectScript
     {
         isActive = true;
         GetComponent<MeshRenderer>().material = activeMaterial;
-        if (countsForWinCondition)
-            if (activateObjectsWinCondition != null)
-                activateObjectsWinCondition.ActivateObject();
+        if (countsForWinCondition && activateObjectsWinCondition != null)
+            activateObjectsWinCondition.ActivateObject();
     }
 
     public override void Deactivate()
     {
         isActive = false;
         GetComponent<MeshRenderer>().material = deactivatedMaterial;
-        if (countsForWinCondition)
-            if (activateObjectsWinCondition != null)
-                activateObjectsWinCondition.DeactivateObject();
+        if (countsForWinCondition && activateObjectsWinCondition != null)
+            activateObjectsWinCondition.DeactivateObject();
     }
 }

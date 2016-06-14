@@ -57,7 +57,7 @@ public class FadeInOutWarning : MonoBehaviour
                 StartCoroutine(FadeIn(0.0f, 0.75f));
                 Debug.Log("FadeOut");
             }
-            if (m_isAlpha)
+            else if (m_isAlpha)
             {
                 StartCoroutine(FadeOut(0.75f, 0.0f));
                 Debug.Log("FadeIn");

@@ -97,8 +97,7 @@ public class RaycastGun : MonoBehaviour
                 npcInfo.health -= damage;
                 if (npcInfo.health <= 0.0f)
                 {
-                    if(npcInfo.triggerScriptOnDeath)
-                        if (npcInfo.triggerScript != null)
+                    if(npcInfo.triggerScriptOnDeath && npcInfo.triggerScript != null)
                             npcInfo.triggerScript.Activate();
 
                     // If the NPC has a Ragdoll - Activate Ragdoll. Else Destroy GameObject

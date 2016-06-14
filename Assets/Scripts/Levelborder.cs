@@ -58,9 +58,7 @@ public class Levelborder : MonoBehaviour
     void Update()
     {
         if (m_isOutsideBorder)
-        {
             CountDown();
-        }
     }
 
     void CountDown()

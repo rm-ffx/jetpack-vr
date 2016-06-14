@@ -199,13 +199,9 @@ public class PickupSystem : MonoBehaviour
     {
         m_closestObject = null;
         if(m_gadgetSelectorOpen)
-        {
             m_gadgetSelector.Highlight(transform.position, SteamVR_Controller.Input((int)trackedObj.index).GetAxis());
-        }
         else if (m_inventory != null && !m_inventory.isEmpty)
-        {
             m_inventory.Highlight(transform.position);
-        }
         else if (m_itemsInRange.Count == 0)
             return;
         else if (m_itemsInRange.Count == 1)
@@ -280,13 +276,11 @@ public class PickupSystem : MonoBehaviour
     public void RemoteInventoryClose()
     {
         if (m_inventory != null)
-        {
             foreach (GameObject go in m_inventory.m_storedObjects)
             {
                 m_itemsInRange.Remove(go);
                 go.GetComponent<ItemProperties>().Highlight(false);
             }
-        }
 
         m_inventoryOpen = false;
         m_inventory = null;

@@ -41,9 +41,8 @@ public class Projectile : MonoBehaviour
         // Manual Collision Detection
         m_direction = transform.position - m_lastPosition;
         if (Physics.Raycast(m_lastPosition, m_direction, out m_hit, layerMask: m_layerMask, maxDistance: m_direction.magnitude))
-        {
             OnHit(m_hit);
-        }
+
         m_lastPosition = transform.position;
     }
 
@@ -56,8 +55,7 @@ public class Projectile : MonoBehaviour
             npcInfo.health -= damage;
             if (npcInfo.health <= 0.0f)
             {
-                if (npcInfo.triggerScriptOnDeath)
-                    if (npcInfo.triggerScript != null)
+                if (npcInfo.triggerScriptOnDeath && npcInfo.triggerScript != null)
                         npcInfo.triggerScript.Activate();
 
                 // If the NPC has a Ragdoll - Activate Ragdoll. Else Destroy GameObject
