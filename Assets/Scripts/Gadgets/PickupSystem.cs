@@ -58,62 +58,59 @@ public class PickupSystem : MonoBehaviour
             if(!m_isHandBusy)
                 FindAndHighlightClosestObject();
 
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Axis0) && !m_interactiveInRange)
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Axis0) && !m_interactiveInRange && m_gadgetSelector != null)
                 OpenGadgetSelector();
-            else if (device.GetPressUp(SteamVR_Controller.ButtonMask.Axis0))
+            else if (device.GetPressUp(SteamVR_Controller.ButtonMask.Axis0) && m_gadgetSelector != null)
                 CloseGadgetSelector(device.GetAxis());
-            else if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
+            else if (device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu) && m_inventory != null)
                 EnableInventory();
-            else if (device.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu) && m_inventoryOpen)
+            else if (device.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu) && m_inventoryOpen && m_inventory != null)
                 DisableInventory();
         }
-        else
+        else if (handObject != null && device.GetPressUp(SteamVR_Controller.ButtonMask.Axis0) && handObject.tag == "Item")
         {
-            if (handObject != null && device.GetPressUp(SteamVR_Controller.ButtonMask.Axis0) && handObject.tag == "Item")
+            ItemProperties itemProperties = handObject.GetComponent<ItemProperties>();
+
+            // If possible, store the item in the inventory
+            if (m_inventory != null && itemProperties.storable && !m_inventory.isFull)
             {
-                ItemProperties itemProperties = handObject.GetComponent<ItemProperties>();
-
-                // If possible, store the item in the inventory
-                if (m_inventory != null && itemProperties.storable && !m_inventory.isFull)
-                {
-                    m_inventory.StoreItem(handObject);
-                }
-                // If possible, toss the item
-                else if (itemProperties.tossable)
-                {
-                    Rigidbody handObjectRigidbody = handObject.GetComponent<Rigidbody>();
-                    Rigidbody playerRigidbody = transform.parent.GetComponent<Rigidbody>();
-                    handObjectRigidbody.isKinematic = false;
-
-                    var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
-                    if (origin != null)
-                    {
-                        handObjectRigidbody.velocity = playerRigidbody.velocity + origin.TransformVector(device.velocity);
-                        handObjectRigidbody.angularVelocity = playerRigidbody.angularVelocity + origin.TransformVector(device.angularVelocity);
-                    }
-                    else
-                    {
-                        handObjectRigidbody.velocity = playerRigidbody.velocity + device.velocity;
-                        handObjectRigidbody.angularVelocity = playerRigidbody.angularVelocity + device.angularVelocity; 
-                    }
-
-                    handObjectRigidbody.maxAngularVelocity = handObjectRigidbody.angularVelocity.magnitude;
-                }
-
-                // Release object
-                if (handObject.transform.parent == transform)
-                {
-                    handObject.transform.parent = null;
-                }
-                itemProperties.isInUse = false;
-                itemProperties.Highlight(false);
-                handObject.GetComponent<Collider>().enabled = true;
-                handObject = null;
-                m_isHandBusy = false;
-                m_closestObject = null;
-                m_itemsInRange.Clear();
-                FindAndHighlightClosestObject();
+                m_inventory.StoreItem(handObject);
             }
+            // If possible, toss the item
+            else if (itemProperties.tossable)
+            {
+                Rigidbody handObjectRigidbody = handObject.GetComponent<Rigidbody>();
+                Rigidbody playerRigidbody = transform.parent.GetComponent<Rigidbody>();
+                handObjectRigidbody.isKinematic = false;
+
+                var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
+                if (origin != null)
+                {
+                    handObjectRigidbody.velocity = playerRigidbody.velocity + origin.TransformVector(device.velocity);
+                    handObjectRigidbody.angularVelocity = playerRigidbody.angularVelocity + origin.TransformVector(device.angularVelocity);
+                }
+                else
+                {
+                    handObjectRigidbody.velocity = playerRigidbody.velocity + device.velocity;
+                    handObjectRigidbody.angularVelocity = playerRigidbody.angularVelocity + device.angularVelocity; 
+                }
+
+                handObjectRigidbody.maxAngularVelocity = handObjectRigidbody.angularVelocity.magnitude;
+            }
+
+            // Release object
+            if (handObject.transform.parent == transform)
+            {
+                handObject.transform.parent = null;
+            }
+            itemProperties.isInUse = false;
+            itemProperties.Highlight(false);
+            handObject.GetComponent<Collider>().enabled = true;
+            handObject = null;
+            m_isHandBusy = false;
+            m_closestObject = null;
+            m_itemsInRange.Clear();
+            FindAndHighlightClosestObject();
         }
     }
 
@@ -153,6 +150,13 @@ public class PickupSystem : MonoBehaviour
         ItemProperties itemProperties = handObject.GetComponent<ItemProperties>();
         itemProperties.isInUse = true;
         itemProperties.Highlight(false);
+
+        m_otherDevicePickupSystem.RemoveItemFromRange(item);
+    }
+
+    private void RemoveItemFromRange(GameObject item)
+    {
+        m_itemsInRange.Remove(item);
     }
 
     private void InteractWith(GameObject go)
