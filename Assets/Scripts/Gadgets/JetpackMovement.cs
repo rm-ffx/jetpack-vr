@@ -55,6 +55,8 @@ public class JetpackMovement : MonoBehaviour
         // Vive controls
         if (!m_pickupSystem.m_isHandBusy)
             triggerX = m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x;
+        else
+            triggerX = 0.0f;
 
         if(m_otherDeviceJetpackMovement.enabled)
             otherTriggerX = m_otherDeviceJetpackMovement.triggerX;
