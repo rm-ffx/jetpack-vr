@@ -162,9 +162,11 @@ public class GadgetSelector : MonoBehaviour
         }
 
         transform.position = oldPosition;
+
         // To ensure the GadgetPreviews will only be rotated around the Y axis, first rotate around XZ, then set positions & parent and rotate around Y afterwards
         Vector3 oldRotationEuler = oldRotation.eulerAngles;
         Vector3 oldRotationXZ = new Vector3(oldRotationEuler.x, 0.0f, oldRotationEuler.z);
+        
         // Apply XZ rotation
         transform.rotation = Quaternion.Euler(oldRotationXZ);
 
@@ -202,24 +204,9 @@ public class GadgetSelector : MonoBehaviour
 
         for (int i = 0; i < maxGadgets; i++)
         {
-            //m_gadgetObjects[i].transform.parent = transform.parent;
             m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = true;
-            //m_gadgetObjects[i].GetComponent<Collider>().enabled = true;
         }
     }
-
-    //public void CancelGadgetSelector()
-    //{
-    //    for (int i = 0; i < MaxGadgets; i++)
-    //    {
-    //        m_gadgetObjects[i].GetComponent<MeshRenderer>().enabled = false;
-
-    //        if (i < Gadgets.Count)
-    //        {
-    //            Gadgets[i].enabled = false;
-    //        }
-    //    }
-    //}
 
     public void CloseGadgetSelector(Vector3 controllerPosition, Vector2 axisOffset)
     {

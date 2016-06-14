@@ -69,6 +69,5 @@ public class JetpackMovement : MonoBehaviour
             m_rigidBody.AddForce(Vector3.down * m_downwardMultiplier, ForceMode.VelocityChange);
         else
             m_rigidBody.AddForce(Vector3.down * 0.5f * m_downwardMultiplier, ForceMode.Acceleration);
-
     }
 }

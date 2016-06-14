@@ -141,8 +141,10 @@ public class Interactive : MonoBehaviour
     {
         m_isActive = true;
         m_meshRenderer.material = activeMaterial;
+
         if (triggeredScript != null)
             triggeredScript.Activate();
+
         if (destroyOnUse)
             Destroy(gameObject);
     }
@@ -151,8 +153,10 @@ public class Interactive : MonoBehaviour
     {
         m_isActive = false;
         m_meshRenderer.material = deactivatedMaterial;
+
         if (triggeredScript != null)
             triggeredScript.Deactivate();
+
         if (destroyOnUse)
             Destroy(gameObject);
     }

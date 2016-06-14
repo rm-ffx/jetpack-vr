@@ -3,15 +3,15 @@ using System.Collections;
 
 public class FadeInOutWarning : MonoBehaviour
 {
+    [Tooltip("The Levelborder.")]
+    public Levelborder Border;
+    [Tooltip("How fast to fade.")]
+    public float FadeSpeed = 0.01f;
 
     private Texture m_warning;
     private MeshRenderer Warning;
     private bool m_isAlpha = false;
     private bool m_switchFade = true;
-
-    public Levelborder Border;
-    public float FadeSpeed = 0.01f;
-
 
     // Use this for initialization
     void Start()
@@ -63,7 +63,7 @@ public class FadeInOutWarning : MonoBehaviour
                 Debug.Log("FadeIn");
             }
         }
-        if (!Border.WarningOn)
+        else if (!Border.WarningOn)
         {
             Color c = Warning.material.color;
             c.a = 0.0f;

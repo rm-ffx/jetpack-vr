@@ -8,7 +8,6 @@ public class ItemProperties : MonoBehaviour
 {
     [HideInInspector]
     public bool isInUse = false;
-    //private bool m_oldIsInUse = false;
 
     [Tooltip("Gatherable items can be picked up by the player.")]
     public bool gatherable = false;
@@ -25,23 +24,12 @@ public class ItemProperties : MonoBehaviour
 
     void Start()
     {
-        // To make manual tagging unnecessary
+        // To make manual tagging of items unnecessary
         if (tag == "Untagged")
             tag = "Item";
         m_meshRenderer = GetComponent<MeshRenderer>();
         m_meshRenderer.material = material;
     }
-
-    //void Update()
-    //{
-    //    if (IsInUse != m_oldIsInUse)
-    //    {
-    //        if(IsInUse)
-    //            Highlight(false);
-
-    //        m_oldIsInUse = IsInUse;
-    //    }
-    //}
 
     public void Highlight(bool highlightOn)
     {
@@ -51,5 +39,3 @@ public class ItemProperties : MonoBehaviour
             m_meshRenderer.material = material;
     }
 }
-
-

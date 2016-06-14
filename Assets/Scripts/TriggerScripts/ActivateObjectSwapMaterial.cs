@@ -15,7 +15,6 @@ public class ActivateObjectSwapMaterial : ActivateObjectScript
         if (countsForWinCondition)
             if (activateObjectsWinCondition != null)
                 activateObjectsWinCondition.ActivateObject();
-
     }
 
     public override void Deactivate()

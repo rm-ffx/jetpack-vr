@@ -99,9 +99,8 @@ public class PickupSystem : MonoBehaviour
 
             // Release object
             if (handObject.transform.parent == transform)
-            {
                 handObject.transform.parent = null;
-            }
+
             itemProperties.isInUse = false;
             itemProperties.Highlight(false);
             handObject.GetComponent<Collider>().enabled = true;
@@ -268,9 +267,8 @@ public class PickupSystem : MonoBehaviour
     private void DisableInventory()
     {
         if (m_inventoryOpen)
-        {
             m_itemsInRange.Clear();
-        }
+
         portableInventory.CloseInventory();
         m_otherDevicePickupSystem.RemoteInventoryClose();
         portableInventory.gameObject.SetActive(false);

@@ -17,7 +17,6 @@ public class RadarProperties : MonoBehaviour
     [Tooltip("Radius of the radar.")]
     public float switchDistance;
 
-
     public List<GameObject> radarObjects { get; private set; }
     public List<Renderer> radarRenderers { get; private set; }
 
