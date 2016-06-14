@@ -73,27 +73,34 @@ public class Shield : MonoBehaviour
 	void Update ()
     {
         m_device = SteamVR_Controller.Input((int)trackedObj.index);
-
-        //if (!shieldObject.activeInHierarchy)
-        //    shieldObject.SetActive(true);
         if (!m_pickupSystem.m_isHandBusy)
+        {
+            if (!shieldObject.activeInHierarchy)
+                shieldObject.SetActive(true);
+
             m_shieldActive = (m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x > 0.1f) ? true : false;
 
-        if(m_shieldActive)
-        {
-            if (looseEnergyOverTime > 0.0f)
-                m_actualEnergy -= Time.deltaTime * looseEnergyOverTime;
+            if (m_shieldActive)
+            {
+                if (looseEnergyOverTime > 0.0f)
+                    m_actualEnergy -= Time.deltaTime * looseEnergyOverTime;
 
-            if (m_actualEnergy > 0.0f)
-                ActivateShield();
+                if (m_actualEnergy > 0.0f)
+                    ActivateShield();
+                else
+                    DeactivateShield();
+            }
             else
+            {
+                if (energyRegeneration > 0.0f)
+                    m_actualEnergy += Time.deltaTime * energyRegeneration;
+
                 DeactivateShield();
+            }
         }
         else
         {
-            if (energyRegeneration > 0.0f)
-                m_actualEnergy += Time.deltaTime * energyRegeneration;
-
+            shieldObject.SetActive(false);
             DeactivateShield();
         }
 	}
