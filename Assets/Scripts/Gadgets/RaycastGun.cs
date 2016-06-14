@@ -60,24 +60,25 @@ public class RaycastGun : MonoBehaviour
         m_device = SteamVR_Controller.Input((int)trackedObj.index);
         if (!m_pickupSystem.m_isHandBusy)
         {
-            m_triggerX = m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x;
             if (!pointerModel.activeInHierarchy)
                 pointerModel.SetActive(true);
+
+            m_triggerX = m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x;
+
+            if (m_triggerX >= 0.1f && m_remainingCooldown <= 0.0f)
+            {
+                Shoot();
+                pointerModel.transform.localScale = new Vector3(m_pointerModelLocalScale.x * 10.0f, m_pointerModelLocalScale.y, m_pointerModelLocalScale.z * 10.0f);
+            }
+            else
+            {
+                m_remainingCooldown -= Time.deltaTime;
+                if (m_remainingCooldown < cooldown / 2f)
+                    pointerModel.transform.localScale = m_pointerModelLocalScale;
+            }
         }
         else
             pointerModel.SetActive(false);
-
-        if (m_triggerX >= 0.1f && m_remainingCooldown <= 0.0f)
-        {
-            Shoot();
-            pointerModel.transform.localScale = new Vector3(m_pointerModelLocalScale.x * 10.0f, m_pointerModelLocalScale.y, m_pointerModelLocalScale.z * 10.0f);
-        }
-        else
-        {
-            m_remainingCooldown -= Time.deltaTime;
-            if (m_remainingCooldown < cooldown / 2f)
-                pointerModel.transform.localScale = m_pointerModelLocalScale;
-        }
     }
 
     private void Shoot()
