@@ -21,7 +21,6 @@ public class PickupSystem : MonoBehaviour
     private GadgetSelector m_gadgetSelector;
     private bool m_gadgetSelectorOpen;
 
-    private GameObject m_otherDeviceGameObject;
     private PickupSystem m_otherDevicePickupSystem;
     
     private List<GameObject> m_itemsInRange;
@@ -39,11 +38,11 @@ public class PickupSystem : MonoBehaviour
         m_inventoryOpen = false;
         m_gadgetSelectorOpen = false;
 
-        m_otherDeviceGameObject = transform.parent.GetComponent<SteamVR_ControllerManager>().left;
-        if (m_otherDeviceGameObject == gameObject)
-            m_otherDeviceGameObject = transform.parent.GetComponent<SteamVR_ControllerManager>().right;
+        GameObject otherDeviceGameObject = transform.parent.GetComponent<SteamVR_ControllerManager>().left;
+        if (otherDeviceGameObject == gameObject)
+            otherDeviceGameObject = transform.parent.GetComponent<SteamVR_ControllerManager>().right;
 
-        m_otherDevicePickupSystem = m_otherDeviceGameObject.GetComponent<PickupSystem>();
+        m_otherDevicePickupSystem = otherDeviceGameObject.GetComponent<PickupSystem>();
 
         m_gadgetSelector = GetComponent<GadgetSelector>();
 
