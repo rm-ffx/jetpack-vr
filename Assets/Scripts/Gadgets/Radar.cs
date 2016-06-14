@@ -12,39 +12,44 @@ using System.Collections.Generic;
 public class Radar : MonoBehaviour
 {
     SteamVR_TrackedObject trackedObj;
-
-    [Tooltip("List of the objects tracked on the radar.")]
-    public GameObject[] trackedObjects;
-    [Tooltip("The prefab that will be used to display on the radar.")]
-    public GameObject radarPrefab;
-    [Tooltip("The camera that renders the radar.")]
-    public Transform radarCamera;
+    
     [Tooltip("The plane to which will be rendered.")]
     public GameObject radarCameraPlane;
-    [Tooltip("Reference to the player position.")]
-    public Transform playerPos;
-    [Tooltip("Radius of the radar.")]
-    public float switchDistance;
 
-    private Material radarMaterial;
+    private RadarProperties m_radarProperties;
+
+    private GameObject[] m_trackedObjects;
+    private GameObject m_radarPrefab;
+    private Transform m_radarCamera;
+    private Transform m_playerPos;
+    private float m_switchDistance;
+
+    private List<GameObject> m_radarObjects;
+    private List<Renderer> m_radarRenderers;
+
     private static bool m_isInuse;
     private bool m_selfIsInuse;
-    private List<GameObject> m_radarObjects = new List<GameObject>();
-    private List<Renderer> m_radarRenderers = new List<Renderer>();
 
-    // Use this for initialization
-    void Start()
+    // Use this for initialization, not Start() to make sure RadarProperties is set up properly before copying values
+    public void Initialize()
     {
-        radarMaterial = radarPrefab.GetComponentInChildren<Renderer>().sharedMaterial;
-        radarMaterial.mainTextureScale = new Vector2(0.7f, 0.7f);  // for scaling the icon on the GameObject -> 0.7 best value for this icon texture 
         trackedObj = GetComponent<SteamVR_TrackedObject>();
-        if (trackedObjects.Length > 0)
-            createRadarObjects();
+
+        m_radarProperties = transform.parent.GetComponent<RadarProperties>();
+
+        m_trackedObjects = m_radarProperties.trackedObjects;
+        m_radarPrefab = m_radarProperties.radarPrefab;
+        m_radarCamera = m_radarProperties.radarCamera;
+        m_playerPos = m_radarProperties.playerPos;
+        m_switchDistance = m_radarProperties.switchDistance;
+
+        m_radarObjects = m_radarProperties.radarObjects;
+        m_radarRenderers = m_radarProperties.radarRenderers;
+
         m_isInuse = false;
         m_selfIsInuse = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         var device = SteamVR_Controller.Input((int)trackedObj.index);
@@ -55,11 +60,11 @@ public class Radar : MonoBehaviour
             radarCameraPlane.SetActive(true);
             float z = transform.rotation.eulerAngles.z;
             float y = transform.rotation.eulerAngles.y;
-            Vector3 eulerRotation = radarCamera.rotation.eulerAngles;
+            Vector3 eulerRotation = m_radarCamera.rotation.eulerAngles;
 
             // rotate radarcamera by 180° - controllerRotation.z + HMDRotation.y
             eulerRotation.y = 180 - z + y;
-            radarCamera.rotation = Quaternion.Euler(eulerRotation);
+            m_radarCamera.rotation = Quaternion.Euler(eulerRotation);
 
             for (int i = 0; i < m_radarObjects.Count; i++)
             {
@@ -70,19 +75,19 @@ public class Radar : MonoBehaviour
                     i--;
                     continue;
                 }
-                else if (Vector3.Distance(m_radarObjects[i].transform.parent.position, playerPos.transform.position) > switchDistance)
+                else if (Vector3.Distance(m_radarObjects[i].transform.parent.position, m_playerPos.transform.position) > m_switchDistance)
                 {
                     // place objects on the border
                     Vector3 a = m_radarObjects[i].transform.parent.position;
-                    Vector3 b = playerPos.transform.position;
+                    Vector3 b = m_playerPos.transform.position;
                     a.y = 0;
                     b.y = 0;
 
                     float dist = Vector3.Distance(a, b);
-                    float alphaValue = switchDistance / dist;
+                    float alphaValue = m_switchDistance / dist;
 
-                    Vector3 direction = m_radarObjects[i].transform.parent.position - playerPos.transform.position;
-                    m_radarObjects[i].transform.position = playerPos.transform.position + direction.normalized * switchDistance;
+                    Vector3 direction = m_radarObjects[i].transform.parent.position - m_playerPos.transform.position;
+                    m_radarObjects[i].transform.position = m_playerPos.transform.position + direction.normalized * m_switchDistance;
                     m_radarRenderers[i].material.color = new Color(1, 1, 1, Mathf.Clamp(alphaValue, 0.2f, 1.0f));
                 }
                 else
@@ -98,24 +103,6 @@ public class Radar : MonoBehaviour
             m_isInuse = false;
             m_selfIsInuse = false;
             radarCameraPlane.SetActive(false);
-        }
-    }
-
-    void createRadarObjects()
-    {
-        m_radarObjects = new List<GameObject>();
-
-        foreach (GameObject o in trackedObjects)
-        {
-            if (o == null)
-                continue;
-
-            GameObject obj = Instantiate(radarPrefab, o.transform.position, Quaternion.identity) as GameObject;
-            obj.transform.parent = o.transform;
-            Renderer rend = obj.GetComponentInChildren<Renderer>();
-            rend.material.color = new Color(0, 0, 0, 0.0f);
-            m_radarRenderers.Add(rend);
-            m_radarObjects.Add(obj);
         }
     }
 }
