@@ -18,8 +18,6 @@ public class Radar : MonoBehaviour
 
     private RadarProperties m_radarProperties;
 
-    private GameObject[] m_trackedObjects;
-    private GameObject m_radarPrefab;
     private Transform m_radarCamera;
     private Transform m_playerPos;
     private float m_switchDistance;
@@ -37,8 +35,6 @@ public class Radar : MonoBehaviour
 
         m_radarProperties = transform.parent.GetComponent<RadarProperties>();
 
-        m_trackedObjects = m_radarProperties.trackedObjects;
-        m_radarPrefab = m_radarProperties.radarPrefab;
         m_radarCamera = m_radarProperties.radarCamera;
         m_playerPos = m_radarProperties.playerPos;
         m_switchDistance = m_radarProperties.switchDistance;
@@ -70,8 +66,10 @@ public class Radar : MonoBehaviour
             {
                 if (m_radarObjects[i] == null)
                 {
+                    // Remove null entries (e.g. destroyed objects, dead enemies)
                     m_radarObjects.RemoveAt(i);
                     m_radarRenderers.RemoveAt(i);
+                    // Since an object is removed, make sure to reduce index to ensure all objects get checked.
                     i--;
                     continue;
                 }

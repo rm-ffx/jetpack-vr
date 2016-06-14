@@ -163,6 +163,7 @@ GameObject:
   - 114: {fileID: 11464056}
   - 65: {fileID: 6579436}
   - 114: {fileID: 11444766}
+  - 114: {fileID: 11433674}
   m_Layer: 2
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -360,7 +361,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -163.6, y: 77.3, z: 26.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 430380}
@@ -1275,6 +1276,25 @@ MonoBehaviour:
   index: 0
   origin: {fileID: 0}
   isValid: 0
+--- !u!114 &11433674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a283f442030e64e98e300284913840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  radarPrefabs: []
+  defaultRadarPrefab: {fileID: 178900, guid: abbe06cea8950574496d5ca11892074e, type: 2}
+  radarCamera: {fileID: 408560}
+  playerPos: {fileID: 407646}
+  switchDistance: 10
 --- !u!114 &11434668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1315,20 +1335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7f0c20b76a55643b67d0ee7c7aa0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  radarPrefab: {fileID: 178900, guid: abbe06cea8950574496d5ca11892074e, type: 2}
-  radarCamera: {fileID: 408560}
   radarCameraPlane: {fileID: 119660}
-  playerPos: {fileID: 407646}
-  switchDistance: 10
 --- !u!114 &11444766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1400,20 +1407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7f0c20b76a55643b67d0ee7c7aa0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  radarPrefab: {fileID: 178900, guid: abbe06cea8950574496d5ca11892074e, type: 2}
-  radarCamera: {fileID: 408560}
   radarCameraPlane: {fileID: 192378}
-  playerPos: {fileID: 407646}
-  switchDistance: 30
 --- !u!114 &11456028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1494,7 +1488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed99e3235c6cce4597159d0cd973adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 1000
 --- !u!114 &11465614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1588,8 +1582,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnergy: 100
   startWithFullEnergy: 1
-  looseEnergyOnHit: 0
-  looseEnergyOverTime: 0
+  loseEnergyOnHit: 0
+  loseEnergyOverTime: 0
   energyRegeneration: 100
   shieldObject: {fileID: 148142}
   shieldActiveMaterial: {fileID: 2100000, guid: 7906cc3031441044aa3793be3a0f790b,
@@ -1629,8 +1623,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnergy: 100
   startWithFullEnergy: 1
-  looseEnergyOnHit: 0
-  looseEnergyOverTime: 0
+  loseEnergyOnHit: 0
+  loseEnergyOverTime: 0
   energyRegeneration: 100
   shieldObject: {fileID: 183046}
   shieldActiveMaterial: {fileID: 2100000, guid: 7906cc3031441044aa3793be3a0f790b,

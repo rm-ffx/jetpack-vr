@@ -6,8 +6,10 @@ public class RadarProperties : MonoBehaviour
 {
     [Tooltip("List of the objects tracked on the radar.")]
     public GameObject[] trackedObjects;
-    [Tooltip("The prefab that will be used to display on the radar.")]
-    public GameObject radarPrefab;
+    [Tooltip("The list of prefabs that will be used to display on the radar. Use the same order as in Tracked Objects list.")]
+    public GameObject[] radarPrefabs;
+    [Tooltip("The prefab that will be used to display on the radar if RadarPrefabs list is not filled properly.")]
+    public GameObject defaultRadarPrefab;
     [Tooltip("The camera that renders the radar.")]
     public Transform radarCamera;
     [Tooltip("Reference to the player position.")]
@@ -26,7 +28,7 @@ public class RadarProperties : MonoBehaviour
         if (trackedObjects.Length > 0)
             createRadarObjects();
 
-        radarMaterial = radarPrefab.GetComponentInChildren<Renderer>().sharedMaterial;
+        radarMaterial = radarPrefabs[0].GetComponentInChildren<Renderer>().sharedMaterial;
         radarMaterial.mainTextureScale = new Vector2(0.7f, 0.7f);  // for scaling the icon on the GameObject -> 0.7 best value for this icon texture 
 
         foreach (Radar radar in GetComponentsInChildren<Radar>())
@@ -38,13 +40,20 @@ public class RadarProperties : MonoBehaviour
         radarObjects = new List<GameObject>();
         radarRenderers = new List<Renderer>();
 
-        foreach (GameObject o in trackedObjects)
+        GameObject go;
+        for(int i = 0; i < trackedObjects.Length; i++)
         {
-            if (o == null)
+            go = trackedObjects[i];
+            if (go == null)
                 continue;
 
-            GameObject obj = Instantiate(radarPrefab, o.transform.position, Quaternion.identity) as GameObject;
-            obj.transform.parent = o.transform;
+            GameObject obj;
+            if(i < radarPrefabs.Length && radarPrefabs[i] != null)
+                obj = Instantiate(radarPrefabs[i], go.transform.position, Quaternion.identity) as GameObject;
+            else
+                obj = Instantiate(defaultRadarPrefab, go.transform.position, Quaternion.identity) as GameObject;
+
+            obj.transform.parent = go.transform;
             radarObjects.Add(obj);
 
             Renderer rend = obj.GetComponentInChildren<Renderer>();
