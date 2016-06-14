@@ -11,7 +11,7 @@ public class Shield : MonoBehaviour
     public float maxEnergy = 100.0f;
     [Tooltip("Whether or not the shield starts off with full energy.")]
     public bool startWithFullEnergy = true;
-    [Tooltip("Whether or not the shield looses energy when hit by a projectile.")]
+    [Tooltip("Whether or not the shield loses energy when hit by a projectile.")]
     public bool loseEnergyOnHit = false;
     [Tooltip("How fast energy is consumed while the shield is active. Setting this value to 0 results in the shield not losing energy over time.")]
     public float loseEnergyOverTime = 0.0f;
