@@ -256,7 +256,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113372}
   m_LocalRotation: {x: 0, y: -0.9945141, z: 0, w: -0.104603335}
-  m_LocalPosition: {x: 20.433811, y: 3.4193182, z: 3.4192028}
+  m_LocalPosition: {x: -225.4, y: 21.1, z: 58}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 453668}
@@ -479,6 +479,7 @@ MonoBehaviour:
   health: 100
   fov: 75
   viewDistance: 150
+  radarPrefab: {fileID: 160306, guid: 7f32bd18d22124641818a515521f85b7, type: 2}
   eyePos: {fileID: 428350}
   gunPos:
   - {fileID: 433348}
@@ -486,6 +487,8 @@ MonoBehaviour:
   projectile: {fileID: 102774, guid: e541c7c5445b46742ba13dcb108e7789, type: 2}
   turretHead: {fileID: 472382}
   currentState: 0
+  triggerScriptOnDeath: 0
+  triggerScript: {fileID: 0}
   patrolWaypoints: []
 --- !u!136 &13664588
 CapsuleCollider:
