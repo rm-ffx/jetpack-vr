@@ -13,6 +13,12 @@ public class NPCInfo : MonoBehaviour
     [Tooltip("How far can this NPC see.")]
     public float viewDistance;
 
+    [Tooltip("RadarIconPrefab which can be choosed from")]
+    public GameObject radarPrefab;
+
+    [Tooltip("The currentIcon that will be displayed on the radar")]
+    public Texture currentIconTexture;
+
     public Transform eyePos;
 
     // Combat Variables
@@ -46,6 +52,11 @@ public class NPCInfo : MonoBehaviour
     {
         // Cache Variables
         puppetMaster = GetComponentInChildren<PuppetMaster>();
+        if (currentIconTexture != null)
+        {
+            Renderer rend = GetComponent<Renderer>();
+            rend.material.mainTexture = currentIconTexture;
+        }
     }
 
     /// <summary>

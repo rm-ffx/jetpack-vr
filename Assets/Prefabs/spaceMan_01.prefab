@@ -2897,6 +2897,7 @@ MonoBehaviour:
   health: 100
   fov: 150
   viewDistance: 120
+  radarPrefab: {fileID: 178900, guid: abbe06cea8950574496d5ca11892074e, type: 2}
   eyePos: {fileID: 437648}
   gunPos:
   - {fileID: 492202}
