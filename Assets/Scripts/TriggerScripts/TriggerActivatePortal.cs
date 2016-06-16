@@ -5,7 +5,6 @@ public class TriggerActivatePortal : TriggerScript
 {
     [Tooltip("The collider of the portal to activate.")]
     public Collider portalCollider;
-
     [Tooltip("The material used when the object is active.")]
     public Material activeMaterial;
     [Tooltip("The material used when the object is deactivated.")]

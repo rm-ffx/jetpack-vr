@@ -126,7 +126,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 132594, guid: 4f35fa249b5008c44ac2998be6f82d4d, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f35fa249b5008c44ac2998be6f82d4d, type: 2}
@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c031b737ca2b24dbefac1e73c37f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SwitchToMainMenu: 1
-  sceneIndex: 6
+  SwitchToMainMenu: 0
+  sceneIndex: 2
 --- !u!1001 &177345058
 Prefab:
   m_ObjectHideFlags: 0
@@ -279,6 +279,10 @@ Prefab:
     - target: {fileID: 400008, guid: 255333d57084e4e46b3d948279746a47, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 255333d57084e4e46b3d948279746a47, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 255333d57084e4e46b3d948279746a47, type: 2}
@@ -393,7 +397,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
---- !u!43 &346480740
+--- !u!43 &655353172
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -809,7 +813,7 @@ Prefab:
     - target: {fileID: 3339418, guid: 12a760cfea7da5f48a3bbbabcf06db63, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 346480740}
+      objectReference: {fileID: 655353172}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12a760cfea7da5f48a3bbbabcf06db63, type: 2}
   m_IsPrefabParent: 0

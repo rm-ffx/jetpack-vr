@@ -18,6 +18,6 @@ public class TriggerLoadScene : TriggerScript
 
     public override void Deactivate()
     {
-        // No need to do anything here, since the scene will be changed upon activation
+        // No need to do anything here, since the scene will be changed upon activation, therefore the object can not be deactivated
     }
 }

@@ -11,6 +11,7 @@ public class TriggerActivateObject : TriggerScript
         if(!m_isActive)
         {
             m_isActive = true;
+
             if (activateObjectScript != null)
                 activateObjectScript.Activate();
         }
@@ -21,6 +22,7 @@ public class TriggerActivateObject : TriggerScript
         if(m_isActive)
         {
             m_isActive = false;
+
             if (activateObjectScript != null)
                 activateObjectScript.Deactivate();
         }

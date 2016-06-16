@@ -11,10 +11,10 @@ public class Shield : MonoBehaviour
     public float maxEnergy = 100.0f;
     [Tooltip("Whether or not the shield starts off with full energy.")]
     public bool startWithFullEnergy = true;
-    [Tooltip("Whether or not the shield looses energy when hit by a projectile.")]
-    public bool looseEnergyOnHit = false;
+    [Tooltip("Whether or not the shield loses energy when hit by a projectile.")]
+    public bool loseEnergyOnHit = false;
     [Tooltip("How fast energy is consumed while the shield is active. Setting this value to 0 results in the shield not losing energy over time.")]
-    public float looseEnergyOverTime = 0.0f;
+    public float loseEnergyOverTime = 0.0f;
     [Tooltip("How fast energy regenerates while the shield is deactivated. Setting this value to 0 results in the shield not regenerating energy over time.")]
     public float energyRegeneration = 0.0f;
 
@@ -73,27 +73,34 @@ public class Shield : MonoBehaviour
 	void Update ()
     {
         m_device = SteamVR_Controller.Input((int)trackedObj.index);
-
-        //if (!shieldObject.activeInHierarchy)
-        //    shieldObject.SetActive(true);
         if (!m_pickupSystem.m_isHandBusy)
+        {
+            if (!shieldObject.activeInHierarchy)
+                shieldObject.SetActive(true);
+
             m_shieldActive = (m_device.GetAxis(EVRButtonId.k_EButton_Axis1).x > 0.1f) ? true : false;
 
-        if(m_shieldActive)
-        {
-            if (looseEnergyOverTime > 0.0f)
-                m_actualEnergy -= Time.deltaTime * looseEnergyOverTime;
+            if (m_shieldActive)
+            {
+                if (loseEnergyOverTime > 0.0f)
+                    m_actualEnergy -= Time.deltaTime * loseEnergyOverTime;
 
-            if (m_actualEnergy > 0.0f)
-                ActivateShield();
+                if (m_actualEnergy > 0.0f)
+                    ActivateShield();
+                else
+                    DeactivateShield();
+            }
             else
+            {
+                if (energyRegeneration > 0.0f)
+                    m_actualEnergy += Time.deltaTime * energyRegeneration;
+
                 DeactivateShield();
+            }
         }
         else
         {
-            if (energyRegeneration > 0.0f)
-                m_actualEnergy += Time.deltaTime * energyRegeneration;
-
+            shieldObject.SetActive(false);
             DeactivateShield();
         }
 	}

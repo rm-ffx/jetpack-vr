@@ -75,7 +75,7 @@ public class VRInputManager : MonoBehaviour {
         if (!m_isInitialized)
             Initialize();
 
-        // Check if a Re-Initialize is required
+        // Check if a Re-Initialization is required
         if (m_leftDevice == m_rightDevice) m_isInitialized = false;
     }
 }

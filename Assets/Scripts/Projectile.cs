@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     [Tooltip("How much damage the projectile deals.")]
     public float damage = 50;
     [Tooltip("The impact force of this projectile on Ragdolls.")]
-    public float force = 10f; // Impact force of this Projectile on Ragdolls
+    public float force = 10f;
 
     private float m_currentLifeTime;
     private Vector3 m_lastPosition;
@@ -41,42 +41,10 @@ public class Projectile : MonoBehaviour
         // Manual Collision Detection
         m_direction = transform.position - m_lastPosition;
         if (Physics.Raycast(m_lastPosition, m_direction, out m_hit, layerMask: m_layerMask, maxDistance: m_direction.magnitude))
-        {
             OnHit(m_hit);
-        }
+
         m_lastPosition = transform.position;
     }
-
-    //void OnTriggerEnter(Collider collider)
-    //{
-    //    if (collider.gameObject.layer == 9)
-    //    {
-    //        // Collides with NPC
-    //        NPCInfo npcInfo = collider.transform.root.gameObject.GetComponent<NPCInfo>();
-    //        npcInfo.health -= damage;
-    //        if (npcInfo.health <= 0.0f)
-    //        {
-    //            // If the NPC has a Ragdoll - Activate Ragdoll. Else Destroy GameObject
-    //            if (npcInfo.puppetMaster) npcInfo.TriggerPuppetMaster(collider, force, transform.position, 0);
-    //            else Destroy(collider.gameObject);
-    //        }
-    //    }
-    //    else if (collider.gameObject.layer == 11)
-    //    {
-    //        // Collides with Player
-    //        PlayerInfo playerInfo = collider.gameObject.transform.root.GetComponent<PlayerInfo>();
-    //        playerInfo.health -= damage;
-    //        if (playerInfo.health <= 0.0f)
-    //            UnityEngine.SceneManagement.SceneManager.LoadScene(GameInfo.mainMenuIndex, UnityEngine.SceneManagement.LoadSceneMode.Single);
-    //    }
-    //    else if (collider.gameObject.layer == 14)
-    //    {
-    //        Shield shield = collider.transform.parent.GetComponent<Shield>();
-    //        if (shield.looseEnergyOnHit)
-    //            shield.GetHit(damage);
-    //    }
-    //    Destroy(gameObject);
-    //}
 
     void OnHit(RaycastHit hit)
     {
@@ -87,8 +55,7 @@ public class Projectile : MonoBehaviour
             npcInfo.health -= damage;
             if (npcInfo.health <= 0.0f)
             {
-                if (npcInfo.triggerScriptOnDeath)
-                    if (npcInfo.triggerScript != null)
+                if (npcInfo.triggerScriptOnDeath && npcInfo.triggerScript != null)
                         npcInfo.triggerScript.Activate();
 
                 // If the NPC has a Ragdoll - Activate Ragdoll. Else Destroy GameObject
@@ -109,7 +76,7 @@ public class Projectile : MonoBehaviour
         else if (hit.collider.gameObject.layer == 14)
         {
             Shield shield = hit.collider.transform.parent.GetComponent<Shield>();
-            if (shield.looseEnergyOnHit)
+            if (shield.loseEnergyOnHit)
                 shield.GetHit(damage);
         }
         Destroy(gameObject);

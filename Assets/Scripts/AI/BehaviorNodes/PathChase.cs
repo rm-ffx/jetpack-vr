@@ -124,8 +124,17 @@ public class PathChase : Action
     /// </summary>
     public void CreatePath()
     {
+        GraphNode node = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
+        uint areaID = node.Area;
+        //Then you want to configure the NNConstraint to only return nodes which can be reached from the start node:
+        NNConstraint nn = new NNConstraint();
+        nn.constrainArea = true;
+        nn.area = (int)areaID;
+
+        NNInfo info = AstarPath.active.GetNearest((target.GetValue() as Transform).position, nn);
+        
         m_generatePath = false;
-        pathSeeker.StartPath(transform.position, (target.GetValue() as Transform).position, OnPathComplete);
+        pathSeeker.StartPath(transform.position, (target.GetValue() as Transform).position , OnPathComplete); // (target.GetValue() as Transform).position, OnPathComplete);
         m_currentRepathCounter = 0;
     }
 

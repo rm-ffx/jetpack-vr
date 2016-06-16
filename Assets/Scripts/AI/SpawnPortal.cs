@@ -30,5 +30,4 @@ public class SpawnPortal : MonoBehaviour
             spaceMan.GetComponent<NPCInfo>().patrolWaypoints = waypoints;
         }
     }
-
 }

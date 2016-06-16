@@ -3,6 +3,15 @@ using System.Collections;
 
 public class Levelborder : MonoBehaviour
 {
+    [Tooltip("Reference to the right controller's GameObject")]
+    public GameObject LeftController;
+    [Tooltip("Reference to the left controller's GameObject")]
+    public GameObject RightController;
+    [Tooltip("For how long the player will be warned before shutting down.")]
+    public int WarningTime;
+    [Tooltip("Whether or not to display warning.")]
+    public bool WarningOn = false;
+
     private float m_TimerCounter;
     private bool m_isOutsideBorder = false;
     private PickupSystem m_pickUpSystemLeft;
@@ -11,11 +20,6 @@ public class Levelborder : MonoBehaviour
     private JetpackMovement m_jetpackMovementRight;
     private float m_upwardMultiplier;
     
-    public GameObject LeftController;
-    public GameObject RightController;
-    public int WarningTime;
-    public bool WarningOn = false;
-
     void Start()
     {
         m_pickUpSystemLeft = LeftController.GetComponent<PickupSystem>();
@@ -37,7 +41,6 @@ public class Levelborder : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-
         if (other.tag == "Player")
         {
             Debug.Log("In Level");
@@ -51,20 +54,18 @@ public class Levelborder : MonoBehaviour
         }
     }
 
-
     // Update is called once per frame
     void Update()
     {
         if (m_isOutsideBorder)
-        {
             CountDown();
-        }
     }
 
     void CountDown()
     {
         if (m_TimerCounter > 0)
             m_TimerCounter -= Time.deltaTime;
+
         Debug.Log("time left: " + (int)m_TimerCounter);
         if (m_TimerCounter <= 0)
         {
