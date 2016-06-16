@@ -44,18 +44,12 @@ public class CheckSight : NPCActionNode
             if (type == checkSightType.FOV)
             {
                 // Search for the Object using the NPC's FOV
-                if (withinSightFov(GameInfo.playersInGame[i].transform))
-                {
-                    return true;
-                }
+                if (withinSightFov(GameInfo.playersInGame[i].transform)) return true;
             }
             else if (type == checkSightType.Spherical)
             {
                 // Search for the Object using a spherical radius around the NPC
-                if (withinSightSpherical(GameInfo.playersInGame[i].transform))
-                {
-                    return true;
-                }
+                if (withinSightSpherical(GameInfo.playersInGame[i].transform)) return true;
             }
         }
         return false;

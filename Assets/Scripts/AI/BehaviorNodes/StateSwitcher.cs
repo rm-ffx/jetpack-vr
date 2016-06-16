@@ -21,10 +21,15 @@ public class StateSwitcher : Conditional
         lastState = info.currentState;
     }
 
+    //public override void OnStart()
+    //{
+    //}
+
     public override TaskStatus OnUpdate()
     {
         // Check if the NPC sees an Object with the given Tag
-        if (CheckSight() && lastState != info.currentState) { lastState = info.currentState; return TaskStatus.Success; }
+        CheckSight();
+        if (lastState != info.currentState) { lastState = info.currentState; return TaskStatus.Success; }
 
         lastState = info.currentState;
         // Keep Checking for Changes

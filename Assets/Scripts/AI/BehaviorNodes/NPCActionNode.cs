@@ -77,7 +77,7 @@ public abstract class NPCActionNode : Action
         layerMask = ~layerMask;
 
         RaycastHit hit;
-        if (Physics.Raycast(m_info.eyePos.position, (targetTransform.position - m_info.eyePos.position) * 1.25f, out hit, Mathf.Infinity, layerMask) && hit.transform == targetTransform) return true;
+        if (Physics.Raycast(m_info.eyePos.position, (targetTransform.position - m_info.eyePos.position).normalized, out hit, m_info.viewDistance, layerMask) && hit.transform == targetTransform) return true;
         else return false;
     }
 
