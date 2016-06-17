@@ -124,17 +124,22 @@ public class PathChase : Action
     /// </summary>
     public void CreatePath()
     {
-        GraphNode node = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
-        uint areaID = node.Area;
-        //Then you want to configure the NNConstraint to only return nodes which can be reached from the start node:
-        NNConstraint nn = new NNConstraint();
-        nn.constrainArea = true;
-        nn.area = (int)areaID;
+        ////GraphNode node = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
+        ////uint areaID = node.Area;
+        //////Then you want to configure the NNConstraint to only return nodes which can be reached from the start node:
+        ////NNConstraint nn = new NNConstraint();
+        ////nn.constrainArea = true;
+        ////nn.area = (int)areaID;
+        ////nn.constrainWalkability = true;
+        ////nn.walkable = true;
 
-        NNInfo info = AstarPath.active.GetNearest((target.GetValue() as Transform).position, nn);
-        
+
+        ////NNInfo info = AstarPath.active.GetNearest((target.GetValue() as Transform).position, nn);
+
+        //Debug.Log(info.clampedPosition);
+
         m_generatePath = false;
-        pathSeeker.StartPath(transform.position, (target.GetValue() as Transform).position , OnPathComplete); // (target.GetValue() as Transform).position, OnPathComplete);
+        pathSeeker.StartPath(transform.position, (target.GetValue() as Transform).position, OnPathComplete); // (target.GetValue() as Transform).position, OnPathComplete);
         m_currentRepathCounter = 0;
     }
 
@@ -202,7 +207,29 @@ public class PathChase : Action
     public void OnPathComplete(Path p)
     {
         //We got our path back
-        if (p.error) Debug.Log("Error: " + p.errorLog);
+        if (p.error)
+        {
+            //Debug.Log("Error: " + p.errorLog);
+
+            //// REPATH using GETNEAREST to avoid the Error!
+            //GraphNode node = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
+            //uint areaID = node.Area;
+            ////Then you want to configure the NNConstraint to only return nodes which can be reached from the start node:
+            //NNConstraint nn = new NNConstraint();
+            //nn.constrainArea = true;
+            //nn.area = (int)areaID;
+            //nn.constrainWalkability = true;
+            //nn.walkable = true;
+
+
+            //NNInfo info = AstarPath.active.GetNearest((target.GetValue() as Transform).position, nn);
+
+            ////Debug.Log(info.clampedPosition);
+
+            //m_generatePath = false;
+            //pathSeeker.StartPath(transform.position, info.clampedPosition, OnPathComplete); // (target.GetValue() as Transform).position, OnPathComplete);
+            //m_currentRepathCounter = 0;
+        }
         else
         {
             // Completed the Path Generation
