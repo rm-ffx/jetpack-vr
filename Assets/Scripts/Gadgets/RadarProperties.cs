@@ -49,9 +49,11 @@ public class RadarProperties : MonoBehaviour
 
             GameObject obj;
             if(i < radarPrefabs.Length && radarPrefabs[i] != null)
-                obj = Instantiate(radarPrefabs[i], go.transform.position, Quaternion.identity) as GameObject;
+                obj = Instantiate(radarPrefabs[i], go.transform.position, Quaternion.identity) as GameObject;  
             else
+            {
                 obj = Instantiate(defaultRadarPrefab, go.transform.position, Quaternion.identity) as GameObject;
+            }
 
             obj.transform.parent = go.transform;
             radarObjects.Add(obj);
