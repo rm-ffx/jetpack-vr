@@ -9,6 +9,7 @@ TagManager:
   - Waypoint
   - Interactive
   - GameManager
+  - RadarIcon
   layers:
   - Default
   - TransparentFX

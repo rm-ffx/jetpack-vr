@@ -12,7 +12,7 @@ using System.Collections.Generic;
 public class Radar : MonoBehaviour
 {
     SteamVR_TrackedObject trackedObj;
-    
+
     [Tooltip("The plane to which will be rendered.")]
     public GameObject radarCameraPlane;
 
@@ -35,7 +35,7 @@ public class Radar : MonoBehaviour
 
         m_radarProperties = transform.parent.GetComponent<RadarProperties>();
 
-        m_radarCamera = m_radarProperties.radarCamera;
+        m_radarCamera = m_radarProperties.radarCamera.transform;
         m_playerPos = m_radarProperties.playerPos;
         m_switchDistance = m_radarProperties.switchDistance;
 
@@ -44,6 +44,12 @@ public class Radar : MonoBehaviour
 
         m_isInuse = false;
         m_selfIsInuse = false;
+    }
+
+    public void RefreshRadarObjects()
+    {
+        m_radarObjects = m_radarProperties.radarObjects;
+        m_radarRenderers = m_radarProperties.radarRenderers;    // added this line
     }
 
     void Update()
@@ -64,6 +70,14 @@ public class Radar : MonoBehaviour
 
             for (int i = 0; i < m_radarObjects.Count; i++)
             {
+                Vector3 a = m_radarObjects[i].transform.parent.position;      
+                Vector3 b = m_playerPos.transform.position;
+                a.y = 0;
+                b.y = 0;
+
+                Vector3 direction = a - b;
+                float dist = Vector3.Distance(a, b);
+
                 if (m_radarObjects[i] == null)
                 {
                     // Remove null entries (e.g. destroyed objects, dead enemies)
@@ -73,27 +87,26 @@ public class Radar : MonoBehaviour
                     i--;
                     continue;
                 }
-                else if (Vector3.Distance(m_radarObjects[i].transform.parent.position, m_playerPos.transform.position) > m_switchDistance)
+                else if (dist > m_switchDistance)
                 {
                     // place objects on the border
-                    Vector3 a = m_radarObjects[i].transform.parent.position;
-                    Vector3 b = m_playerPos.transform.position;
-                    a.y = 0;
-                    b.y = 0;
-
-                    float dist = Vector3.Distance(a, b);
                     float alphaValue = m_switchDistance / dist;
 
-                    Vector3 direction = m_radarObjects[i].transform.parent.position - m_playerPos.transform.position;
-                    m_radarObjects[i].transform.position = m_playerPos.transform.position + direction.normalized * m_switchDistance;
-                    m_radarRenderers[i].material.color = new Color(1, 1, 1, Mathf.Clamp(alphaValue, 0.2f, 1.0f));
+                    m_radarObjects[i].transform.position = b + direction.normalized * m_switchDistance;
+                    m_radarRenderers[i].material.color = new Color(1, 1, 1, Mathf.Clamp(alphaValue, 0.2f, 0.5f));
                 }
                 else
                 {
                     // place objects on the actual radar position
-                    m_radarObjects[i].transform.position = m_radarObjects[i].transform.parent.position;
+                    m_radarObjects[i].transform.position = b + direction.normalized * dist;
+
+                    Debug.Log("actual radar position");
                     m_radarRenderers[i].material.color = new Color(1, 1, 1, 1.0f);
                 }
+
+                // setting a fixed y-position of all radar objects to improve performance
+                Vector3 fixedHeightPos = new Vector3(m_radarObjects[i].transform.position.x, m_radarProperties.radarObjectToCameraDistance + m_playerPos.transform.position.y, m_radarObjects[i].transform.position.z);
+                m_radarObjects[i].transform.position = fixedHeightPos;
             }
         }
         else
