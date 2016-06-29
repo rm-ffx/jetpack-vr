@@ -6,10 +6,6 @@ public class RadarProperties : MonoBehaviour
 {
     [Tooltip("List of the objects tracked on the radar.")]
     public GameObject[] trackedObjects;
-    //[Tooltip("The list of prefabs that will be used to display on the radar. Use the same order as in Tracked Objects list.")]
-    //public GameObject[] radarPrefabs;
-    //[Tooltip("The prefab that will be used to display on the radar if RadarPrefabs list is not filled properly.")]
-    //public GameObject defaultRadarPrefab;
     [Tooltip("The camera that renders the radar.")]
     public Camera radarCamera;
     [Tooltip("Reference to the player position.")]

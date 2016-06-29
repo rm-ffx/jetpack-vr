@@ -406,7 +406,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133726}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 88, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 467692}
@@ -519,7 +519,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175004}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0.0000010394, z: 155}
+  m_LocalPosition: {x: 0, y: -0, z: 0.5}
   m_LocalScale: {x: 16.267797, y: 16.26779, z: 16.26779}
   m_Children: []
   m_Father: {fileID: 408560}
@@ -651,7 +651,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 1
   field of view: 60
   orthographic: 1
   orthographic size: 12
@@ -1290,11 +1290,10 @@ MonoBehaviour:
   trackedObjects:
   - {fileID: 0}
   - {fileID: 0}
-  radarPrefabs: []
-  defaultRadarPrefab: {fileID: 178900, guid: abbe06cea8950574496d5ca11892074e, type: 2}
   radarCamera: {fileID: 408560}
   playerPos: {fileID: 407646}
   switchDistance: 10
+  radarObjectToCameraDistance: 0
 --- !u!114 &11434668
 MonoBehaviour:
   m_ObjectHideFlags: 1
