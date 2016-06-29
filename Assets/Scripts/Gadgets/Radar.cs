@@ -49,7 +49,7 @@ public class Radar : MonoBehaviour
     public void RefreshRadarObjects()
     {
         m_radarObjects = m_radarProperties.radarObjects;
-        m_radarRenderers = m_radarProperties.radarRenderers;    // added this line
+        m_radarRenderers = m_radarProperties.radarRenderers;
     }
 
     void Update()

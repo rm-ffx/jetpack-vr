@@ -26,10 +26,15 @@ public class RadarProperties : MonoBehaviour
     public void Start ()
     {
         if (trackedObjects.Length > 0)
-            createRadarObjects();
+        {
+            radarObjects = new List<GameObject>();
+            radarRenderers = new List<Renderer>();
+        }
+            
 
         foreach (Radar radar in GetComponentsInChildren<Radar>())
             radar.Initialize();
+        radarCamera.depthTextureMode = DepthTextureMode.None;
     }
 
     public void AddTrackedObjects(GameObject obj)
@@ -37,42 +42,10 @@ public class RadarProperties : MonoBehaviour
         radarObjects.Add(obj);
         foreach (Radar radar in GetComponentsInChildren<Radar>())
             radar.RefreshRadarObjects();
-        radarCamera.depthTextureMode = DepthTextureMode.None;
     }
 
     public void AddRendererForRadarObjects(Renderer rend)
     {
         radarRenderers.Add(rend);
-    }
-
-    void createRadarObjects()
-    {
-        radarObjects = new List<GameObject>();
-        radarRenderers = new List<Renderer>();
-
-        GameObject go;
-
-        for(int i = 0; i < trackedObjects.Length; i++)
-        {
-            go = trackedObjects[i];
-            if (go == null)
-                continue;
-
-            //GameObject obj;
-            //if (i < radarPrefabs.Length && radarPrefabs[i] != null)
-            //    obj = Instantiate(radarPrefabs[i], go.transform.position, Quaternion.identity) as GameObject;
-            //else
-            //{
-            //    obj = Instantiate(defaultRadarPrefab, go.transform.position, Quaternion.identity) as GameObject;
-            //}
-
-            //obj.transform.parent = go.transform;
-            //radarObjects.Add(obj);
-
-            //Renderer rend = go.GetComponentInChildren<Renderer>();
-            //Renderer rend = GameObject.FindGameObjectWithTag("RadarIcon").GetComponent<Renderer>();
-            //rend.material.color = new Color(0, 0, 0, 0.0f);
-            //radarRenderers.Add(rend);
-        }
     }
 }
